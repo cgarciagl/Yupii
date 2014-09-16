@@ -20,3 +20,7 @@ and That's it!, you can start to create your new great application!
 
 * PHP 5.3+
 * Codeigniter 2.0+
+
+[gimmick:FacebookLike ( layout: 'standard', showfaces: false) ](https://github.com/cgarciagl/Yupii)
+
+[gimmick:TwitterFollow](@cgarciagl)
