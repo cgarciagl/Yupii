@@ -4,6 +4,8 @@
 This is a package for CodeIgniter that allows you to easily create
 Business Applications in the blink of an eye!!
 
+http://cgarciagl.github.io/Yupii/
+
 ## Installation
 
 Just unzip the files on your Codeigniter project directory.
