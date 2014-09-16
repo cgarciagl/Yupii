@@ -1,1 +1,3 @@
-## Here will be a forum
+## Forum
+
+[gimmick:Disqus](yupii)
