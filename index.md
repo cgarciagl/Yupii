@@ -1,13 +1,13 @@
 Yupii
 =====
 
-This is a package that transforms CodeIgniter into a Business Application Framework !!
+*** This is a package that transforms CodeIgniter into a Business Application Framework !! ***
 
 ![Yupii Icon](http://i61.tinypic.com/34dojrd.png)
 
 ## Installation
 
-Just unzip the files on your Codeigniter project directory.
+Download the zip file from [here](https://github.com/cgarciagl/Yupii/zipball/master) and unzip the files on your Codeigniter project directory.
 
 Then open the **./application/config/routes.php** file and add this line at the end of the file:
 
