@@ -1,5 +1,4 @@
-Yupii
-=====
+# Yupii
 
 Hint! This is a package that transforms CodeIgniter into a Business Application Framework !!
 
