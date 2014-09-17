@@ -1,8 +1,6 @@
-# Yupii
+<center>![Yupii Icon](http://i61.tinypic.com/o9jq75.jpg)</center>
 
-Hint! This is a package that transforms CodeIgniter into a Business Application Framework !!
-
-![Yupii Icon](http://i61.tinypic.com/34dojrd.png)
+Hint: **Yupii** is a package that transforms CodeIgniter into a Business Application Framework !!
 
 ## Installation
 
@@ -15,10 +13,7 @@ include_once(APPPATH.'third_party/yupii/config/autoload.php');
 ```
 and That's it!, you can start to create your new great application!
 
-## Requirements
-
-* PHP 5.3+
-* Codeigniter 2.0+
+<hr/>
 
 [gimmick:FacebookLike ( layout: 'standard', showfaces: false) ](https://github.com/cgarciagl/Yupii)
 
