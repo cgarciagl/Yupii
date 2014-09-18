@@ -1,4 +1,4 @@
-![Yupii Icon](http://i61.tinypic.com/o9jq75.jpg)
+![Logo](http://i61.tinypic.com/o9jq75.jpg)
 
 Attention: **Yupii** is a package that transforms CodeIgniter into a Business Application Framework !!
 
@@ -18,3 +18,4 @@ and That's it!, you can start to create your new great application!
 [gimmick:FacebookLike ( layout: 'standard', showfaces: false) ](https://github.com/cgarciagl/Yupii)
 
 [gimmick:TwitterFollow](@cgarciagl)
+

@@ -9,5 +9,5 @@
 [Who is using it?](using.md)
 [About](about.md)
 
-[gimmick:theme](flatly)
+[gimmick:theme](yeti)
 [gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](http://www.github.com/cgarciagl/Yupii)
