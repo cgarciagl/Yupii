@@ -1,4 +1,4 @@
-![Logo](http://i61.tinypic.com/o9jq75.jpg)
+![Logo](./img/Yupii_logo_40.png)
 
 Attention: **Yupii** is a package that transforms CodeIgniter into a Business Application Framework !!
 

@@ -4,11 +4,11 @@ In this example we will code the required classes for an application that manage
 we have a **songs** table and a related **category** table, where each song belongs to a single category,
 and a song is played for a single **artist**.
 
-
+![er](./img/er.png)
 
 ## Implementing Artists
 
-Lets start with the first controller, creating a file artists.php as a controller:
+Lets start with the first table, creating a file artists.php as a controller:
 
 ```php
 <?php

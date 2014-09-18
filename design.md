@@ -2,7 +2,7 @@
 
 This is the UML diagram of the classes contained in Yupii:
 
-![Classes](http://i58.tinypic.com/o8xyxi.jpg)
+![Classes](./img/clases.png)
 
 Here you can notice that all the dependencies in this design are inside the boundary line of the **abstract** part.
 
