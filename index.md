@@ -11,6 +11,12 @@ Then open the **./application/config/routes.php** file and add this line at the 
 ```php
 include_once(APPPATH.'third_party/yupii/config/autoload.php');
 ```
+And in the file **./application/config/autoload.php** change the autoload line for packages:
+
+```php
+$autoload['packages'] = array(APPPATH.'third_party/yupii');
+```
+
 and That's it!, you can start to create your new great application!
 
 <hr/>
