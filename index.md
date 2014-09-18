@@ -1,6 +1,6 @@
 <center>![Yupii Icon](http://i61.tinypic.com/o9jq75.jpg)</center>
 
-Hint: **Yupii** is a package that transforms CodeIgniter into a Business Application Framework !!
+Attention: **Yupii** is a package that transforms CodeIgniter into a Business Application Framework !!
 
 ## Installation
 

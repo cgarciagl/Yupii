@@ -2,10 +2,12 @@
 
 [Home](index.md)
 [Requirements](requirements.md)
+[Design](design.md)
 [Videos](videos.md)
 [Forum](forum.md)
 [Download](download.md)
+[Who is using it?](using.md)
 [About](about.md)
 
-[gimmick:theme](united)
+[gimmick:theme](flatly)
 [gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](http://www.github.com/cgarciagl/Yupii)

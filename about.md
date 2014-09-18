@@ -1,8 +1,8 @@
 # About
 
 Yupii was developed by **Carlos García Trujillo**, a web developer living on Xalapa Veracruz, México.
-You can follow him on Twitter here [gimmick:TwitterFollow](@cgarciagl), and on his [Personal Blog](http://cgarcia.blogspot.com) (in Spanish)
-
+ You can follow him on Twitter here [gimmick:TwitterFollow](@cgarciagl), and on his [Personal Blog](http://cgarcia.blogspot.com) (in Spanish)
+![cgarciagl](http://i60.tinypic.com/ief6tk.jpg)
 <hr>
 
 ![Clean Code](http://i62.tinypic.com/10qwk1u.jpg)
