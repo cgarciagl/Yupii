@@ -1,6 +1,7 @@
 # Yupii
 
 [Home](index.md)
+[Quick Start](quickstart.md)
 [Requirements](requirements.md)
 [Design](design.md)
 [Videos](videos.md)
