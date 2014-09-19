@@ -1,7 +1,7 @@
 # Yupii
 ![Yupii Icon] (http://i61.tinypic.com/34dojrd.png)
 
-This is a package for CodeIgniter that allows you to easily create
+Yupii is a package for CodeIgniter that allows you to easily create
 Business Applications in the blink of an eye!!
 
 http://cgarciagl.github.io/Yupii/
