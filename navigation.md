@@ -1,8 +1,9 @@
 # Yupii
 
 [Home](index.md)
-[Quick Start](quickstart.md)
+[Install](install.md)
 [Requirements](requirements.md)
+[Quick Start](quickstart.md)
 [Design](design.md)
 [Videos](videos.md)
 [Forum](forum.md)
