@@ -6,6 +6,8 @@ and a song is played for a single **artist**.
 
 ![er](./img/er.png)
 
+Here we will assume that you have installed CodeIgniter and Yupii and you have configured your database settings properly.
+
 ## Implementing Artists
 
 Lets start with the first table, creating a file artists.php as a controller:

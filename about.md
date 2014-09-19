@@ -5,5 +5,5 @@ Yupii was developed by **Carlos García Trujillo**, a web developer living on Xa
 ![cgarciagl](./img/pencil2.gif)
 <hr>
 
-![Clean Code](./img/cleancode.png)
+![Clean Code](./img/cleancode.gif)
 Yupii is released as OpenSource under the [MIT-License](http://www.opensource.org/licenses/mit-license.php) and has been developed following the philosophies of the **Software Craftmanship** and **Clean Code** movements.
