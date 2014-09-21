@@ -6,6 +6,8 @@ and a song is played for a single **artist**.
 
 ![er](./img/er.png)
 
+SQL script for this example is available [here](./songs.zip)
+
 Here we will assume that you have installed CodeIgniter and [installed Yupii](install.md) and you have configured your database settings properly.
 
 ## Implementing Artists
@@ -28,7 +30,11 @@ class Artists extends YDatasetController {
 }
 ```
 
+attention: then you can access your controller for this table like [here](http://songs.meximas.com/index.php/artists)
+
 ## Implementing Categories
+
+Now we'll declare the next catalog class, form the Categories of songs: 
 
 ```php
 <?php
@@ -45,7 +51,14 @@ class Categories extends YDatasetController {
 
 }
 ```
+
+With just this lines of code we have the manager for the table, and as you can see you can't leave blank the name of the category or use the name from another category again.
+
+attention: the result will be something like [this](http://songs.meximas.com/index.php/categories)
+
 ## Implementing Songs
+
+Finally we will declare a new controller for the songs table, this way: 
 
 ```php
 <?php
@@ -71,7 +84,15 @@ class Songs extends YDatasetController {
 }
 ```
 
+attention: You can view this example functioning [here](http://songs.meximas.com/index.php/songs)
+
+Yupii can figure it out the relations between the tables when you use the *addSearch()* function, the first parameter is the field in the current table and the second one is the class of the asociated controller that manages the related table; just that simple!!!.
+
+Wanna get amazed!!???, click in the printer button of this catalog and check it out the amount of reports that **Yupii** got for you by magic!! or Try it [here](http://songs.meximas.com/index.php/songs/report)
+
 ## Extending Songs Class
+
+We can even extend the last class *adding new business rules* using some of the magic methods that includes **Yupii**
 
 ```php
 <?php
@@ -113,3 +134,25 @@ class Eminemsongs extends Songs {
 
 }
 ```
+
+We addeda couple of rules here 
+- for this class that just songs from the artist EMINEM are showed, 
+- Another rule here is that you can't delete songs, when you try it you get a nice error message.
+- When you try to add a song or modify one of the existents, the artist for this song should be EMINEM or you will get another error message.
+
+attention: Try it live [here](http://songs.meximas.com/index.php/songs)
+
+## Try it
+
+Come on, Try this example for yourself!!, you will get amazed for the simplicity in the code and the great functionality of the automagic of **Yupii**
+
+This is just the beginning **Yupii** includes lots of functions of javascript and php methods that will make your development so much simpler a funny than ever.
+
+
+<script>
+$(function() {
+ $(document.links).filter(function() {
+     return this.hostname != window.location.hostname;
+ }).attr('target', '_blank');
+ });
+</script>
