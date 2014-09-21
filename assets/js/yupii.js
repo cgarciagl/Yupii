@@ -36,7 +36,7 @@ $.fn.YupiiSearch = function (params) {
     }, params);
     this.each(function () {
         var this_control = $(this);
-        this_control.data('controller', params.controller);
+        this_control.data('controller', params.controller.toLowerCase());
         this_control.data('filter', params.filter);
         if (!this_control.hasClass('yupiiffied')) {
             var b = $('<span class="input-group-addon">\n\
