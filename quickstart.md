@@ -34,7 +34,7 @@ attention: then you can access your controller for this table like [here](http:/
 
 ## Implementing Categories
 
-Now we'll declare the next catalog class, form the Categories of songs: 
+Now we'll declare the next catalog class, for the Categories of songs: 
 
 ```php
 <?php
@@ -135,18 +135,18 @@ class Eminemsongs extends Songs {
 }
 ```
 
-We addeda couple of rules here 
-- for this class that just songs from the artist EMINEM are showed, 
-- Another rule here is that you can't delete songs, when you try it you get a nice error message.
-- When you try to add a song or modify one of the existents, the artist for this song should be EMINEM or you will get another error message.
+We added a couple of rules here 
+- just songs from the artist EMINEM are showed, 
+- Another rule here is that you can't delete songs, when you try it, you get a nice error message.
+- When you try to add a song or modify one of the existents, the artist for this song should be EMINEM, or you will get another error message.
 
-attention: Try it live [here](http://songs.meximas.com/index.php/songs)
+attention: Go, Try it live [here](http://songs.meximas.com/index.php/eminemsongs)
 
 ## Try it
 
 Come on, Try this example for yourself!!, you will get amazed for the simplicity in the code and the great functionality of the automagic of **Yupii**
 
-This is just the beginning **Yupii** includes lots of functions of javascript and php methods that will make your development so much simpler a funny than ever.
+This is just the beginning **Yupii** includes lots of functions of javascript and php methods that will make your development so much simpler and funny than ever.
 
 
 <script>
