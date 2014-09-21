@@ -147,3 +147,11 @@ attention: Go, Try it live [here](http://songs.meximas.com/index.php/eminemsongs
 Come on, Try this example for yourself!!, you will get amazed for the simplicity in the code and the great functionality of the automagic of **Yupii**
 
 This is just the beginning **Yupii** includes lots of functions of javascript and php methods that will make your development so much simpler and funny than ever.
+
+<script>
+$(function() {
+ $(document.links).filter(function() {
+     return this.hostname != window.location.hostname;
+ }).attr('target', '_blank');
+ });
+</script>
