@@ -13,3 +13,11 @@
 
 [gimmick:theme](yeti)
 [gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](http://www.github.com/cgarciagl/Yupii)
+
+<script>
+$(function() {
+ $(document.links).filter(function() {
+     return this.hostname != window.location.hostname;
+ }).attr('target', '_blank');
+ });
+</script>

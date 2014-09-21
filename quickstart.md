@@ -136,7 +136,7 @@ class Eminemsongs extends Songs {
 ```
 
 We added a couple of rules here 
-- just songs from the artist EMINEM are showed, 
+- Just songs from the artist EMINEM are showed, 
 - Another rule here is that you can't delete songs, when you try it, you get a nice error message.
 - When you try to add a song or modify one of the existents, the artist for this song should be EMINEM, or you will get another error message.
 
@@ -147,12 +147,3 @@ attention: Go, Try it live [here](http://songs.meximas.com/index.php/eminemsongs
 Come on, Try this example for yourself!!, you will get amazed for the simplicity in the code and the great functionality of the automagic of **Yupii**
 
 This is just the beginning **Yupii** includes lots of functions of javascript and php methods that will make your development so much simpler and funny than ever.
-
-
-<script>
-$(function() {
- $(document.links).filter(function() {
-     return this.hostname != window.location.hostname;
- }).attr('target', '_blank');
- });
-</script>
