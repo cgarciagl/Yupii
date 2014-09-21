@@ -34,7 +34,7 @@ attention: then you can access your controller for this table like [here](http:/
 
 ## Implementing Categories
 
-Now we'll declare the next catalog class, for the Categories of songs: 
+Now we'll declare the next catalog class, the controller for the Categories of songs: 
 
 ```php
 <?php
