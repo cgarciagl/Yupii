@@ -5,7 +5,7 @@
         <div class='input-group'>
             <?= $this->load->view('yfield/inputfield'); ?>
             <script type='text/javascript'>
-                $('#<?= $name ?>').YupiiSearch({controller: '<?= $controller ?>'});
+                $('#<?= $name ?>').YupiiSearch({controller: '<?= $controller ?>', filter: '<?= base64_encode($filter) ?>'});
                 $('#yupii_id_<?= $name ?>').val('<?= $idvalue ?>').attr('data-valueant', '<?= $idvalue ?>');
             </script>
         </div>

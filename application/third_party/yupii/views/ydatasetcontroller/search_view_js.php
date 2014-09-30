@@ -123,11 +123,19 @@
             });
         }
 
-        var lookingfor = "<?= $this->input->post('sSearch', TRUE); ?>";
+        var lookingfor = "<?= htmlspecialchars($this->input->post('sSearch', TRUE)); ?>";
         if ((lookingfor != '') && ($("#<?= $t ?>_table_filter input[type='text']").val() == '')) {
             aoData.push({
                 "name": "sSearch",
                 "value": lookingfor
+            });
+        }
+
+        var sfilter = "<?= $this->input->post('sFilter', TRUE); ?>";
+        if (sfilter != '') {
+            aoData.push({
+                "name": "sFilter",
+                "value": sfilter
             });
         }
 

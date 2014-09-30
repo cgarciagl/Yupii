@@ -4,6 +4,7 @@ class YSearchField extends YFieldDecorator {
 
     protected $fieldtoshow;
     protected $controller;
+    protected $filter;
     protected $idvalue;
 
     public function getIdValue() {
@@ -22,6 +23,14 @@ class YSearchField extends YFieldDecorator {
         $this->controller = $controller;
     }
 
+    public function getFilter() {
+        return $this->filter;
+    }
+
+    public function setFilter($filter) {
+        $this->filter = $filter;
+    }
+
     public function getFieldToShow() {
         return $this->fieldtoshow;
     }
@@ -35,6 +44,7 @@ class YSearchField extends YFieldDecorator {
         $a['fieldtoshow'] = $this->getFieldToShow();
         $a['controller']  = $this->getController();
         $a['idvalue']     = $this->getIdValue();
+        $a['filter']      = $this->getFilter();
         return $this->load->view('yfield/searchfield', $a, TRUE);
     }
 

@@ -349,7 +349,7 @@ abstract class YDatasetModel extends YTableModel {
      * Aplica los criterios para filtrar a partir de un texto
      */
     private function performSearchForJson() {
-        $se = $this->input->post('sSearch', TRUE);
+        $se = htmlspecialchars_decode($this->input->post('sSearch', TRUE));
         if ($se) {
             if ($this->input->post('sOnlyField', TRUE)) {
                 $f = $this->input->post('sOnlyField', TRUE);
@@ -357,6 +357,10 @@ abstract class YDatasetModel extends YTableModel {
             } else {
                 $this->setWhereForSearchInMultipleFields($se);
             }
+        }
+        $filter = base64_decode($this->input->post('sFilter', TRUE));
+        if ($filter){
+            $this->db->where($filter, FALSE, FALSE);
         }
     }
 

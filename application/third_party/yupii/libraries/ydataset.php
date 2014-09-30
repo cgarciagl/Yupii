@@ -131,14 +131,16 @@ abstract class YDataset extends YController {
 	 *
 	 * @param string $fieldName
 	 * @param string $controllerclassname
+     * @param string $filter
 	 */
-	function addSearch($fieldName, $controllerclassname) {
+	function addSearch($fieldName, $controllerclassname, $filter = '') {
 		if (!array_key_exists($fieldName, $this->modelo->ofieldlist)) {
 			$this->modelo->ofieldlist[$fieldName] = new YSimpleTextField($fieldName);
 		}
 		$field                                = $this->modelo->ofieldlist[$fieldName];
 		$this->modelo->ofieldlist[$fieldName] = new YSearchField($field);
 		$this->modelo->ofieldlist[$fieldName]->setController($controllerclassname);
+        $this->modelo->ofieldlist[$fieldName]->setFilter($filter);
 		return $this->modelo->ofieldlist[$fieldName];
 	}
 
