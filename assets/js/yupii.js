@@ -89,7 +89,7 @@ $.fn.YupiiSearch = function (params) {
                     elem= filtro.substring(filtro.lastIndexOf("[")+1,filtro.lastIndexOf("]"));
                 }
                 if (filtro.lastIndexOf('function', 0) === 0) {
-                    f = eval('('+filtro+')');
+                    var f = eval('('+filtro+')');
                     filtro = f();
                 }
                 filtro = Base64.encode(filtro);
