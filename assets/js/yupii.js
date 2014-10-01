@@ -81,12 +81,16 @@ $.fn.YupiiSearch = function (params) {
                 stacksearches.push(this_control);
 
                 /* analizamos el filtro para la búsqueda */
-                var filtro = Base64.decode(this_control.data('filter'));
+                var filtro = trim(Base64.decode(this_control.data('filter')));
                 var elem= filtro.substring(filtro.lastIndexOf("[")+1,filtro.lastIndexOf("]"));
                 while (elem != '') {
                     valueofelem = $('#'+elem).val();
                     filtro = filtro.split('['+elem+']').join(valueofelem);
                     elem= filtro.substring(filtro.lastIndexOf("[")+1,filtro.lastIndexOf("]"));
+                }
+                if (filtro.lastIndexOf('function', 0) === 0) {
+                    f = eval('('+filtro+')');
+                    filtro = f();
                 }
                 filtro = Base64.encode(filtro);
 
