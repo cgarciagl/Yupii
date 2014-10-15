@@ -21,6 +21,18 @@ Spend more time at the beach and less time developing applications; with **Yupii
 
 **Yupii** is a truly Object-Oriented solution that helps you to reuse and simplify your code, and allows you to *create entire business applications in the blink of an eye*.
 
+<hr/>
+
+**ScreenCast - Installation and first application**
+
+Learn how to install Yupii and develop your first application in just 20 min with this video tutorial:
+
+[](http://www.youtube.com/watch?v=TFHCEaUTGjA)
+
+Checkout more video tutorials in the [videos](videos.md) section
+
+<hr/>
+
 [gimmick:FacebookLike ( layout: 'standard', showfaces: false) ](https://github.com/cgarciagl/Yupii)
 
 [gimmick:TwitterFollow](@cgarciagl)
