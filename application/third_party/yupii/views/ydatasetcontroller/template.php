@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <base href="<?= config_item('base_url') ?>">
-    <title>Yupii</title>
-    <meta name="author" content="CGT">
-    <meta http-equiv="content-type" CONTENT="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <base href="<?php echo config_item('base_url'); ?>">
+    <link rel="icon" href="./images/favicon.png" type="image/png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="CGT">
 
     <?php Yupii::getHeaderAll(); ?>
-
+    <title><?php echo get_instance()->config->item('yupii_application_title') ?></title>
     <style type="text/css">
         body, .container {
             padding: 0 !important;
         }
     </style>
+
 </head>
 <body class="">
 <div class="container">
