@@ -1,6 +1,6 @@
 var ResultData = {};
 
-function get_value(purl, pparameters) {
+function getValue(purl, pparameters) {
     var valor = 'N/A_';
     $.ajax({
         url: base_url + 'index.php/' + purl,
@@ -20,22 +20,22 @@ function get_value(purl, pparameters) {
     return valor;
 }
 
-function get_object(purl, pparameters) {
-    var t = get_value(purl, pparameters);
+function getObject(purl, pparameters) {
+    var t = getValue(purl, pparameters);
     return (new Function('return ' + t))();
 }
 
-function redirect_to(purl) {
+function redirectTo(purl) {
     setTimeout(function () {
         window.location.href = base_url + 'index.php/' + purl;
     }, 0);
 }
 
-function open_in_new(purl) {
+function openInNew(purl) {
     window.open(base_url + 'index.php/' + purl, "_new");
 }
 
-function redirect_by_post(purl, pparameters, in_new_tab) {
+function redirectByPost(purl, pparameters, in_new_tab) {
     var url = '';
     pparameters = (typeof pparameters == 'undefined') ? {} : pparameters;
     in_new_tab = (typeof in_new_tab == 'undefined') ? true : in_new_tab;
@@ -63,13 +63,13 @@ function trim(inputString) {
     return $.trim(inputString);
 }
 
-function get_hour_number() {
+function getHourNumber() {
     return (new Date().getTime());
 }
 
-var timestamp = get_hour_number();
+var timestamp = getHourNumber();
 
-function move_element(elem, to) {
+function moveElement(elem, to) {
     elem.appendTo(to);
 }
 

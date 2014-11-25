@@ -16,7 +16,7 @@
     $("#<?= $t ?>btn_search_admin").click(function (e) {
         e.preventDefault();
         $("#<?= $t ?>").hide('slide');
-        $("#<?= $t ?>admin_container").html(get_value('<?= $tc ?>/tableByAjax/', yupii_csrf));
+        $("#<?= $t ?>admin_container").html(getValue('<?= $tc ?>/tableByAjax/', yupii_csrf));
         $("#<?= $t ?>admin_div").show('slide');
     });
 

@@ -35,7 +35,7 @@
             stackwidgets.push(widget);
             stacksearches.push(t);
             var p = forma.serialize();
-            var r = get_value('<?= $tc ?>/showReport', p);
+            var r = getValue('<?= $tc ?>/showReport', p);
             $(r).appendTo(widget_container).show('slide');
         });
 

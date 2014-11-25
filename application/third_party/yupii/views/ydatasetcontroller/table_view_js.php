@@ -35,7 +35,7 @@ $("#<?= $t ?>btn_ok").click(function (e) {
     /*limpiamos los errores anteriores*/
     forma.find('.ui-state-error').remove();
     $('.has-error').removeClass('has-error');
-    var obj = get_object('<?= $tc ?>/formProcess', a);
+    var obj = getObject('<?= $tc ?>/formProcess', a);
     if (obj.result != 'ok') {
         $.each(obj.errors, function (i, val) {
             var gi = $("#group_" + i);
@@ -52,7 +52,7 @@ $("#<?= $t ?>btn_ok").click(function (e) {
 });
 
 function <?= $t ?>getform(id) {
-    $("#<?= $t ?>_FormContent").html(get_value('<?= $tc ?>/getFormData/' + id, yupii_csrf));
+    $("#<?= $t ?>_FormContent").html(getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf));
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -130,11 +130,11 @@ $('#<?= $t ?>btndelete').click(function () {
     y.removeClass('borrar');
     obj = {id: todelete};
     $.extend(obj, yupii_csrf);
-    j = get_object('<?= $tc . '/getRecordByAjax' ?>', obj);
+    j = getObject('<?= $tc . '/getRecordByAjax' ?>', obj);
     <?php foreach($fieldlist as $f): ?>
       obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
     <?php endforeach; ?>
-    var obj = get_object('<?= $tc . '/delete' ?>', obj);
+    var obj = getObject('<?= $tc . '/delete' ?>', obj);
     if (obj.result != 'ok') {
         $('#<?= $t ?>myModal').find('.diverror').html(obj.errors['general_error']);
     } else {
@@ -176,7 +176,7 @@ $('#btn_<?= $t ?>_Print').click(
         widget.hide();
         stackwidgets.push(widget);
         stacksearches.push(t);
-        var r = get_value('<?= $tc ?>/reportByAjax', yupii_csrf);
+        var r = getValue('<?= $tc ?>/reportByAjax', yupii_csrf);
         $(r).appendTo(widget_container).show('slide');
     });
 

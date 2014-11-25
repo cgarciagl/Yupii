@@ -101,7 +101,7 @@ $.fn.YupiiSearch = function (params) {
                 if (typeof (yupii_csrf) !== "undefined") {
                     $.extend(obj, yupii_csrf);
                 }
-                var resultado = get_value(this_control.data('controller') + '/searchByAjax', obj);
+                var resultado = getValue(this_control.data('controller') + '/searchByAjax', obj);
                 $(resultado).appendTo(widget_container);
             }
             if ((searched_text === '') && (!forced)) {
@@ -124,14 +124,14 @@ $.fn.dataTableExt.oApi.fnStandingRedraw = function (oSettings) {
 
 function showControllerTableIn(selector, controller) {
     $(selector).html(
-        get_value(controller + '/tableByAjax', yupii_csrf)
+        getValue(controller + '/tableByAjax', yupii_csrf)
     );
 
 }
 
 function showControllerReportIn(selector, controller) {
     $(selector).html(
-        get_value(controller + '/reportByAjax', yupii_csrf)
+        getValue(controller + '/reportByAjax', yupii_csrf)
     );
 
 }
