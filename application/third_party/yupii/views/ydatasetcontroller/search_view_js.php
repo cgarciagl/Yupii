@@ -145,6 +145,16 @@
             "url": sSource,
             "data": aoData,
             "cache": false,
+            "error": function (xhr, textStatus, error) {
+                if (textStatus === 'timeout') {
+                    alert('<?= $this->lang->line('yupii_timeout_error') ?>');
+                }
+                else {
+                    console.log(xhr.responseText);
+                    alert('<?= $this->lang->line('yupii_server_error') ?>');
+                }
+                t.fnProcessingIndicator(false);
+            },
             "success": function (json) {
                 fnCallback(json);
                 ;

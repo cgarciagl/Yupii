@@ -40,7 +40,7 @@ $("#<?= $t ?>btn_ok").click(function (e) {
         $.each(obj.errors, function (i, val) {
             var gi = $("#group_" + i);
             gi.append('<span class="ui-state-error label label-danger">'
-                + val + '</span>');
+            + val + '</span>');
             $('#' + i).focus();
             gi.addClass('has-error').shake();
         });
@@ -132,7 +132,7 @@ $('#<?= $t ?>btndelete').click(function () {
     $.extend(obj, yupii_csrf);
     j = getObject('<?= $tc . '/getRecordByAjax' ?>', obj);
     <?php foreach($fieldlist as $f): ?>
-      obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
+    obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
     <?php endforeach; ?>
     var obj = getObject('<?= $tc . '/delete' ?>', obj);
     if (obj.result != 'ok') {
@@ -146,7 +146,7 @@ $('#<?= $t ?>btndelete').click(function () {
 
 
 //event for search on enter keyup or on blur
-$('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup',function (e) {
+$('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
     if (e.keyCode != 13)
         return;
     $('#<?= $t ?>_sel').focus();
@@ -208,6 +208,16 @@ function fnData<?= $t ?>(sSource, aoData, fnCallback) {
         "url": sSource,
         "data": aoData,
         "cache": false,
+        "error": function (xhr, textStatus, error) {
+            if (textStatus === 'timeout') {
+                alert('<?= $this->lang->line('yupii_timeout_error') ?>');
+            }
+            else {
+                console.log(xhr.responseText);
+                alert('<?= $this->lang->line('yupii_server_error') ?>');
+            }
+            t.fnProcessingIndicator(false);
+        },
         "success": function (json) {
             fnCallback(json);
             ;
@@ -228,7 +238,7 @@ function fnData<?= $t ?>(sSource, aoData, fnCallback) {
             }
             if (json.sSearch != '') {
                 $("#<?= $t ?>_searching_title").text("<?= $this->lang->line('yupii_searching') ?>" +
-                    " (" + json.sSearch + ") ...").show();
+                " (" + json.sSearch + ") ...").show();
             } else {
                 $("#<?= $t ?>_searching_title").text("").hide();
             }

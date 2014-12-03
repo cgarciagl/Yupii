@@ -37,3 +37,6 @@ $lang['yupii_yes']            = 'Yes';
 $lang['yupii_no']             = 'No';
 
 $lang['yupii_wait'] = 'Wait';
+
+$lang['yupii_server_error'] = 'An error occurred on the server. Please try again in a minute';
+$lang['yupii_timeout_error'] = 'The server took too long to send the data';
