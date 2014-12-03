@@ -72,11 +72,3 @@ function import_controller($path) {
     }
     return $controllers[$path];
 }
-
-function phpconsole($label='var',$x){
-    ?>
-    <script type="text/javascript">
-        console.warn('<?php echo json_encode($x)?>');
-    </script>
-<?php
-}
