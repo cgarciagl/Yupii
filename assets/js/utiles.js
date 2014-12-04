@@ -1,3 +1,9 @@
+if (!console) {
+    console = {};
+    console.log = function () {
+    };
+}
+
 var ResultData = {};
 
 function getValue(purl, pparameters) {
