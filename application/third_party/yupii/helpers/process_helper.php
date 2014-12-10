@@ -35,11 +35,15 @@ function setProgressText($texto) {
     echo "<script type='text/javascript'> $('#textopbar').text('$texto');</script>";
 }
 
+function setProgressTitle($texto) {
+    echo "<script type='text/javascript'> $('#textotitulo').text('$texto');</script>";
+}
+
 function endProcess() {
     setProgressText('');
     echo "<script type='text/javascript'> $('#girando').removeClass('fa-spin');</script>";
     $tiempo = round(timeEnd(), 5);
-    echo "<hr> <small>Tiempo: $tiempo segs.</small>";
+    echo "<hr> <small>Tiempo del proceso: $tiempo segs.</small>";
     echo '</div></body>';
 }
 
