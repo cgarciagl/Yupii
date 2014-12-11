@@ -20,7 +20,7 @@ function raise($exception_message) {
  * @return string
  */
 function new_value($fieldname) {
-    $CI = & get_instance();
+    $CI = &get_instance();
     return $CI->input->post($fieldname, TRUE);
 }
 
@@ -31,7 +31,7 @@ function new_value($fieldname) {
  * @return string
  */
 function old_value($fieldname) {
-    $CI = & get_instance();
+    $CI = &get_instance();
     return $CI->input->post('yupii_value_ant_' . $fieldname, TRUE);
 }
 
@@ -41,7 +41,7 @@ function old_value($fieldname) {
  * @param string $fieldname
  * @return string
  */
-function has_changed($fieldname){
+function has_changed($fieldname) {
     return (new_value($fieldname) != old_value($fieldname));
 }
 

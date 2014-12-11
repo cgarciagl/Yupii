@@ -18,39 +18,7 @@
         <link rel="stylesheet" href="./assets/css/yupii.css" type="text/css"/>
     <?php endif; ?>
 
-    <style type="text/css">
-        h1 {
-            padding: 5px;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            padding: 5px;
-            text-align: center;
-            margin-bottom: 5px;
-        }
-
-        h3 {
-            margin-left: 0;
-        }
-
-        h4 {
-            margin-left: 15px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: inherit;
-        }
-
-        <?php if ($this->input->post('typeofreport', TRUE) == 'pdf') : ?>
-        thead {
-            font-weight: bolder;
-        }
-
-        <?php endif; ?>
-    </style>
+    <link rel="stylesheet" href="./assets/css/forprint.css" type="text/css"/>
 
 </head>
 <body>

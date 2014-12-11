@@ -22,6 +22,10 @@
             <i class="fa fa-chevron-circle-left fa-lg"></i>
             <?= $this->lang->line('yupii_back') ?>
         </button>
+        <button style="margin-top:15px;" class="btn btn-primary btnprint">
+            <i class="fa fa-print fa-lg"></i>
+            Imprimir
+        </button>
     </div>
     <div class="yupiireportresult">
         <?php echo $tabla; ?>
@@ -30,6 +34,10 @@
         <button style="margin-top:15px;" class="btn btn-primary btnbackreport">
             <i class="fa fa-chevron-circle-left fa-lg"></i>
             <?= $this->lang->line('yupii_back') ?>
+        </button>
+        <button style="margin-top:15px;" class="btn btn-primary btnprint">
+            <i class="fa fa-print fa-lg"></i>
+            Imprimir
         </button>
     </div>
 </div>
@@ -50,4 +58,22 @@
 
         $('.yupiireportresult table').addClass('table table-condensed');
     });
-</script>        
+</script>
+
+<script src="<?= base_url(); ?>/assets/js/printThis.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.btnprint').click(function () {
+            $('.yupiireportresult').printThis({
+                debug: false,
+                importCSS: true,
+                importStyle: false,
+                printContainer: false,
+                removeInline: true,
+                loadCSS: "<?= base_url(); ?>/assets/css/forprint.css",
+                pageTitle: "<?=$title?> <?= uniqid() ?>"
+            });
+        });
+    });
+</script>
