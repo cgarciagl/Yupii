@@ -23,7 +23,7 @@ $grouprecords = 0;?>
     $(document).ready(function () {
         $('#imprimirbtn').click(function () {
             $('#imprimible').printThis({
-                debug: true,
+                debug: false,
                 importCSS: true,
                 importStyle: false,
                 printContainer: false,

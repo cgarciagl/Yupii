@@ -171,7 +171,7 @@ class YSimpleLevelReport {
     <?php
     }
 
-    function showSimpleView(){
+    function showSimpleView() {
         $this->load->view('yreportlib/ysimplelevelreport');
     }
 
