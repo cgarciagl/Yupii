@@ -9,6 +9,11 @@ class YSimpleLevelReport {
     private $grouprecords = 0;
     private $listfields = array();
     private $data = array();
+    private $showTotals = true;
+
+    public function setShowTotals($showTotals) {
+        $this->showTotals = (bool)$showTotals;
+    }
 
     public function __get($attr) {
         if (isset(get_instance()->$attr)) {
@@ -69,6 +74,7 @@ class YSimpleLevelReport {
     }
 
     function generateTableHeader() {
+        $this->grouprecords = 0;
         ?>
         <table>
         <thead>
@@ -92,7 +98,9 @@ class YSimpleLevelReport {
         <tfoot>
         <tr>
             <td colspan="<?php echo sizeof($this->listfields) ?>">
-                <h5 style='float:right'> Total = <?php echo "{$this->grouprecords} {$this->title}"; ?> </h5>
+                <?php if ($this->showTotals): ?>
+                    <h5 style='float:right'> Total = <?php echo "{$this->grouprecords} {$this->title}"; ?> </h5>
+                <?php endif; ?>
             </td>
         </tr>
         </tfoot>
@@ -166,7 +174,10 @@ class YSimpleLevelReport {
             <?php $this->generateTableFooter(); ?>
 
             <hr/>
-            <h3 style='text-align:right'> Total : <?php echo $this->totalrecords; ?>  <?php echo $this->title; ?></h3>
+            <?php if ($this->showTotals): ?>
+                <h3 style='text-align:right'> Total
+                    : <?php echo $this->totalrecords; ?>  <?php echo $this->title; ?></h3>
+            <?php endif; ?>
         </div>
     <?php
     }
