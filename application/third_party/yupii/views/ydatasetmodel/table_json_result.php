@@ -1,18 +1,18 @@
 {
-"sEcho": <?= intval($this->input->post('sEcho', TRUE)) ?>,
-"iTotalRecords": <?= $count ?>,
+"sEcho": <?php echo intval($this->input->post('sEcho', TRUE)) ?>,
+"iTotalRecords": <?php echo $count ?>,
 "more_data": " ",
-"iTotalDisplayRecords":  <?= $count ?>,
-"sSearch": "<?= $this->input->post('sSearch', TRUE) ?>",
+"iTotalDisplayRecords":  <?php echo $count ?>,
+"sSearch": "<?php echo $this->input->post('sSearch', TRUE) ?>",
 "aaData": [
 <?php $ultimate = end($query->result_array()); ?>
 <?php foreach ($query->result_array() as $aRow) : ?>
     [
     <?php foreach ($modelo->tablefields as $f) : ?>
-        "<?= addslashes($aRow[$modelo->realField($f)]) ?>",
-    <? endforeach; ?>
-    "<?= addslashes($aRow[$modelo->id_field]) ?>"
+        "<?php echo addslashes($aRow[$modelo->realField($f)]) ?>",
+    <?php endforeach; ?>
+    "<?php echo addslashes($aRow[$modelo->id_field]) ?>"
     ]
     <?php if ($aRow !== $ultimate): ?> , <?php endif; ?>
-<? endforeach; ?>
+<?php endforeach; ?>
 ] }
