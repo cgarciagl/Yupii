@@ -15,6 +15,7 @@
             padding-bottom: 40px;
         }
     </style>
+    <link rel="stylesheet" href="./css/custom.css" type="text/css"/>
 
 </head>
 <body>

@@ -139,7 +139,7 @@ class YSimpleLevelReport {
                     $g['current']                 = $row[$f];
                     $this->showldwritelevelheader = true;
                     $this->load->helper('utiles');
-                    $this->encab .= "<h{$i}> " . ifset($g['label'], $f) . ": {$row[$f]} </h{$i}>";
+                    $this->encab .= "<h{$i}> " . ifSet($g['label'], $f) . ": {$row[$f]} </h{$i}>";
                 }
             }
         }

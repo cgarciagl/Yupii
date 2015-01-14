@@ -32,7 +32,7 @@ function setProgress($porcentaje) {
 }
 
 function setProgressText($texto) {
-    echo "<script type='text/javascript'> $('#textopbar').text('$texto');</script>";
+    echo "<script type='text/javascript'> $('#textopbar').html('$texto');</script>";
 }
 
 function setProgressTitle($texto) {

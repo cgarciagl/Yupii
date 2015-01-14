@@ -4,12 +4,32 @@ if (!console) {
     };
 }
 
+if (typeof String.prototype.startsWith != 'function') {
+    String.prototype.startsWith = function (str) {
+        return this.slice(0, str.length) == str;
+    };
+}
+
+if (typeof String.prototype.endsWith != 'function') {
+    String.prototype.endsWith = function (str) {
+        return this.slice(-str.length) == str;
+    };
+}
+
+function fixUrl(purl) {
+    if (purl.startsWith('http://')) {
+        return purl;
+    } else {
+        return base_url + 'index.php/' + purl
+    }
+}
+
 var ResultData = {};
 
 function getValue(purl, pparameters) {
     var valor = 'N/A_';
     $.ajax({
-        url: base_url + 'index.php/' + purl,
+        url: fixUrl(purl),
         type: 'POST',
         data: pparameters,
         async: false,
@@ -33,24 +53,18 @@ function getObject(purl, pparameters) {
 
 function redirectTo(purl) {
     setTimeout(function () {
-        window.location.href = base_url + 'index.php/' + purl;
+        window.location.href = fixUrl(purl);
     }, 0);
 }
 
 function openInNew(purl) {
-    window.open(base_url + 'index.php/' + purl, "_new");
+    window.open(fixUrl(purl), "_new");
 }
 
 function redirectByPost(purl, pparameters, in_new_tab) {
-    var url = '';
+    var url = fixUrl(purl);
     pparameters = (typeof pparameters == 'undefined') ? {} : pparameters;
     in_new_tab = (typeof in_new_tab == 'undefined') ? true : in_new_tab;
-    if (purl.substr(0, 7) == 'http://') {
-        url = purl;
-    }
-    else {
-        url = base_url + 'index.php/' + purl;
-    }
     var form = document.createElement("form");
     $(form).attr("id", "reg-form").attr("name", "reg-form").attr("action", url).attr("method", "post").attr("enctype", "multipart/form-data");
     if (in_new_tab) {
