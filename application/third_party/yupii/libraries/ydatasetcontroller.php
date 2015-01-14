@@ -92,7 +92,7 @@ abstract class YDatasetController extends YDataset {
             $result['result'] = 'error';
             $result['errors'] = $this->modelo->errors;
         }
-        $this->load->view('ydatasetcontroller/json_view', array('data' => $result));
+        $this->load->view('yupii/json_view', array('data' => $result));
     }
 
     /**
@@ -146,7 +146,7 @@ abstract class YDatasetController extends YDataset {
         if ($this->input->is_ajax_request()) {
             $this->applyFilters();
             $res = $this->modelo->getTableAjax();
-            $this->load->view('ydatasetcontroller/json_view', array('data' => $res));
+            $this->load->view('yupii/json_view', array('data' => $res));
         } else {
             show_error('error');
         }
@@ -238,7 +238,7 @@ abstract class YDatasetController extends YDataset {
             if ($id) {
                 $this->modelo->completeFieldList();
                 $res = $this->modelo->getById($id)->row_array();
-                $this->load->view('ydatasetcontroller/json_view', array('data' => $res));
+                $this->load->view('yupii/json_view', array('data' => $res));
             }
         } else {
             show_error('error');
