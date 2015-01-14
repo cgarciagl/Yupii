@@ -11,7 +11,7 @@ abstract class Yupii {
     }
 
     static public function loadDefaults() {
-        get_instance()->load->helper(array('url', 'array', 'yupii_helper'));
+        get_instance()->load->helper(array('url', 'array', 'yupii', 'utiles'));
         get_instance()->load->config('yupii');
         if (file_exists(APPPATH . 'config/my_yupii_config.php')) {
             get_instance()->load->config('my_yupii_config');
@@ -21,12 +21,12 @@ abstract class Yupii {
 
     static public function getHeaderScript() {
         Yupii::loadDefaults();
-        return get_instance()->load->view('ydatasetcontroller/headerscript', NULL);
+        return get_instance()->load->view('yupii/headerscript', NULL);
     }
 
     static public function loadScriptFiles() {
         Yupii::getHeaderScript();
-        return get_instance()->load->view('ydatasetcontroller/scriptfiles', NULL);
+        return get_instance()->load->view('yupii/scriptfiles', NULL);
     }
 
     static public function getHeaderAll() {

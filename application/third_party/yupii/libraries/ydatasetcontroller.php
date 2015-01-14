@@ -35,7 +35,7 @@ abstract class YDatasetController extends YDataset {
      */
     function index() {
         $data['content'] = $this->renderTable();
-        $this->load->view('ydatasetcontroller/template', $data);
+        $this->load->view('yupii/template', $data);
     }
 
     /**
@@ -182,7 +182,7 @@ abstract class YDatasetController extends YDataset {
      */
     function search() {
         $data['content'] = $this->renderSearchResults();
-        $this->load->view('ydatasetcontroller/template', $data);
+        $this->load->view('yupii/template', $data);
     }
 
     /**
@@ -214,7 +214,7 @@ abstract class YDatasetController extends YDataset {
      */
     function report() {
         $data['content'] = $this->renderReport();
-        $this->load->view('ydatasetcontroller/template', $data);
+        $this->load->view('yupii/template', $data);
     }
 
     /**

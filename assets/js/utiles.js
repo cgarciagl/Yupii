@@ -17,10 +17,10 @@ if (typeof String.prototype.endsWith != 'function') {
 }
 
 function fixUrl(purl) {
-    if (purl.startsWith('http://')) {
+    if ((purl.startsWith('http://')) || (typeof(base_url) == "undefined")) {
         return purl;
     } else {
-        return base_url + 'index.php/' + purl
+        return base_url + 'index.php/' + purl;
     }
 }
 
