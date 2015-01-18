@@ -16,6 +16,13 @@ if (typeof String.prototype.endsWith != 'function') {
     };
 }
 
+if (typeof String.prototype.replaceAll != 'function') {
+    String.prototype.replaceAll = function (find, replace) {
+        var str = this;
+        return str.replace(new RegExp(find.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'), replace);
+    };
+}
+
 function fixUrl(purl) {
     if ((purl.startsWith('http://')) || (typeof(base_url) == "undefined")) {
         return purl;
