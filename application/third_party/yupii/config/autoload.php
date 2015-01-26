@@ -1,5 +1,6 @@
 <?php
-spl_autoload_register(function ($class_name) {
+
+function registra($class_name) {
 
 	$class_name = strtolower($class_name);
 
@@ -15,4 +16,6 @@ spl_autoload_register(function ($class_name) {
 			return;
 		}
 	}
-});
+}
+
+spl_autoload_register('registra');
