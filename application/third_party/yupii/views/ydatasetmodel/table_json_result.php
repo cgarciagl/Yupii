@@ -5,8 +5,10 @@
 "iTotalDisplayRecords":  <?php echo $count ?>,
 "sSearch": "<?php echo $this->input->post('sSearch', TRUE) ?>",
 "aaData": [
-<?php $ultimate = end($query->result_array()); ?>
-<?php foreach ($query->result_array() as $aRow) : ?>
+<?php
+$datos    = $query->result_array();
+$ultimate = end($datos); ?>
+<?php foreach ($datos as $aRow) : ?>
     [
     <?php foreach ($modelo->tablefields as $f) : ?>
         "<?php echo addslashes($aRow[$modelo->realField($f)]) ?>",
