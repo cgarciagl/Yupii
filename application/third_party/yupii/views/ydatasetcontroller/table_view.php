@@ -47,9 +47,9 @@ $tc = $controller_name;
                             <button id="btn_<?= $t ?>_Print" class="toolbtn btn btn-primary">
                                 <i class="fa fa-print fa-lg"></i>
                             </button>
-                            <button id="btn_<?= $t ?>_Filter" class="toolbtn btn btn-primary">
+                           <!-- <button id="btn_<?= $t ?>_Filter" class="toolbtn btn btn-primary">
                                 <i class="fa fa-filter fa-lg"></i>
-                            </button>
+                            </button> -->
                         </div>
                         <h4> <span class="label label-danger yupii-searchingtitle"
                                    id="<?= $t ?>_searching_title"></span></h4>
