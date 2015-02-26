@@ -44,3 +44,4 @@ table.display thead th{padding:3px 0px 3px 10px;cursor:pointer;cursor:hand;}
 table.display tr.heading2 td{border-bottom:1px solid #aaa;}
 table.display{margin:0 auto;width:100%;clear:both;}
 th{font-size: large;}
+.verticalcenter{position: relative;top: 50%; transform: translateY(-50%);}

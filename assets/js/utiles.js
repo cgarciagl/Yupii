@@ -4,6 +4,12 @@ if (!console) {
     };
 }
 
+if (typeof String.prototype.trim != 'function') {
+    String.prototype.trim = function (str) {
+        return $.trim(str);
+    };
+}
+
 if (typeof String.prototype.startsWith != 'function') {
     String.prototype.startsWith = function (str) {
         return this.slice(0, str.length) == str;
