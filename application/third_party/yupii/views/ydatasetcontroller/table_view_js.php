@@ -35,27 +35,28 @@ $("#<?= $t ?>btn_ok").click(function (e) {
     /*limpiamos los errores anteriores*/
     forma.find('.ui-state-error').remove();
     $('.has-error').removeClass('has-error');
-    var obj = getObject('<?= $tc ?>/formProcess', a);
-    if (obj.result != 'ok') {
-        $.each(obj.errors, function (i, val) {
-            var gi = $("#group_" + i);
-            gi.append('<span class="ui-state-error label label-danger">'
-            + val + '</span>');
-            $('#' + i).focus();
-            gi.addClass('has-error').shake();
-        });
-    } else {
-        $('#<?= $t ?>tabs li:eq(1) a').tab('show');
-        ;
-        <?= $t ?>refreshAjax();
-    }
+    getObject('<?= $tc ?>/formProcess', a, function (obj) {
+        if (obj.result != 'ok') {
+            $.each(obj.errors, function (i, val) {
+                var gi = $("#group_" + i);
+                gi.append('<span class="ui-state-error label label-danger">'
+                + val + '</span>');
+                $('#' + i).focus();
+                gi.addClass('has-error').shake();
+            });
+        } else {
+            $('#<?= $t ?>tabs li:eq(1) a').tab('show');
+            ;
+            <?= $t ?>refreshAjax();
+        }
+    });
 });
 
 function <?= $t ?>getform(id) {
     $("#<?= $t ?>_FormContent").html('');
-    getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf, function(s){
+    getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf, function (s) {
         $("#<?= $t ?>_FormContent").html(s);
-    } );
+    });
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -133,18 +134,21 @@ $('#<?= $t ?>btndelete').click(function () {
     y.removeClass('borrar');
     obj = {id: todelete};
     $.extend(obj, yupii_csrf);
-    j = getObject('<?= $tc . '/getRecordByAjax' ?>', obj);
-    <?php foreach($fieldlist as $f): ?>
-    obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
-    <?php endforeach; ?>
-    var obj = getObject('<?= $tc . '/delete' ?>', obj);
-    if (obj.result != 'ok') {
-        $('#<?= $t ?>myModal').find('.diverror').html(obj.errors['general_error']);
-    } else {
-        ;
-        <?= $t ?>refreshAjax();
-        $('#<?= $t ?>myModal').modal('hide');
-    }
+    getObject('<?= $tc . '/getRecordByAjax' ?>', obj, function (j) {
+        <?php foreach($fieldlist as $f): ?>
+        obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
+        <?php endforeach; ?>
+
+        getObject('<?= $tc . '/delete' ?>', obj, function (obj) {
+            if (obj.result != 'ok') {
+                $('#<?= $t ?>myModal').find('.diverror').html(obj.errors['general_error']);
+            } else {
+                ;
+                <?= $t ?>refreshAjax();
+                $('#<?= $t ?>myModal').modal('hide');
+            }
+        });
+    });
 });
 
 

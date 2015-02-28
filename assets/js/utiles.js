@@ -68,8 +68,15 @@ function getValue(purl, pparameters, callbackfunction) {
 }
 
 function getObject(purl, pparameters, callbackfunction) {
-    var t = getValue(purl, pparameters, callbackfunction);
-    return (new Function('return ' + t))();
+    if (callbackfunction) {
+        getValue(purl, pparameters, function (s) {
+            var obj = (new Function('return ' + s))();
+            callbackfunction(obj);
+        });
+    } else {
+        var t = getValue(purl, pparameters);
+        return (new Function('return ' + t))();
+    }
 }
 
 function redirectTo(purl) {
@@ -155,7 +162,7 @@ $.fn.shake = function (options) {
 };
 
 $(document).ajaxStart(function () {
-    $.blockUI({message: '<h3><i class="fa fa-spinner fa-spin"></i>...</h3>'});
+    $.blockUI({message: '<h1><i class="fa fa-spinner fa-spin"></i></h1>'});
 }).ajaxStop(function () {
     $.unblockUI()
 });
