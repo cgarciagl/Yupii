@@ -35,8 +35,10 @@
             stackwidgets.push(widget);
             stacksearches.push(t);
             var p = forma.serialize();
-            var r = getValue('<?= $tc ?>/showReport', p);
-            $(r).appendTo(widget_container).show('slide');
+            getValue('<?= $tc ?>/showReport', p,
+                function (s) {
+                    $(s).appendTo(widget_container).show('slide');
+                });
         });
 
         $('.nivelselect').change(function () {

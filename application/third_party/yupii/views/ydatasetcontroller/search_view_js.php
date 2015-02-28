@@ -16,8 +16,11 @@
     $("#<?= $t ?>btn_search_admin").click(function (e) {
         e.preventDefault();
         $("#<?= $t ?>").hide('slide');
-        $("#<?= $t ?>admin_container").html(getValue('<?= $tc ?>/tableByAjax/', yupii_csrf));
-        $("#<?= $t ?>admin_div").show('slide');
+        getValue('<?= $tc ?>/tableByAjax/', yupii_csrf,
+            function (s) {
+                $("#<?= $t ?>admin_container").html(s);
+                $("#<?= $t ?>admin_div").show('slide');
+            });
     });
 
     $("#<?= $t ?>btn_search_admin_back").click(function (e) {
@@ -98,7 +101,7 @@
 
     //event for search on enter keyup or on blur
 
-    $('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup',function (e) {
+    $('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
         if (e.keyCode != 13)
             return;
         $('#<?= $t ?>_sel').focus();

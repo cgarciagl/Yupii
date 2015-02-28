@@ -155,7 +155,7 @@ $.fn.shake = function (options) {
 };
 
 $(document).ajaxStart(function () {
-    $.blockUI({message: '<h3><i class="fa fa-spinner fa-spin"></i> Un momento...</h3>'});
+    $.blockUI({message: '<h3><i class="fa fa-spinner fa-spin"></i>...</h3>'});
 }).ajaxStop(function () {
     $.unblockUI()
 });

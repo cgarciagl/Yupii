@@ -52,7 +52,10 @@ $("#<?= $t ?>btn_ok").click(function (e) {
 });
 
 function <?= $t ?>getform(id) {
-    $("#<?= $t ?>_FormContent").html(getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf));
+    $("#<?= $t ?>_FormContent").html('');
+    getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf, function(s){
+        $("#<?= $t ?>_FormContent").html(s);
+    } );
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -176,8 +179,10 @@ $('#btn_<?= $t ?>_Print').click(
         widget.hide();
         stackwidgets.push(widget);
         stacksearches.push(t);
-        var r = getValue('<?= $tc ?>/reportByAjax', yupii_csrf);
-        $(r).appendTo(widget_container).show('slide');
+        getValue('<?= $tc ?>/reportByAjax', yupii_csrf,
+            function (r) {
+                $(r).appendTo(widget_container).show('slide');
+            });
     });
 
 
