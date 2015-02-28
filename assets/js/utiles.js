@@ -39,13 +39,18 @@ function fixUrl(purl) {
 
 var ResultData = {};
 
-function getValue(purl, pparameters) {
+function getValue(purl, pparameters, callbackfunction) {
     var valor = 'N/A_';
+    if (callbackfunction) {
+        asinc = true;
+    } else {
+        asinc = false;
+    }
     $.ajax({
         url: fixUrl(purl),
         type: 'POST',
         data: pparameters,
-        async: false,
+        async: asinc,
         cache: false,
         dataType: 'text',
         timeout: 30000,
@@ -54,13 +59,16 @@ function getValue(purl, pparameters) {
         },
         success: function (msg) {
             valor = msg;
+            if (callbackfunction) {
+                callbackfunction(valor);
+            }
         }
     });
     return valor;
 }
 
-function getObject(purl, pparameters) {
-    var t = getValue(purl, pparameters);
+function getObject(purl, pparameters, callbackfunction) {
+    var t = getValue(purl, pparameters, callbackfunction);
     return (new Function('return ' + t))();
 }
 
@@ -145,3 +153,9 @@ $.fn.shake = function (options) {
         }
     });
 };
+
+$(document).ajaxStart(function () {
+    $.blockUI({message: '<h3><i class="fa fa-spinner fa-spin"></i> Un momento...</h3>'});
+}).ajaxStop(function () {
+    $.unblockUI()
+});

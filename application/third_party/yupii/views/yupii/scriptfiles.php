@@ -2,6 +2,7 @@
 <script src="<?= base_url(); ?>/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript"
         src="<?= base_url(); ?>/assets/js/dataTables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url(); ?>/assets/js/jquery.blockUI.min.js" type="text/javascript"></script>
 <script src="<?= base_url(); ?>/assets/js/utiles.js" type="text/javascript"></script>
 <script src="<?= base_url(); ?>/assets/js/yupii.js" type="text/javascript"></script>
 
