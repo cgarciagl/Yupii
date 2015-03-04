@@ -13,6 +13,10 @@ $lang['yupii_processing'] = 'Processing...';
 $lang['yupii_operations'] = 'Operations';
 $lang['yupii_subadmin']   = 'Subadmining';
 
+$lang['yupii_group']        = 'Group';
+$lang['yupii_filter']        = 'Filter';
+$lang['yupii_print']        = 'Print';
+
 $lang['yupii_show_n_records']   = 'Show _MENU_ records';
 $lang['yupii_showing_from_to']  = 'Showing from _START_ to _END_ of _TOTAL_ records';
 $lang['yupii_info_empty']       = 'Showing from 0 to 0 of 0 records';

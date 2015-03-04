@@ -9,7 +9,7 @@ $grouprecords = 0;?>
     <div class="row hidden-print navbar-fixed-top" id="barradebotones">
         <div class="col-md-1"></div>
         <?php echo anchor('admin/index', '<i class="fa fa-home"></i> Volver al panel', 'class="btn btn-primary span2 offset9"'); ?>
-        <button id="imprimirbtn" class="btn btn-primary">Imprimir</button>
+        <button id="imprimirbtn" class="btn btn-primary"><?= $this->lang->line('yupii_print') ?></button>
     </div>
     <br/>
 

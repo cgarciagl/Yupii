@@ -39,12 +39,12 @@
                     echo "hide";
                 }
                 ?>">
-                    <h5>Grupo</h5>
+                    <h5><?= $this->lang->line('yupii_group') ?></h5>
                     <?php
                     echo $this->load->view('ydatasetcontroller/group_level_control_view', array('fieldlist' => $fieldlist, 'i' => $i), TRUE);
                     ?>
                     <div class="filtergroup hide">
-                        <h5>Filtro</h5>
+                        <h5><?= $this->lang->line('yupii_filter') ?></h5>
 
                         <div class=''>
                             <div class='rpfilter input-group input-group-lg'>

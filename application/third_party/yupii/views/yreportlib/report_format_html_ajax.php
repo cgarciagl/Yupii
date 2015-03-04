@@ -24,7 +24,7 @@
         </button>
         <button style="margin-top:15px;" class="btn btn-primary btnprint">
             <i class="fa fa-print fa-lg"></i>
-            Imprimir
+            <?= $this->lang->line('yupii_print') ?>
         </button>
     </div>
     <div class="yupiireportresult">
@@ -37,7 +37,7 @@
         </button>
         <button style="margin-top:15px;" class="btn btn-primary btnprint">
             <i class="fa fa-print fa-lg"></i>
-            Imprimir
+            <?= $this->lang->line('yupii_print') ?>
         </button>
     </div>
 </div>
