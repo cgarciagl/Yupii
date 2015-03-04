@@ -24,7 +24,7 @@ abstract class YDataset extends YController {
 
 	/**
 	 * @var YDatasetModel
-	 */
+	 */ 
 	private $model;
 
 	/**
@@ -49,7 +49,7 @@ abstract class YDataset extends YController {
 		return $this->model;
 	}
 
-	public function setModel(YDatasetModel $model) {
+	public function setModel($model) {
 		$this->model = $model;
 	}
 
@@ -59,7 +59,7 @@ abstract class YDataset extends YController {
 	 * @return YConcreteDatasetModel
 	 */
 	private function _getOrConstructModel() {
-		if (is_file(APPPATH . 'models/' . $this->getClassName() . EXT)) {
+		if (is_file(APPPATH . 'models/' . $this->getClassName() . '.php')) {
 			$this->load->model($this->getClassName(), 'modelo');
 		} else {
 			$this->load->model('yconcretedatasetmodel', 'modelo');

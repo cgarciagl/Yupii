@@ -39,7 +39,7 @@ abstract class YController extends CI_Controller {
      */
     private function getPartial() {
         $uri = $this->classname . '/' . $this->router->method;
-        if (is_file(APPPATH . 'views/' . $uri . EXT)) {
+        if (is_file(APPPATH . 'views/' . $uri . '.php')) {
             $this->partial = $this->classname . '/' . $this->router->method;
         }
     }
