@@ -2,6 +2,7 @@
 
 <div class="container">
     <div class="row">
+        <hr/>
         <div class="col-md-4 col-md-offset-3" id="divprogreso">
             <div class="panel panel-primary">
                 <div class="panel-heading">
