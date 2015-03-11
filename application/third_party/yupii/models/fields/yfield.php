@@ -104,7 +104,7 @@ abstract class YField {
             $more .= ' required ';
         }
         if (substr_count($this->rules, 'readonly')) {
-            $more .= ' readonly disabled ';
+            $more .= ' readonly ';
         }
         return $more;
     }
@@ -114,9 +114,23 @@ abstract class YField {
         $a['value']            = $this->getValue();
         $a['label']            = $this->getLabel();
         $a['type']             = $this->getType();
+        $a['default']          = $this->getDefault();
         $a['options']          = $this->getOptions();
         $a['extra_attributes'] = $this->extraAttributesForControl();
+        $this->checkDefault($a);
         $this->load->vars($a);
+    }
+
+    function checkDefault(&$a) {
+        if (isset($this->default)) {
+            if (!isset($a['value'])) {
+                if (is_array($this->default)) {
+                    $a['value'] = $this->default['text'];
+                } else {
+                    $a['value'] = $this->default;
+                }
+            }
+        }
     }
 
     public function constructControl() {

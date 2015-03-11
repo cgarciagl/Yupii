@@ -44,12 +44,13 @@
         $('.nivelselect').change(function () {
             var v = $(this).find('option:selected').val();
             var i = $(this).parents('.nivel').index();
-            var cont = $(this).find('option:selected').attr('data-controller');
+            var cont = $(this).find('option:selected').data('controller');
+            var filterf = $(this).find('option:selected').data('filter');
             var fg = $(this).parent('.nivel').children('.filtergroup');
             if (v != '') {
                 fg.removeClass('hide');
                 var b = fg.find('.reportgroupfilter');
-                b.YupiiSearch({controller: cont});
+                b.YupiiSearch({controller: cont, filter: filterf});
                 b.val('');
                 checklevels($(this));
             } else {

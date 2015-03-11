@@ -25,7 +25,7 @@ abstract class YDatasetModel extends YTableModel {
      * Constructor de la clase
      */
     function __construct() {
-        parent :: __construct();
+        parent:: __construct();
     }
 
     /**
@@ -277,8 +277,14 @@ abstract class YDatasetModel extends YTableModel {
      */
     function createInputDataArray() {
         $a = array();
-        foreach ($this->ofieldlist as $k => $f) {
-            if ($f->hasChanged()) {
+        if ($this->input->post($this->id_field, TRUE)) {
+            foreach ($this->ofieldlist as $k => $f) {
+                if ($f->hasChanged()) {
+                    $a[$f->getFieldName()] = $f->getDataFromInput();
+                }
+            }
+        } else {
+            foreach ($this->ofieldlist as $k => $f) {
                 $a[$f->getFieldName()] = $f->getDataFromInput();
             }
         }
@@ -321,8 +327,8 @@ abstract class YDatasetModel extends YTableModel {
         if ($this->canInsert) {
             try {
                 $this->controller->_beforeInsert();
-                $a = $this->createInputDataArray();
-                $pk = $this->insert($a);
+                $a                      = $this->createInputDataArray();
+                $pk                     = $this->insert($a);
                 $_POST[$this->id_field] = $pk;
                 $this->controller->_afterInsert();
             } catch (Exception $e) {
@@ -359,7 +365,7 @@ abstract class YDatasetModel extends YTableModel {
             }
         }
         $filter = base64_decode($this->input->post('sFilter', TRUE));
-        if ($filter){
+        if ($filter) {
             $this->db->where($filter, FALSE, FALSE);
         }
     }

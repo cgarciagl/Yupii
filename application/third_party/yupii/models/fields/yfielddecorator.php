@@ -11,6 +11,7 @@ abstract class YFieldDecorator extends YField {
         $this->rules     = &$Field->rules;
         $this->label     = &$Field->label;
         $this->value     = &$Field->value;
+        $this->default   = &$Field->default;
     }
 
 }

@@ -6,6 +6,7 @@ class YSearchField extends YFieldDecorator {
     protected $controller;
     protected $filter;
     protected $idvalue;
+    protected $default;
 
     public function getIdValue() {
         return $this->idvalue;
@@ -45,7 +46,21 @@ class YSearchField extends YFieldDecorator {
         $a['controller']  = $this->getController();
         $a['idvalue']     = $this->getIdValue();
         $a['filter']      = $this->getFilter();
+        $this->checkDefault($a);
         return $this->load->view('yfield/searchfield', $a, TRUE);
+    }
+
+    function checkDefault(&$a) {
+        if (isset($this->default)) {
+            if (!isset($a['idvalue'])) {
+                if (is_array($this->default)) {
+                    $a['value']   = $this->default['text'];
+                    $a['idvalue'] = $this->default['id'];
+                } else {
+                    $a['value'] = $this->default;
+                }
+            }
+        }
     }
 
     public function checkRelation(&$model) {

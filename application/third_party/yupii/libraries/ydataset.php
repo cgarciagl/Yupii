@@ -144,6 +144,12 @@ abstract class YDataset extends YController {
 		return $this->modelo->ofieldlist[$fieldName];
 	}
 
+    function removeField($fieldName) {
+        if (array_key_exists($fieldName, $this->modelo->ofieldlist)) {
+            unset($this->modelo->ofieldlist[$fieldName]);
+        }
+    }
+
 	/**
 	 * Determina la etiqueta que ha de tener un campo los formularios y tablas
 	 *

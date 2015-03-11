@@ -119,7 +119,7 @@ abstract class YReportLib {
         $i = 2;
         foreach ($this->groups as &$g) {
             $i++;
-            if (($g['current'] != $row[$g['field']]) || ($showldwritelevelheader)) {
+            if (($g['current'] != @$row[$g['field']]) || ($showldwritelevelheader)) {
                 if ($g['current'] == '') {
                     $showldwritelevelfooter = false;
                 }
