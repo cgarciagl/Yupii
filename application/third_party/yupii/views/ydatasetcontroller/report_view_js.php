@@ -74,7 +74,7 @@
                 demas.each(function (index, elem) {
                     $(elem).find('.nivelselect').find('option').eq(indexselected).addClass('hide').prop('disabled', true);
                     if ($(elem).find('.nivelselect').find('option:selected').index() == indexselected) {
-                        $(elem).find('option[value=""]').attr('selected', 'selected');
+                        $(elem).find('option[value=""]').prop('selected', 'selected');
                         $(elem).children('.filtergroup').hide();
                         $(elem).next('.nivel').hide();
                     }

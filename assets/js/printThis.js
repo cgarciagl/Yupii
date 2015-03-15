@@ -137,9 +137,9 @@
                             $iframeInput.val($value);
                         } else if ($this.is(':checked')) {
                             if ($this.is(':checkbox')) {
-                                $iframeInput.attr('checked', 'checked');
+                                $iframeInput.prop('checked', 'checked');
                             } else if ($this.is(':radio')) {
-                                $doc.find('input[name="' + $name + '"][value=' + $value + ']').attr('checked', 'checked');
+                                $doc.find('input[name="' + $name + '"][value=' + $value + ']').prop('checked', 'checked');
                             }
                         }
 
