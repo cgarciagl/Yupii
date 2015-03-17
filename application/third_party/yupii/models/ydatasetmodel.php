@@ -310,7 +310,7 @@ abstract class YDatasetModel extends YTableModel {
             try {
                 $a = $this->createInputDataArray();
                 if (sizeof($a) > 0) {
-                    $this->controller->_beforeUpdate();
+                    $this->controller->_beforeUpdate($a);
                     $this->update($this->input->post($this->id_field, TRUE), $a);
                     $this->controller->_afterUpdate();
                 }
@@ -326,8 +326,8 @@ abstract class YDatasetModel extends YTableModel {
     private function performInsert() {
         if ($this->canInsert) {
             try {
-                $this->controller->_beforeInsert();
-                $a                      = $this->createInputDataArray();
+                $a = $this->createInputDataArray();
+                $this->controller->_beforeInsert($a);
                 $pk                     = $this->insert($a);
                 $_POST[$this->id_field] = $pk;
                 $this->controller->_afterInsert();

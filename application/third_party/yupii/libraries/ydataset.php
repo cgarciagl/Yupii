@@ -240,7 +240,7 @@ abstract class YDataset extends YController {
 	/**
 	 * Disparador Callback (Trigger) para Antes de Insertar
 	 */
-	function _beforeInsert() {
+	function _beforeInsert(&$a) {
 
 	}
 
@@ -254,7 +254,7 @@ abstract class YDataset extends YController {
 	/**
 	 * Disparador Callback (Trigger) para Antes de Actualizar
 	 */
-	function _beforeUpdate() {
+	function _beforeUpdate(&$a) {
 
 	}
 
