@@ -123,6 +123,10 @@ abstract class YDatasetController extends YDataset {
         $this->_afterDelete();
     }
 
+    function _customFormDataFooter() {
+
+    }
+
     /**
      * Obtiene via AJAX el formulario para ingresar datos al catálogo
      *
@@ -132,7 +136,10 @@ abstract class YDatasetController extends YDataset {
      */
     function getFormData($id = '') {
         if ($this->input->is_ajax_request()) {
-            echo $this->modelo->getFormData($id);
+            $s = $this->modelo->getFormData($id);
+            echo $s;
+            $s = $this->_customFormDataFooter();
+            echo $s;
         } else {
             show_error('error');
         }

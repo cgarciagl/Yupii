@@ -79,7 +79,9 @@
                 <?= $t ?>_idactivo = '';
             }
             //devolvemos los datos del registro(s) seleccionado(s)
-            $("#<?= $t ?>btn_ok_search").trigger('click');
+            if (!op.hasClass('dataTables_empty')) {
+                $("#<?= $t ?>btn_ok_search").trigger('click');
+            }
             return false;
         });
 

@@ -92,7 +92,9 @@ bodytable.delegate('tr', 'dblclick',
             ;
             <?= $t ?>_idactivo = '';
         }
-        $('#<?= $t ?>tabs a:first').tab('show');
+        if (!op.hasClass('dataTables_empty')) {
+            $('#<?= $t ?>tabs a:first').tab('show');
+        }
         return false;
     });
 
