@@ -327,6 +327,9 @@ abstract class YDatasetModel extends YTableModel {
         if ($this->canInsert) {
             try {
                 $a = $this->createInputDataArray();
+                if (isset($a[$this->id_field])) {
+                    unset($a[$this->id_field]);
+                }
                 $this->controller->_beforeInsert($a);
                 $pk                     = $this->insert($a);
                 $_POST[$this->id_field] = $pk;
