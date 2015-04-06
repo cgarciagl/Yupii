@@ -112,6 +112,7 @@ abstract class YDatasetModel extends YTableModel {
         $data['query']  = $query;
         $data['count']  = $count;
         $data['modelo'] = $this;
+        $this->load->helper('text');
         return $this->load->view('ydatasetmodel/table_json_result', $data, TRUE);
     }
 

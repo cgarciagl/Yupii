@@ -41,3 +41,7 @@ function startsWith($cadena, $parcial) {
 function endsWith($cadena, $parcial) {
     return $parcial === "" || strpos($cadena, $parcial, strlen($cadena) - strlen($parcial)) !== FALSE;
 }
+
+function removeNewLines($text) {
+    return str_replace(array("\n", "\r"), ' ', $text);
+}

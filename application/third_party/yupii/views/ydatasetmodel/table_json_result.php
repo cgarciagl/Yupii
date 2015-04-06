@@ -11,7 +11,8 @@ $ultimate = end($datos); ?>
 <?php foreach ($datos as $aRow) : ?>
     [
     <?php foreach ($modelo->tablefields as $f) : ?>
-        "<?php echo strip_tags(addslashes($aRow[$modelo->realField($f)])) ?>",
+        "<?php echo removeNewLines(
+        convert_accented_characters(character_limiter(strip_tags(addslashes($aRow[$modelo->realField($f)])),50))) ?>",
     <?php endforeach; ?>
     "<?php echo addslashes($aRow[$modelo->id_field]) ?>"
     ]
