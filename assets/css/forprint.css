@@ -44,6 +44,13 @@ table {
     font-size: 12px;
 }
 
+.redondeado {
+    border: 1px solid blue;
+    border-radius: 7px;
+    padding: 10px;
+    min-height: 140px;
+}
+
 #imprimible {
     border: 1px solid orange;
     border-radius: 7px;

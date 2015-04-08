@@ -64,11 +64,7 @@ abstract class YDataset extends YController {
 		} else {
 			$this->load->model('yconcretedatasetmodel', 'modelo');
 		}
-		if (isset($this->modelo)) {
-			return $this->modelo;
-		} else {
-			return null;
-		}
+        return ifSet($this->modelo, null);
 	}
 
 	/**

@@ -91,7 +91,7 @@ abstract class YField {
 
     public function setDefaults() {
         $this->setLabel((!isset($this->label)) ? $this->getFieldName() : $this->getLabel());
-        $this->setRules((!isset($this->rules)) ? 'xss_clean' : 'xss_clean|' . $this->getRules());
+        $this->setRules((!isset($this->rules)) ? '' :  $this->getRules());
         $this->setValue((!isset($this->value)) ? '' : $this->getValue());
         $this->setType((!isset($this->type)) ? 'text' : $this->getType());
         $this->setOptions((!isset($this->options)) ? array() : $this->getOptions());
