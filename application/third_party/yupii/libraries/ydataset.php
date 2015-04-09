@@ -119,7 +119,7 @@ abstract class YDataset extends YController {
 	 * @param array $a Arreglo con las definiciones del campo "label" , "rules", "value"
 	 */
 	function addField($fieldName, $a = array()) {
-		return $this->modelo->addFieldFromArray($fieldName, $a);
+		return $this->model->addFieldFromArray($fieldName, $a);
 	}
 
 	/**
@@ -165,6 +165,10 @@ abstract class YDataset extends YController {
 	function addRules($fieldName, $rules) {
 		$this->modelo->ofieldlist[$fieldName]->setRules($rules);
 	}
+
+    function addDefault($fieldName, $default) {
+        $this->modelo->ofieldlist[$fieldName]->setDefault($default);
+    }
 
 	/**
 	 * Setter para la propiedad canInsert del modelo
