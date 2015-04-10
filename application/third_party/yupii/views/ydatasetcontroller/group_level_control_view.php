@@ -1,11 +1,11 @@
-<select name="nivel<?= $i ?>" class="nivelselect form-control">
+<select name="nivel<?php echo  $i ?>" class="nivelselect form-control">
     <option value=""></option>
     <?php foreach ($fieldlist as $k => $f): ?>
         <?php if (method_exists($f, 'getController')) : ?>
-            <option value='<?= $f->getFieldName() ?>'
-                    data-controller='<?= $f->getController() ?>'
-                    data-filter='<?= base64_encode($f->getFilter()) ?>'>
-                <?= $f->getLabel() ?>
+            <option value='<?php echo  $f->getFieldName() ?>'
+                    data-controller='<?php echo  $f->getController() ?>'
+                    data-filter='<?php echo  base64_encode($f->getFilter()) ?>'>
+                <?php echo  $f->getLabel() ?>
             </option>
         <?php endif; ?>
     <?php endforeach; ?>

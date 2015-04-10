@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <base href="<?= config_item('base_url') ?>">
+    <base href="<?php echo  config_item('base_url') ?>">
     <meta http-equiv="content-type" CONTENT="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte</title>
@@ -11,7 +11,7 @@
 
         <?php if (config_item('yupii_theme')): ?>
             <link rel="stylesheet"
-                  href="./assets/css/themes/<?= config_item('yupii_theme') ?>/bootstrap.min.css"
+                  href="./assets/css/themes/<?php echo  config_item('yupii_theme') ?>/bootstrap.min.css"
                   type="text/css"/>
         <?php endif; ?>
 
@@ -24,7 +24,7 @@
 <body>
 <div class="container">
     <div class="ui-widget ui-widget-content ui-corner-all">
-        <?= $tabla ?>
+        <?php echo  $tabla ?>
     </div>
 </div>
 <script type="text/javascript">

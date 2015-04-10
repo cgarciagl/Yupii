@@ -1,39 +1,39 @@
 <script type="text/javascript">
-    var t = $("#<?= $t ?>_table");
+    var t = $("#<?php echo  $t ?>_table");
 
-    $("#<?= $t ?>admin_div").hide();
+    $("#<?php echo  $t ?>admin_div").hide();
 
-    var <?= $t ?>_idactivo = '';
+    var <?php echo  $t ?>_idactivo = '';
 
-    function <?= $t ?>refreshAjax() {
-        var oTable = $("#<?= $t ?>_table").dataTable();
+    function <?php echo  $t ?>refreshAjax() {
+        var oTable = $("#<?php echo  $t ?>_table").dataTable();
         var sel = $('.yupii_selected_row').index();
         ;
-        <?= $t ?>_preselect = sel;
+        <?php echo  $t ?>_preselect = sel;
         oTable.fnStandingRedraw();
     }
 
-    $("#<?= $t ?>btn_search_admin").click(function (e) {
+    $("#<?php echo  $t ?>btn_search_admin").click(function (e) {
         e.preventDefault();
-        $("#<?= $t ?>").hide('slide');
-        getValue('<?= $tc ?>/tableByAjax/', yupii_csrf,
+        $("#<?php echo  $t ?>").hide('slide');
+        getValue('<?php echo  $tc ?>/tableByAjax/', yupii_csrf,
             function (s) {
-                $("#<?= $t ?>admin_container").html(s);
-                $("#<?= $t ?>admin_div").show('slide');
+                $("#<?php echo  $t ?>admin_container").html(s);
+                $("#<?php echo  $t ?>admin_div").show('slide');
             });
     });
 
-    $("#<?= $t ?>btn_search_admin_back").click(function (e) {
+    $("#<?php echo  $t ?>btn_search_admin_back").click(function (e) {
         e.preventDefault();
-        $("#<?= $t ?>").show('slide');
-        $("#<?= $t ?>admin_div").hide('slide');
+        $("#<?php echo  $t ?>").show('slide');
+        $("#<?php echo  $t ?>admin_div").hide('slide');
         ;
-        <?= $t ?>refreshAjax();
+        <?php echo  $t ?>refreshAjax();
     });
 
-    $("#<?= $t ?>btn_ok_search").click(function (e) {
+    $("#<?php echo  $t ?>btn_ok_search").click(function (e) {
         e.preventDefault();
-        var tds = $("#<?= $t ?>_table tbody tr.yupii_selected_row").first().find("td");
+        var tds = $("#<?php echo  $t ?>_table tbody tr.yupii_selected_row").first().find("td");
         var fid = tds.last().attr('idr');
         var fname = tds.first().text();
         if (fid == undefined) {
@@ -54,7 +54,7 @@
         t.parents('li').nextAll('li').first().find('input').first().focus();
     });
 
-    $("#<?= $t ?>btn_cancel_search").click(function (e) {
+    $("#<?php echo  $t ?>btn_cancel_search").click(function (e) {
         e.preventDefault();
         ResultData = {};
         $(this).parents('.yupii-widget').first().remove();
@@ -63,9 +63,9 @@
 
     <?php echo $this->load->view('ydatasetcontroller/datatable_init', array('t' => $t, 'tc' => $tc), TRUE); ?>
 
-    $('#<?= $t ?>_table_filter').append($('#<?= $t ?>_combo'));
+    $('#<?php echo  $t ?>_table_filter').append($('#<?php echo  $t ?>_combo'));
 
-    var bodytable = $("#<?= $t ?>_table tbody");
+    var bodytable = $("#<?php echo  $t ?>_table tbody");
 
     bodytable.delegate('tr', 'dblclick',
         function (ev) {
@@ -73,14 +73,14 @@
             var op = $(this).find("td").last();
             if (op.attr('idr')) {
                 ;
-                <?= $t ?>_idactivo = op.attr('idr');
+                <?php echo  $t ?>_idactivo = op.attr('idr');
             } else {
                 ;
-                <?= $t ?>_idactivo = '';
+                <?php echo  $t ?>_idactivo = '';
             }
             //devolvemos los datos del registro(s) seleccionado(s)
             if (!op.hasClass('dataTables_empty')) {
-                $("#<?= $t ?>btn_ok_search").trigger('click');
+                $("#<?php echo  $t ?>btn_ok_search").trigger('click');
             }
             return false;
         });
@@ -91,36 +91,36 @@
             var op = $(this).find("td").last();
             if (op.attr('idr')) {
                 ;
-                <?= $t ?>_idactivo = op.attr('idr');
+                <?php echo  $t ?>_idactivo = op.attr('idr');
             } else {
                 ;
-                <?= $t ?>_idactivo = '';
+                <?php echo  $t ?>_idactivo = '';
             }
-            $("#<?= $t ?>_table tbody tr").removeClass('yupii_selected_row');
+            $("#<?php echo  $t ?>_table tbody tr").removeClass('yupii_selected_row');
             $(this).addClass('yupii_selected_row');
             ResultData = {id: op.attr('idr'), name: $(this).find("td").first().text()};
         });
 
     //event for search on enter keyup or on blur
 
-    $('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
+    $('#<?php echo  $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
         if (e.keyCode != 13)
             return;
-        $('#<?= $t ?>_sel').focus();
+        $('#<?php echo  $t ?>_sel').focus();
     }).bind('change', function () {
         $(this).data('objtable').fnFilter($(this).val());
     });
 
-    function fnData<?= $t ?>(sSource, aoData, fnCallback) {
+    function fnData<?php echo  $t ?>(sSource, aoData, fnCallback) {
         /* se agregan datos extras a la petición ajax */
         <?php if (config_item('csrf_protection')) : ?>
         aoData.push({
-            "name": "<?= config_item('csrf_token_name') ?>",
-            "value": "<?= $this->security->get_csrf_hash(); ?>"
+            "name": "<?php echo  config_item('csrf_token_name') ?>",
+            "value": "<?php echo  $this->security->get_csrf_hash(); ?>"
         });
         <?php endif; ?>
 
-        var sonlyfield = $('#<?= $t ?>_sel').val();
+        var sonlyfield = $('#<?php echo  $t ?>_sel').val();
         if (sonlyfield != '') {
             aoData.push({
                 "name": "sOnlyField",
@@ -128,15 +128,15 @@
             });
         }
 
-        var lookingfor = "<?= htmlspecialchars($this->input->post('sSearch', TRUE)); ?>";
-        if ((lookingfor != '') && ($("#<?= $t ?>_table_filter input[type='text']").val() == '')) {
+        var lookingfor = "<?php echo  htmlspecialchars($this->input->post('sSearch', TRUE)); ?>";
+        if ((lookingfor != '') && ($("#<?php echo  $t ?>_table_filter input[type='text']").val() == '')) {
             aoData.push({
                 "name": "sSearch",
                 "value": lookingfor
             });
         }
 
-        var sfilter = "<?= $this->input->post('sFilter', TRUE); ?>";
+        var sfilter = "<?php echo  $this->input->post('sFilter', TRUE); ?>";
         if (sfilter != '') {
             aoData.push({
                 "name": "sFilter",
@@ -152,20 +152,20 @@
             "cache": false,
             "error": function (xhr, textStatus, error) {
                 if (textStatus === 'timeout') {
-                    alert('<?= $this->lang->line('yupii_timeout_error') ?>');
+                    alert('<?php echo  $this->lang->line('yupii_timeout_error') ?>');
                 }
                 else {
                     console.log(xhr.responseText);
-                    alert('<?= $this->lang->line('yupii_server_error') ?>');
+                    alert('<?php echo  $this->lang->line('yupii_server_error') ?>');
                 }
                 t.fnProcessingIndicator(false);
             },
             "success": function (json) {
                 fnCallback(json);
                 ;
-                <?= $t ?>_idactivo = '';
+                <?php echo  $t ?>_idactivo = '';
                 if (json.aaData.length > 0) {
-                    $("#<?= $t ?>_table tbody tr").each(
+                    $("#<?php echo  $t ?>_table tbody tr").each(
                         function () {
                             var op = $(this).find("td").last();
                             var id = op.text();
@@ -174,21 +174,21 @@
                         });
                 }
                 if (json.sSearch != '') {
-                    $("#<?= $t ?>_searching_title").text("<?= $this->lang->line('yupii_searching') ?>" + " (" + json.sSearch + ") ...").show();
+                    $("#<?php echo  $t ?>_searching_title").text("<?php echo  $this->lang->line('yupii_searching') ?>" + " (" + json.sSearch + ") ...").show();
                     ;
                 } else {
-                    $("#<?= $t ?>_searching_title").text("").hide();
+                    $("#<?php echo  $t ?>_searching_title").text("").hide();
                 }
 
-                var primerodelatabla = $("#<?= $t ?>_table tbody tr").first();
+                var primerodelatabla = $("#<?php echo  $t ?>_table tbody tr").first();
                 primerodelatabla.addClass('yupii_selected_row');
 
                 if ((json.aaData.length == 1) && (json.iTotalRecords == 1) && (json.sSearch != '')) {
                     //devolvemos los datos del registro(s) seleccionado(s)
-                    $("#<?= $t ?>btn_ok_search").trigger('click');
+                    $("#<?php echo  $t ?>btn_ok_search").trigger('click');
                 }
 
-                $("#<?= $t ?>_Tablediv").find('.paginate_button, .paginate_active').addClass('btn btn-xs btn-info').removeClass('disabled').filter('.paginate_button_disabled, .paginate_active').addClass('disabled');
+                $("#<?php echo  $t ?>_Tablediv").find('.paginate_button, .paginate_active').addClass('btn btn-xs btn-info').removeClass('disabled').filter('.paginate_button_disabled, .paginate_active').addClass('disabled');
             }
         });
     }

@@ -20,11 +20,11 @@
     <div class="panel-footer">
         <button style="margin-top:15px;" class="btn btn-primary btnbackreport">
             <i class="fa fa-chevron-circle-left fa-lg"></i>
-            <?= $this->lang->line('yupii_back') ?>
+            <?php echo  $this->lang->line('yupii_back') ?>
         </button>
         <button style="margin-top:15px;" class="btn btn-primary btnprint">
             <i class="fa fa-print fa-lg"></i>
-            <?= $this->lang->line('yupii_print') ?>
+            <?php echo  $this->lang->line('yupii_print') ?>
         </button>
     </div>
     <div class="yupiireportresult">
@@ -33,11 +33,11 @@
     <div class="panel-footer">
         <button style="margin-top:15px;" class="btn btn-primary btnbackreport">
             <i class="fa fa-chevron-circle-left fa-lg"></i>
-            <?= $this->lang->line('yupii_back') ?>
+            <?php echo  $this->lang->line('yupii_back') ?>
         </button>
         <button style="margin-top:15px;" class="btn btn-primary btnprint">
             <i class="fa fa-print fa-lg"></i>
-            <?= $this->lang->line('yupii_print') ?>
+            <?php echo  $this->lang->line('yupii_print') ?>
         </button>
     </div>
 </div>
@@ -60,7 +60,7 @@
     });
 </script>
 
-<script src="<?= base_url(); ?>/assets/js/printThis.js" type="text/javascript"></script>
+<script src="<?php echo  base_url(); ?>/assets/js/printThis.js" type="text/javascript"></script>
 
 <script>
     $(document).ready(function () {
@@ -71,8 +71,8 @@
                 importStyle: false,
                 printContainer: false,
                 removeInline: true,
-                loadCSS: "<?= base_url(); ?>/assets/css/forprint.css",
-                pageTitle: "<?=$title?> <?= uniqid() ?>"
+                loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.css",
+                pageTitle: "<?php echo $title?> <?php echo  uniqid() ?>"
             });
         });
     });

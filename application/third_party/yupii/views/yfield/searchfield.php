@@ -1,12 +1,12 @@
 <div class="divfield col-sm-4">
-    <div class='input-group' id='group_<?= $name ?>'>
-        <label class="control-label"><?= $label; ?> :</label>
+    <div class='input-group' id='group_<?php echo  $name ?>'>
+        <label class="control-label"><?php echo  $label; ?> :</label>
 
         <div class='input-group'>
-            <?= $this->load->view('yfield/inputfield'); ?>
+            <?php echo  $this->load->view('yfield/inputfield'); ?>
             <script type='text/javascript'>
-                $('#<?= $name ?>').YupiiSearch({controller: '<?= $controller ?>', filter: '<?= base64_encode($filter) ?>'});
-                $('#yupii_id_<?= $name ?>').val('<?= $idvalue ?>').attr('data-valueant', '<?= $idvalue ?>');
+                $('#<?php echo  $name ?>').YupiiSearch({controller: '<?php echo  $controller ?>', filter: '<?php echo  base64_encode($filter) ?>'});
+                $('#yupii_id_<?php echo  $name ?>').val('<?php echo  $idvalue ?>').attr('data-valueant', '<?php echo  $idvalue ?>');
             </script>
         </div>
     </div>

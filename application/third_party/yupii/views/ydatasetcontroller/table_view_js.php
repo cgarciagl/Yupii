@@ -1,29 +1,29 @@
 <script type="text/javascript">
-var t = $("#<?= $t ?>_table");
+var t = $("#<?php echo  $t ?>_table");
 
-var <?= $t ?>_preselect = 0;
-var <?= $t ?>_idactivo = '';
+var <?php echo  $t ?>_preselect = 0;
+var <?php echo  $t ?>_idactivo = '';
 
-function <?= $t ?>refreshAjax() {
-    var oTable = $("#<?= $t ?>_table").dataTable();
+function <?php echo  $t ?>refreshAjax() {
+    var oTable = $("#<?php echo  $t ?>_table").dataTable();
     var sel = $('.yupii_selected_row').index();
     ;
-    <?= $t ?>_preselect = sel;
+    <?php echo  $t ?>_preselect = sel;
     oTable.fnStandingRedraw();
 }
 
 
-$("#<?= $t ?>btn_cancel").click(function (e) {
+$("#<?php echo  $t ?>btn_cancel").click(function (e) {
     e.preventDefault();
-    $('#<?= $t ?>tabs li:eq(1) a').tab('show');
+    $('#<?php echo  $t ?>tabs li:eq(1) a').tab('show');
     ;
-    <?= $t ?>refreshAjax();
+    <?php echo  $t ?>refreshAjax();
 });
 
 
-$("#<?= $t ?>btn_ok").click(function (e) {
+$("#<?php echo  $t ?>btn_ok").click(function (e) {
     e.preventDefault();
-    var forma = $('#<?= $t ?>_FormContent form');
+    var forma = $('#<?php echo  $t ?>_FormContent form');
     var a = forma.first().serializeObject();
     /* get the previous values for the controls*/
     var f = forma.first().find('[data-valueant]');
@@ -35,7 +35,7 @@ $("#<?= $t ?>btn_ok").click(function (e) {
     /*limpiamos los errores anteriores*/
     forma.find('.ui-state-error').remove();
     $('.has-error').removeClass('has-error');
-    getObject('<?= $tc ?>/formProcess', a, function (obj) {
+    getObject('<?php echo  $tc ?>/formProcess', a, function (obj) {
         if (obj.result != 'ok') {
             $.each(obj.errors, function (i, val) {
                 var gi = $("#group_" + i);
@@ -45,55 +45,55 @@ $("#<?= $t ?>btn_ok").click(function (e) {
                 gi.addClass('has-error').shake();
             });
         } else {
-            $('#<?= $t ?>tabs li:eq(1) a').tab('show');
+            $('#<?php echo  $t ?>tabs li:eq(1) a').tab('show');
             ;
-            <?= $t ?>refreshAjax();
+            <?php echo  $t ?>refreshAjax();
         }
     });
 });
 
-function <?= $t ?>getform(id) {
-    $("#<?= $t ?>_FormContent").html('');
-    getValue('<?= $tc ?>/getFormData/' + id, yupii_csrf, function (s) {
-        $("#<?= $t ?>_FormContent").html(s);
+function <?php echo  $t ?>getform(id) {
+    $("#<?php echo  $t ?>_FormContent").html('');
+    getValue('<?php echo  $tc ?>/getFormData/' + id, yupii_csrf, function (s) {
+        $("#<?php echo  $t ?>_FormContent").html(s);
     });
 }
 
 $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    if ($(e.target).attr('href') == "#<?= $t ?>_Form") {
-        if (<?= $t ?>_idactivo == '') {
-            var op = $("#<?= $t ?>_table tbody").find('tr').first().find('td').last();
+    if ($(e.target).attr('href') == "#<?php echo  $t ?>_Form") {
+        if (<?php echo  $t ?>_idactivo == '') {
+            var op = $("#<?php echo  $t ?>_table tbody").find('tr').first().find('td').last();
             if (op.attr('idr') != undefined) {
                 ;
-                <?= $t ?>_idactivo = op.attr('idr');
+                <?php echo  $t ?>_idactivo = op.attr('idr');
             } else {
                 ;
-                <?= $t ?>_idactivo = '';
+                <?php echo  $t ?>_idactivo = '';
             }
         }
         ;
-        <?= $t ?>getform(<?= $t ?>_idactivo);
+        <?php echo  $t ?>getform(<?php echo  $t ?>_idactivo);
     }
 });
 
 <?php echo $this->load->view('ydatasetcontroller/datatable_init', array('t' => $t, 'tc' => $tc), TRUE); ?>
 
-$('#<?= $t ?>_table_filter').append($('#<?= $t ?>_combo'));
+$('#<?php echo  $t ?>_table_filter').append($('#<?php echo  $t ?>_combo'));
 
-var bodytable = $("#<?= $t ?>_table tbody");
+var bodytable = $("#<?php echo  $t ?>_table tbody");
 
 bodytable.delegate('tr', 'dblclick',
     function (ev) {
         var op = $(this).find("td").last();
         if (op.attr('idr')) {
             ;
-            <?= $t ?>_idactivo = op.attr('idr');
+            <?php echo  $t ?>_idactivo = op.attr('idr');
         } else {
             ;
-            <?= $t ?>_idactivo = '';
+            <?php echo  $t ?>_idactivo = '';
         }
         if (!op.hasClass('dataTables_empty')) {
-            $('#<?= $t ?>tabs a:first').tab('show');
+            $('#<?php echo  $t ?>tabs a:first').tab('show');
         }
         return false;
     });
@@ -103,51 +103,51 @@ bodytable.delegate('tr', 'mousedown',
         var op = $(this).find("td").last();
         if (op.attr('idr')) {
             ;
-            <?= $t ?>_idactivo = op.attr('idr');
+            <?php echo  $t ?>_idactivo = op.attr('idr');
         } else {
             ;
-            <?= $t ?>_idactivo = '';
+            <?php echo  $t ?>_idactivo = '';
         }
-        $("#<?= $t ?>_table tbody tr").removeClass('yupii_selected_row');
+        $("#<?php echo  $t ?>_table tbody tr").removeClass('yupii_selected_row');
         $(this).addClass('yupii_selected_row');
     });
 
 
-bodytable.delegate('.<?= $t ?>deleteme', 'click',
+bodytable.delegate('.<?php echo  $t ?>deleteme', 'click',
     function (ev) {
         var r = $(this).parent('tr');
         var todelete = $(this).attr('idr');
         r.addClass('todelete');
-        var y = $('#<?= $t ?>myModal');
+        var y = $('#<?php echo  $t ?>myModal');
         y.find('.diverror').html('');
         y.modal({
             keyboard: false
         }).on('hidden.bs.modal', function () {
-            $(' #<?= $t ?>_table').find('.todelete').removeClass('todelete');
+            $(' #<?php echo  $t ?>_table').find('.todelete').removeClass('todelete');
             r.removeData('deleting');
         });
         return false;
     });
 
 
-$('#<?= $t ?>btndelete').click(function () {
-    var y = $(' #<?= $t ?>_table').find('.todelete').first();
+$('#<?php echo  $t ?>btndelete').click(function () {
+    var y = $(' #<?php echo  $t ?>_table').find('.todelete').first();
     var todelete = y.find('td').last().attr('idr');
     y.removeClass('borrar');
     obj = {id: todelete};
     $.extend(obj, yupii_csrf);
-    getObject('<?= $tc . '/getRecordByAjax' ?>', obj, function (j) {
+    getObject('<?php echo  $tc . '/getRecordByAjax' ?>', obj, function (j) {
         <?php foreach($fieldlist as $f): ?>
         obj.yupii_value_ant_<?php echo $f->getFieldName(); ?> = j.<?php echo $f->getFieldName(); ?>;
         <?php endforeach; ?>
 
-        getObject('<?= $tc . '/delete' ?>', obj, function (obj) {
+        getObject('<?php echo  $tc . '/delete' ?>', obj, function (obj) {
             if (obj.result != 'ok') {
-                $('#<?= $t ?>myModal').find('.diverror').html(obj.errors['general_error']);
+                $('#<?php echo  $t ?>myModal').find('.diverror').html(obj.errors['general_error']);
             } else {
                 ;
-                <?= $t ?>refreshAjax();
-                $('#<?= $t ?>myModal').modal('hide');
+                <?php echo  $t ?>refreshAjax();
+                $('#<?php echo  $t ?>myModal').modal('hide');
             }
         });
     });
@@ -155,29 +155,29 @@ $('#<?= $t ?>btndelete').click(function () {
 
 
 //event for search on enter keyup or on blur
-$('#<?= $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
+$('#<?php echo  $t ?>_Tablediv .dataTables_filter input').data('objtable', t).unbind('keyup').bind('keyup', function (e) {
     if (e.keyCode != 13)
         return;
-    $('#<?= $t ?>_sel').focus();
+    $('#<?php echo  $t ?>_sel').focus();
 }).bind('change', function () {
     $(this).data('objtable').fnFilter($(this).val());
 });
 
-$('#btn_<?= $t ?>_New').click(
+$('#btn_<?php echo  $t ?>_New').click(
     function (e) {
         e.preventDefault();
         ;
-        <?= $t ?>_idactivo = 'new';
-        $('#<?= $t ?>tabs a:first').tab('show')
+        <?php echo  $t ?>_idactivo = 'new';
+        $('#<?php echo  $t ?>tabs a:first').tab('show')
     });
 
-$('#btn_<?= $t ?>_Refresh').click(
+$('#btn_<?php echo  $t ?>_Refresh').click(
     function (e) {
         e.preventDefault();
-        $("#<?= $t ?>_table").dataTable().fnDraw();
+        $("#<?php echo  $t ?>_table").dataTable().fnDraw();
     });
 
-$('#btn_<?= $t ?>_Print').click(
+$('#btn_<?php echo  $t ?>_Print').click(
     function (e) {
         e.preventDefault();
         var widget = $(this).parents('.yupii-widget').first();
@@ -185,27 +185,27 @@ $('#btn_<?= $t ?>_Print').click(
         widget.hide();
         stackwidgets.push(widget);
         stacksearches.push(t);
-        getValue('<?= $tc ?>/reportByAjax', yupii_csrf,
+        getValue('<?php echo  $tc ?>/reportByAjax', yupii_csrf,
             function (r) {
                 $(r).appendTo(widget_container).show('slide');
             });
     });
 
 
-$('#<?= $t ?>_sel').change(function () {
-    $('#btn_<?= $t ?>_Refresh').click();
+$('#<?php echo  $t ?>_sel').change(function () {
+    $('#btn_<?php echo  $t ?>_Refresh').click();
 });
 
-function fnData<?= $t ?>(sSource, aoData, fnCallback) {
+function fnData<?php echo  $t ?>(sSource, aoData, fnCallback) {
     /* se agregan datos extras a la petición ajax */
     <?php if (config_item('csrf_protection')) : ?>
     aoData.push({
-        "name": "<?= config_item('csrf_token_name') ?>",
-        "value": "<?= $this->security->get_csrf_hash(); ?>"
+        "name": "<?php echo  config_item('csrf_token_name') ?>",
+        "value": "<?php echo  $this->security->get_csrf_hash(); ?>"
     });
     <?php endif; ?>
 
-    var sonlyfield = $('#<?= $t ?>_sel').val();
+    var sonlyfield = $('#<?php echo  $t ?>_sel').val();
     if (sonlyfield != '') {
         aoData.push({
             "name": "sOnlyField",
@@ -221,55 +221,55 @@ function fnData<?= $t ?>(sSource, aoData, fnCallback) {
         "cache": false,
         "error": function (xhr, textStatus, error) {
             if (textStatus === 'timeout') {
-                alert('<?= $this->lang->line('yupii_timeout_error') ?>');
+                alert('<?php echo  $this->lang->line('yupii_timeout_error') ?>');
             }
             else {
                 console.log(xhr.responseText);
-                alert('<?= $this->lang->line('yupii_server_error') ?>');
+                alert('<?php echo  $this->lang->line('yupii_server_error') ?>');
             }
             t.fnProcessingIndicator(false);
         },
         "success": function (json) {
             fnCallback(json);
             ;
-            <?= $t ?>_idactivo = '';
+            <?php echo  $t ?>_idactivo = '';
             if (json.aaData.length > 0) {
-                $("#<?= $t ?>_table tbody tr").each(
+                $("#<?php echo  $t ?>_table tbody tr").each(
                     function () {
                         var op = $(this).find("td").last();
                         var id = op.text();
                         op.attr('idr', id);
                         <?php if ($this->modelo->canDelete): ?>
                         op.html('<i class="fa fa-trash fa-lg ybtndelete"></i>');
-                        op.addClass('<?= $t ?>deleteme');
+                        op.addClass('<?php echo  $t ?>deleteme');
                         <?php else: ?>
                         op.html('');
                         <?php endif; ?>
                     });
             }
             if (json.sSearch != '') {
-                $("#<?= $t ?>_searching_title").text("<?= $this->lang->line('yupii_searching') ?>" +
+                $("#<?php echo  $t ?>_searching_title").text("<?php echo  $this->lang->line('yupii_searching') ?>" +
                 " (" + json.sSearch + ") ...").show();
             } else {
-                $("#<?= $t ?>_searching_title").text("").hide();
+                $("#<?php echo  $t ?>_searching_title").text("").hide();
             }
-            if (<?= $t ?>_preselect > 0) {
-                var r = $("#<?= $t ?>_table tbody tr").get(<?= $t ?>_preselect);
+            if (<?php echo  $t ?>_preselect > 0) {
+                var r = $("#<?php echo  $t ?>_table tbody tr").get(<?php echo  $t ?>_preselect);
                 if (r) {
                     var op = $(r).find("td").last();
                     if (op.attr('idr')) {
                         ;
-                        <?= $t ?>_idactivo = op.attr('idr');
+                        <?php echo  $t ?>_idactivo = op.attr('idr');
                     } else {
                         ;
-                        <?= $t ?>_idactivo = '';
+                        <?php echo  $t ?>_idactivo = '';
                     }
                     $(r).addClass('yupii_selected_row');
                 }
             } else {
-                $("#<?= $t ?>_table tbody tr").first().addClass('yupii_selected_row');
+                $("#<?php echo  $t ?>_table tbody tr").first().addClass('yupii_selected_row');
             }
-            $("#<?= $t ?>_Tablediv").find('.paginate_button, .paginate_active').addClass('btn btn-xs btn-primary').removeClass('disabled').filter('.paginate_button_disabled, .paginate_active').addClass('disabled');
+            $("#<?php echo  $t ?>_Tablediv").find('.paginate_button, .paginate_active').addClass('btn btn-xs btn-primary').removeClass('disabled').filter('.paginate_button_disabled, .paginate_active').addClass('disabled');
         }
     });
 }

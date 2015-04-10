@@ -5,7 +5,7 @@
         $c = (int)(100 / $cuantoscampos);
         foreach ($reportfields as $f) :
             ?>
-            <th width='<?= $c ?>%'> <?php echo "{$modelo->ofieldlist[$f]->getLabel()}"; ?> </th>
+            <th width='<?php echo  $c ?>%'> <?php echo "{$modelo->ofieldlist[$f]->getLabel()}"; ?> </th>
         <?php endforeach; ?>
     </tr>
     </thead>

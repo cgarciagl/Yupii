@@ -14,20 +14,20 @@
             b.hide();
         }
 
-        $('#btn_pdf_<?= $t ?>_View_Report').click(function () {
-            var y = $('#<?= $t ?>form_rep');
+        $('#btn_pdf_<?php echo  $t ?>_View_Report').click(function () {
+            var y = $('#<?php echo  $t ?>form_rep');
             y.find('input[name=typeofreport]').val('pdf');
             y.submit();
         });
 
-        $('#btn_xls_<?= $t ?>_View_Report').click(function () {
-            var y = $('#<?= $t ?>form_rep');
+        $('#btn_xls_<?php echo  $t ?>_View_Report').click(function () {
+            var y = $('#<?php echo  $t ?>form_rep');
             y.find('input[name=typeofreport]').val('xls');
             y.submit();
         });
 
-        $('#btn_htm_<?= $t ?>_View_Report').click(function () {
-            var forma = $('#<?= $t ?>form_rep');
+        $('#btn_htm_<?php echo  $t ?>_View_Report').click(function () {
+            var forma = $('#<?php echo  $t ?>form_rep');
             forma.find('input[name=typeofreport]').val('htm');
             var widget = $(this).parents('.yupii-widget').first();
             var widget_container = widget.parent();
@@ -35,7 +35,7 @@
             stackwidgets.push(widget);
             stacksearches.push(t);
             var p = forma.serialize();
-            getValue('<?= $tc ?>/showReport', p,
+            getValue('<?php echo  $tc ?>/showReport', p,
                 function (s) {
                     $(s).appendTo(widget_container).show('slide');
                 });

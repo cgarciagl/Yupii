@@ -8,24 +8,24 @@
         "bJQueryUI": false,
         "bLengthChange": true,
         "bServerSide": true,
-        "sAjaxSource": "<?= site_url($tc . '/getAjaxGridData') ?>",
+        "sAjaxSource": "<?php echo  site_url($tc . '/getAjaxGridData') ?>",
         "bDeferRender": true,
         "oLanguage": {
-            "sProcessing": "<?= $this->lang->line('yupii_processing') ?>",
-            "sLengthMenu": "<?= $this->lang->line('yupii_show_n_records') ?>",
-            "sZeroRecords": "<?= $this->lang->line('yupii_no_records_found') ?>",
-            "sInfo": "<?= $this->lang->line('yupii_showing_from_to') ?>",
-            "sInfoEmpty": "<?= $this->lang->line('yupii_info_empty') ?>",
+            "sProcessing": "<?php echo  $this->lang->line('yupii_processing') ?>",
+            "sLengthMenu": "<?php echo  $this->lang->line('yupii_show_n_records') ?>",
+            "sZeroRecords": "<?php echo  $this->lang->line('yupii_no_records_found') ?>",
+            "sInfo": "<?php echo  $this->lang->line('yupii_showing_from_to') ?>",
+            "sInfoEmpty": "<?php echo  $this->lang->line('yupii_info_empty') ?>",
             "sInfoFiltered": "",
             "sInfoPostFix": "",
-            "sSearch": "<?= $this->lang->line('yupii_search') ?>:",
+            "sSearch": "<?php echo  $this->lang->line('yupii_search') ?>:",
             "sUrl": "",
             "oPaginate": {
-                "sFirst": "<?= $this->lang->line('yupii_first') ?>",
-                "sPrevious": "<?= $this->lang->line('yupii_prior') ?>",
-                "sNext": "<?= $this->lang->line('yupii_next') ?>",
-                "sLast": "<?= $this->lang->line('yupii_last') ?>"
+                "sFirst": "<?php echo  $this->lang->line('yupii_first') ?>",
+                "sPrevious": "<?php echo  $this->lang->line('yupii_prior') ?>",
+                "sNext": "<?php echo  $this->lang->line('yupii_next') ?>",
+                "sLast": "<?php echo  $this->lang->line('yupii_last') ?>"
             }
         },
-        "fnServerData": fnData<?= $t ?>
+        "fnServerData": fnData<?php echo  $t ?>
     });
