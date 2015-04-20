@@ -7,8 +7,9 @@
         <?php
         $this->load->helper('form');
         echo form_dropdown($name . '_yupiitemp', $options, $value,
-            'data-valueant ="' . $value . '" class="form-control" multiple="multiple" ' . $extra_attributes); ?>
-        <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>"/>
+            '" class="form-control" multiple="multiple" '); ?>
+        <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>" data-valueant="<?php echo $value; ?>"
+            <?php echo $extra_attributes; ?>/>
     </div>
     <script>
         $(document).ready(function () {
@@ -33,6 +34,11 @@
             var s = $('input[name="<?php echo $name ?>"]').attr('value');
             $b = s.split(',');
             $('select[name="<?php echo $name ?>_yupiitemp"]').multiselect('select', $b, true);
+
+            p = $('input[name="<?php echo $name ?>"]');
+            if (p.is('[readonly]')) {
+                $('select[name="<?php echo $name ?>_yupiitemp"]').multiselect('disable');
+            }
         });
     </script>
 </div>

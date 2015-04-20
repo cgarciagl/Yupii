@@ -384,4 +384,27 @@ abstract class YDatasetModel extends YTableModel {
         return $this->ofieldlist[$fieldname];
     }
 
+    function textForTable($values, $fieldname) {
+        $f     = $this->fieldByName($fieldname);
+        $value = $values[$this->realField($fieldname)];
+
+        if ($f->getType() == 'multiselect') {
+            $values = explode(',', $value);
+            $opts   = $f->getOptions();
+            foreach ($values as $k => $v) {
+                $values[$k] = @$opts[$v];
+            }
+            $value = implode(',', $values);
+        }
+
+        if ($f->getType() == 'dropdown') {
+            $opts  = $f->getOptions();
+            $value = @$opts[$value];
+        }
+
+        $value = removeNewLines(convert_accented_characters(character_limiter(strip_tags(addslashes($value)), 30)));
+
+        return $value;
+    }
+
 }

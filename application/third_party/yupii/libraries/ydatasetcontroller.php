@@ -137,9 +137,9 @@ abstract class YDatasetController extends YDataset {
     function getFormData($id = '') {
         if ($this->input->is_ajax_request()) {
             $s = $this->modelo->getFormData($id);
-            echo $s;
+            $this->load->view('yupii/justecho',array('content' => $s));
             $s = $this->_customFormDataFooter();
-            echo $s;
+            $this->load->view('yupii/justecho',array('content' => $s));
         } else {
             show_error('error');
         }
