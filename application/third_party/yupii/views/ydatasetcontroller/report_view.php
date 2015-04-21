@@ -21,7 +21,7 @@
             <button id="btn_htm_<?php echo $t ?>_View_Report" class="toolbtn btn">
                 <i class="fa fa-fire fa-lg"></i>HTML
             </button>
-           <!-- <button id="btn_chart_<?php echo $t ?>_View_Report" class="toolbtn btn">
+            <!-- <button id="btn_chart_<?php echo $t ?>_View_Report" class="toolbtn btn">
                 <i class="fa fa-bar-chart fa-lg"></i>
             </button> -->
         </div>
