@@ -13,9 +13,9 @@ $lang['yupii_processing'] = 'Procesando...';
 $lang['yupii_operations'] = 'Operaciones';
 $lang['yupii_subadmin']   = 'Subadministrando';
 
-$lang['yupii_group']        = 'Grupo';
-$lang['yupii_filter']        = 'Filtro';
-$lang['yupii_print']        = 'Imprimir';
+$lang['yupii_group']  = 'Grupo';
+$lang['yupii_filter'] = 'Filtro';
+$lang['yupii_print']  = 'Imprimir';
 
 $lang['yupii_show_n_records']   = 'Mostrar _MENU_ registros';
 $lang['yupii_showing_from_to']  = 'Mostrando desde _START_ hasta _END_ de _TOTAL_ registros';
@@ -42,5 +42,5 @@ $lang['yupii_no']             = 'No';
 
 $lang['yupii_wait'] = 'Espere';
 
-$lang['yupii_server_error'] = 'Ocurrió un error en el servidor. Intente de nuevo mas tarde';
+$lang['yupii_server_error']  = 'Ocurrió un error en el servidor. Intente de nuevo mas tarde';
 $lang['yupii_timeout_error'] = 'El servidor ha tardado mucho tiempo en responder';

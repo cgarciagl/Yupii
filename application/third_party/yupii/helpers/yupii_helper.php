@@ -55,7 +55,7 @@ function has_changed($fieldname) {
  */
 function import_controller($path) {
     static $controllers = array();
-    if (!isset($controllers[$path])) {
+    if (!isset($controllers[ $path ])) {
         $parts = preg_split("~/~", $path, -1, PREG_SPLIT_NO_EMPTY);
         $c     = ucfirst(array_pop($parts));
         $file  = APPPATH . '/controllers/' . implode('/', $parts) . '/' . strtolower($c) . '.php';
@@ -65,10 +65,10 @@ function import_controller($path) {
             if (!class_exists($c, FALSE)) {
                 throw new Exception($error);
             }
-            $controllers[$path] = new $c;
+            $controllers[ $path ] = new $c;
         } else {
             throw new Exception($error);
         }
     }
-    return $controllers[$path];
+    return $controllers[ $path ];
 }

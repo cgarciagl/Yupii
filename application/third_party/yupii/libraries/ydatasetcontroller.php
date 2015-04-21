@@ -137,9 +137,9 @@ abstract class YDatasetController extends YDataset {
     function getFormData($id = '') {
         if ($this->input->is_ajax_request()) {
             $s = $this->modelo->getFormData($id);
-            $this->load->view('yupii/justecho',array('content' => $s));
+            $this->load->view('yupii/justecho', array('content' => $s));
             $s = $this->_customFormDataFooter();
-            $this->load->view('yupii/justecho',array('content' => $s));
+            $this->load->view('yupii/justecho', array('content' => $s));
         } else {
             show_error('error');
         }
@@ -149,7 +149,7 @@ abstract class YDatasetController extends YDataset {
      * Devuelve los datos del catálogo en formato JSON, via AJAX
      */
     function getAjaxGridData() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $this->applyFilters();
             $res = $this->modelo->getTableAjax();
@@ -163,7 +163,7 @@ abstract class YDatasetController extends YDataset {
      * Recibe los datos del formulario via AJAX, para procesarles
      */
     function formProcess() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $this->modelo->processFormInput();
             $this->showErrorsOrOk();
@@ -176,7 +176,7 @@ abstract class YDatasetController extends YDataset {
      * Devuelve los resultados de una búsqueda, via AJAX
      */
     function searchByAjax() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderSearchResults();
         } else {
@@ -196,7 +196,7 @@ abstract class YDatasetController extends YDataset {
      * Devuelve el formulario del reporte del catálogo, via AJAX
      */
     function reportByAjax() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderReport();
         } else {
@@ -208,7 +208,7 @@ abstract class YDatasetController extends YDataset {
      * Devuelve la vista de tabla para administrar el catálogo, solo via AJAX
      */
     function tableByAjax() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderTable();
         } else {
@@ -239,7 +239,7 @@ abstract class YDatasetController extends YDataset {
      * Devuelve un JSON con los datos de un registro , solo via AJAX
      */
     function getRecordByAjax() {
-        $this->output->enable_profiler(false);
+        $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $id = $this->input->post('id', TRUE);
             if ($id) {
@@ -258,9 +258,9 @@ abstract class YDatasetController extends YDataset {
         $this->modelo->setWhere($field, $string);
         $c = $this->modelo->countAllResults();
         if ($c > 0) {
-            return false;
+            return FALSE;
         }
-        return true;
+        return TRUE;
     }
 
 }

@@ -9,7 +9,7 @@ class YSimpleLevelReport {
     private $grouprecords = 0;
     private $listfields = array();
     private $data = array();
-    private $showTotals = true;
+    private $showTotals = TRUE;
 
     public function setShowTotals($showTotals) {
         $this->showTotals = (bool)$showTotals;
@@ -18,7 +18,7 @@ class YSimpleLevelReport {
     public function __get($attr) {
         if (isset(get_instance()->$attr)) {
             return get_instance()->$attr;
-        } else return null;
+        } else return NULL;
     }
 
     public function getData() {
@@ -29,8 +29,8 @@ class YSimpleLevelReport {
         $this->data = $data;
     }
 
-    private $showldwritelevelheader = false;
-    private $showldwritelevelfooter = true;
+    private $showldwritelevelheader = FALSE;
+    private $showldwritelevelfooter = TRUE;
 
     public function getDescfilter() {
         return $this->descfilter;
@@ -120,8 +120,8 @@ class YSimpleLevelReport {
     }
 
     function generateRowOrLevel($row) {
-        $this->showldwritelevelheader = false;
-        $this->showldwritelevelfooter = true;
+        $this->showldwritelevelheader = FALSE;
+        $this->showldwritelevelfooter = TRUE;
         $this->encab                  = '';
         $this->calculateEncab($row);
         $this->generateEncabAndDetail($row);
@@ -132,12 +132,12 @@ class YSimpleLevelReport {
         if ($this->groups) {
             foreach ($this->groups as $f => &$g) {
                 $i++;
-                if ((@$g['current'] != $row[$f]) || ($this->showldwritelevelheader)) {
+                if ((@$g['current'] != $row[ $f ]) || ($this->showldwritelevelheader)) {
                     if (@$g['current'] == '') {
-                        $this->showldwritelevelfooter = false;
+                        $this->showldwritelevelfooter = FALSE;
                     }
-                    $g['current']                 = $row[$f];
-                    $this->showldwritelevelheader = true;
+                    $g['current']                 = $row[ $f ];
+                    $this->showldwritelevelheader = TRUE;
                     $this->load->helper('utiles');
                     $this->encab .= "<h{$i}> " . ifSet($g['label'], $f) . ": {$row[$f]} </h{$i}>";
                 }

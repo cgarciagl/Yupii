@@ -17,7 +17,7 @@ abstract class YField {
     public function __get($attr) {
         if (isset(get_instance()->$attr)) {
             return get_instance()->$attr;
-        } else return null;
+        } else return NULL;
     }
 
     public function getFieldName() {
@@ -82,16 +82,16 @@ abstract class YField {
 
     public function loadFromArray($array) {
         foreach (array('label', 'value', 'rules', 'type', 'options', 'default') as $prop) {
-            if (isset($array[$prop])) {
+            if (isset($array[ $prop ])) {
                 $method = "set$prop";
-                $this->{$method}($array[$prop]);
+                $this->{$method}($array[ $prop ]);
             }
         }
     }
 
     public function setDefaults() {
         $this->setLabel((!isset($this->label)) ? $this->getFieldName() : $this->getLabel());
-        $this->setRules((!isset($this->rules)) ? '' :  $this->getRules());
+        $this->setRules((!isset($this->rules)) ? '' : $this->getRules());
         $this->setValue((!isset($this->value)) ? '' : $this->getValue());
         $this->setType((!isset($this->type)) ? 'text' : $this->getType());
         $this->setOptions((!isset($this->options)) ? array() : $this->getOptions());
@@ -136,9 +136,9 @@ abstract class YField {
     public function constructControl() {
         $this->loadVars();
         if (file_exists(APPPATH . '/third_party/yupii/views/yfield/' . $this->type . 'field.php')) {
-            return $this->load->view('yfield/' . $this->type . 'field', null, TRUE);
+            return $this->load->view('yfield/' . $this->type . 'field', NULL, TRUE);
         } else {
-            return $this->load->view('yfield/simpletextfield', null, TRUE);
+            return $this->load->view('yfield/simpletextfield', NULL, TRUE);
         }
     }
 

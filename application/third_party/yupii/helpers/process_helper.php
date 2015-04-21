@@ -30,10 +30,10 @@ function processStart() {
     @ini_set('implicit_flush', 1);
     @ob_end_clean();
 
-    $ci->db->save_queries = false;
-    ob_implicit_flush(true);
+    $ci->db->save_queries = FALSE;
+    ob_implicit_flush(TRUE);
     timeStart();
-    fecho($ci->load->view('process/progress', null, TRUE));
+    fecho($ci->load->view('process/progress', NULL, TRUE));
 }
 
 function setProgress($porcentaje) {

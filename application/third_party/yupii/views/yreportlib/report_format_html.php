@@ -1,7 +1,7 @@
 <html>
 <head>
 
-    <base href="<?php echo  config_item('base_url') ?>">
+    <base href="<?php echo config_item('base_url') ?>">
     <meta http-equiv="content-type" CONTENT="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte</title>
@@ -11,7 +11,7 @@
 
         <?php if (config_item('yupii_theme')): ?>
             <link rel="stylesheet"
-                  href="./assets/css/themes/<?php echo  config_item('yupii_theme') ?>/bootstrap.min.css"
+                  href="./assets/css/themes/<?php echo config_item('yupii_theme') ?>/bootstrap.min.css"
                   type="text/css"/>
         <?php endif; ?>
 
@@ -24,17 +24,19 @@
 <body>
 <div class="container">
     <div class="ui-widget ui-widget-content ui-corner-all">
-        <?php echo  $tabla ?>
+        <?php echo $tabla ?>
     </div>
 </div>
-<script type="text/javascript">
-    $(function () {
-        $('table').width('100%').addClass('ui-widget-content');
-        $('thead').addClass('ui-widget-header');
-        $('tfoot').addClass('ui-widget-header');
-        $('h1').addClass('ui-widget-header ui-corner-all');
-        $('h2').addClass('ui-state-highlight ui-corner-all');
-    });
-</script>
+<?php if ($this->input->post('typeofreport', TRUE) != 'xls') : ?>
+    <script type="text/javascript">
+        $(function () {
+            $('table').width('100%').addClass('ui-widget-content');
+            $('thead').addClass('ui-widget-header');
+            $('tfoot').addClass('ui-widget-header');
+            $('h1').addClass('ui-widget-header ui-corner-all');
+            $('h2').addClass('ui-state-highlight ui-corner-all');
+        });
+    </script>
+<?php endif; ?>
 </body>
 </html>

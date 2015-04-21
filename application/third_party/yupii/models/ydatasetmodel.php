@@ -35,14 +35,14 @@ abstract class YDatasetModel extends YTableModel {
      * @return string
      */
     function realField($f) {
-        return $this->ofieldlist[$f]->getFieldToShow();
+        return $this->ofieldlist[ $f ]->getFieldToShow();
     }
 
     function addFieldFromArray($f, $array) {
-        $this->ofieldlist[$f] = new YSimpleTextField($f);
-        $this->ofieldlist[$f]->loadFromArray($array);
-        $this->ofieldlist[$f]->setDefaults();
-        return $this->ofieldlist[$f];
+        $this->ofieldlist[ $f ] = new YSimpleTextField($f);
+        $this->ofieldlist[ $f ]->loadFromArray($array);
+        $this->ofieldlist[ $f ]->setDefaults();
+        return $this->ofieldlist[ $f ];
     }
 
     /**
@@ -73,7 +73,7 @@ abstract class YDatasetModel extends YTableModel {
             $query = $this->db->get($this->table_name);
             $this->db->flush_cache();
             return $this->generateJsonResult($query, $count);
-        } else return null;
+        } else return NULL;
     }
 
     /**
@@ -84,7 +84,7 @@ abstract class YDatasetModel extends YTableModel {
             $col = $this->input->post('iSortCol_0', TRUE);
             if ($col <= (count($this->tablefields) - 1)) {
                 $this->db->order_by(
-                    $this->realField($this->tablefields[$col]), $this->input->post('sSortDir_0', TRUE));
+                    $this->realField($this->tablefields[ $col ]), $this->input->post('sSortDir_0', TRUE));
             } else {
                 $this->db->order_by($this->id_field, $this->input->post('sSortDir_0', TRUE));
             }
@@ -144,9 +144,9 @@ abstract class YDatasetModel extends YTableModel {
         if ($query->num_rows() > 0) {
             $b = $query->row_array();
             foreach ($this->ofieldlist as $k => $f) {
-                $f->setValue($b[$this->realField($f->getFieldName())]);
+                $f->setValue($b[ $this->realField($f->getFieldName()) ]);
                 if (method_exists($f, 'setIdValue')) {
-                    $f->setIdValue($b[$f->getFieldName()]);
+                    $f->setIdValue($b[ $f->getFieldName() ]);
                 }
             }
         }
@@ -189,8 +189,8 @@ abstract class YDatasetModel extends YTableModel {
      */
     private function fillFieldlist() {
         foreach ($this->tablefields as $f) {
-            if (!(isset($this->ofieldlist[$f]))) {
-                $this->ofieldlist[$f] = new YSimpleTextField($f);
+            if (!(isset($this->ofieldlist[ $f ]))) {
+                $this->ofieldlist[ $f ] = new YSimpleTextField($f);
             }
         }
     }
@@ -199,8 +199,8 @@ abstract class YDatasetModel extends YTableModel {
      * Asegura que el campo de la llave primaria, esté en la lista de campos
      */
     private function addIdFieldToFieldlist() {
-        if (!(isset($this->ofieldlist[$this->id_field]))) {
-            $this->ofieldlist[$this->id_field] = new YIdField(new YSimpleTextField($this->id_field));
+        if (!(isset($this->ofieldlist[ $this->id_field ]))) {
+            $this->ofieldlist[ $this->id_field ] = new YIdField(new YSimpleTextField($this->id_field));
         }
     }
 
@@ -263,7 +263,7 @@ abstract class YDatasetModel extends YTableModel {
             foreach ($this->ofieldlist as $k => $f) {
                 $error = $this->form_validation->error($f->getFieldName());
                 if ($error != '') {
-                    $this->errors[$f->getFieldName()] = $error;
+                    $this->errors[ $f->getFieldName() ] = $error;
                 }
             }
         } else {
@@ -281,12 +281,12 @@ abstract class YDatasetModel extends YTableModel {
         if ($this->input->post($this->id_field, TRUE)) {
             foreach ($this->ofieldlist as $k => $f) {
                 if ($f->hasChanged()) {
-                    $a[$f->getFieldName()] = $f->getDataFromInput();
+                    $a[ $f->getFieldName() ] = $f->getDataFromInput();
                 }
             }
         } else {
             foreach ($this->ofieldlist as $k => $f) {
-                $a[$f->getFieldName()] = $f->getDataFromInput();
+                $a[ $f->getFieldName() ] = $f->getDataFromInput();
             }
         }
         return $a;
@@ -328,12 +328,12 @@ abstract class YDatasetModel extends YTableModel {
         if ($this->canInsert) {
             try {
                 $a = $this->createInputDataArray();
-                if (isset($a[$this->id_field])) {
-                    unset($a[$this->id_field]);
+                if (isset($a[ $this->id_field ])) {
+                    unset($a[ $this->id_field ]);
                 }
                 $this->controller->_beforeInsert($a);
-                $pk                     = $this->insert($a);
-                $_POST[$this->id_field] = $pk;
+                $pk                       = $this->insert($a);
+                $_POST[ $this->id_field ] = $pk;
                 $this->controller->_afterInsert();
             } catch (Exception $e) {
                 $this->errors['general_error'] = $e->getMessage();
@@ -381,25 +381,25 @@ abstract class YDatasetModel extends YTableModel {
      * @return YField
      */
     public function fieldByName($fieldname) {
-        return $this->ofieldlist[$fieldname];
+        return $this->ofieldlist[ $fieldname ];
     }
 
     function textForTable($values, $fieldname) {
         $f     = $this->fieldByName($fieldname);
-        $value = $values[$this->realField($fieldname)];
+        $value = $values[ $this->realField($fieldname) ];
 
         if ($f->getType() == 'multiselect') {
             $values = explode(',', $value);
             $opts   = $f->getOptions();
             foreach ($values as $k => $v) {
-                $values[$k] = @$opts[$v];
+                $values[ $k ] = @$opts[ $v ];
             }
             $value = implode(',', $values);
         }
 
         if ($f->getType() == 'dropdown') {
             $opts  = $f->getOptions();
-            $value = @$opts[$value];
+            $value = @$opts[ $value ];
         }
 
         $value = removeNewLines(convert_accented_characters(character_limiter(strip_tags(addslashes($value)), 30)));

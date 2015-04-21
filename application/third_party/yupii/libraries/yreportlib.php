@@ -21,12 +21,12 @@ abstract class YReportLib {
     private $groups = array();
     private $totalrecords = 0;
     private $grouprecords = 0;
-    private $modelo = null;
+    private $modelo = NULL;
 
     public function __get($attr) {
         if (isset(get_instance()->$attr)) {
             return get_instance()->$attr;
-        } else return null;
+        } else return NULL;
     }
 
     private function initReport($controller) {
@@ -70,7 +70,7 @@ abstract class YReportLib {
                 $a              = array(
                     'field' => $this->input->post("nivel$i", TRUE),
                     'count' => 0, 'current' => '', 'realField' => $realField,
-                    'label' => $modelo->ofieldlist[$this->input->post('nivel' . $i, TRUE)]->getLabel());
+                    'label' => $modelo->ofieldlist[ $this->input->post('nivel' . $i, TRUE) ]->getLabel());
                 $this->groups[] = $a;
             }
         }
@@ -108,8 +108,8 @@ abstract class YReportLib {
     }
 
     private function generateRowOrLevel($row) {
-        $showldwritelevelheader = false;
-        $showldwritelevelfooter = true;
+        $showldwritelevelheader = FALSE;
+        $showldwritelevelfooter = TRUE;
         $encab                  = '';
         $this->calculateEncab($row, $showldwritelevelheader, $showldwritelevelfooter, $encab);
         return $this->generateEncabAndDetail($row, $showldwritelevelheader, $showldwritelevelfooter, $encab);
@@ -119,12 +119,12 @@ abstract class YReportLib {
         $i = 2;
         foreach ($this->groups as &$g) {
             $i++;
-            if (($g['current'] != @$row[$g['field']]) || ($showldwritelevelheader)) {
+            if (($g['current'] != @$row[ $g['field'] ]) || ($showldwritelevelheader)) {
                 if ($g['current'] == '') {
-                    $showldwritelevelfooter = false;
+                    $showldwritelevelfooter = FALSE;
                 }
-                $g['current']           = $row[$g['field']];
-                $showldwritelevelheader = true;
+                $g['current']           = $row[ $g['field'] ];
+                $showldwritelevelheader = TRUE;
                 $encab .= "<h{$i}>{$g['label']}: {$row[$g['realField']]}  </h{$i}>";
             }
         }

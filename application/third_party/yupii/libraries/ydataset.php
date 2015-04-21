@@ -41,7 +41,7 @@ abstract class YDataset extends YController {
             $func = $this->$method;
             return call_user_func_array($func, $args);
         } else {
-            return null;
+            return NULL;
         }
     }
 
@@ -64,7 +64,7 @@ abstract class YDataset extends YController {
         } else {
             $this->load->model('yconcretedatasetmodel', 'modelo');
         }
-        return ifSet($this->modelo, null);
+        return ifSet($this->modelo, NULL);
     }
 
     /**
@@ -131,18 +131,18 @@ abstract class YDataset extends YController {
      */
     function addSearch($fieldName, $controllerclassname, $filter = '') {
         if (!array_key_exists($fieldName, $this->modelo->ofieldlist)) {
-            $this->modelo->ofieldlist[$fieldName] = new YSimpleTextField($fieldName);
+            $this->modelo->ofieldlist[ $fieldName ] = new YSimpleTextField($fieldName);
         }
-        $field                                = $this->modelo->ofieldlist[$fieldName];
-        $this->modelo->ofieldlist[$fieldName] = new YSearchField($field);
-        $this->modelo->ofieldlist[$fieldName]->setController($controllerclassname);
-        $this->modelo->ofieldlist[$fieldName]->setFilter($filter);
-        return $this->modelo->ofieldlist[$fieldName];
+        $field                                  = $this->modelo->ofieldlist[ $fieldName ];
+        $this->modelo->ofieldlist[ $fieldName ] = new YSearchField($field);
+        $this->modelo->ofieldlist[ $fieldName ]->setController($controllerclassname);
+        $this->modelo->ofieldlist[ $fieldName ]->setFilter($filter);
+        return $this->modelo->ofieldlist[ $fieldName ];
     }
 
     function removeField($fieldName) {
         if (array_key_exists($fieldName, $this->modelo->ofieldlist)) {
-            unset($this->modelo->ofieldlist[$fieldName]);
+            unset($this->modelo->ofieldlist[ $fieldName ]);
         }
     }
 
@@ -153,7 +153,7 @@ abstract class YDataset extends YController {
      * @param string $label Etiqueta que mostrar
      */
     function addLabel($fieldName, $label) {
-        $this->modelo->ofieldlist[$fieldName]->setLabel($label);
+        $this->modelo->ofieldlist[ $fieldName ]->setLabel($label);
     }
 
     /**
@@ -163,11 +163,11 @@ abstract class YDataset extends YController {
      * @param string $rules Reglas a aplicar
      */
     function addRules($fieldName, $rules) {
-        $this->modelo->ofieldlist[$fieldName]->setRules($rules);
+        $this->modelo->ofieldlist[ $fieldName ]->setRules($rules);
     }
 
     function addDefault($fieldName, $default) {
-        $this->modelo->ofieldlist[$fieldName]->setDefault($default);
+        $this->modelo->ofieldlist[ $fieldName ]->setDefault($default);
     }
 
     /**

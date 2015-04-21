@@ -17,7 +17,7 @@
     </div>
     <script>
         $(document).ready(function () {
-           $('#<?php echo $name ?>datetimepicker').datetimepicker({
+            $('#<?php echo $name ?>datetimepicker').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm:SS',
                 locale: 'es'
             }).data("DateTimePicker");

@@ -26,7 +26,7 @@ abstract class YTableModel extends CI_Model {
      * Constructor de la clase
      */
     function __construct() {
-        parent :: __construct();
+        parent:: __construct();
         $this->load->database();
     }
 
@@ -75,7 +75,7 @@ abstract class YTableModel extends CI_Model {
         if ($this->canInsert) {
             $this->db->insert($this->table_name, $obj);
             return $this->db->insert_id();
-        } else return null;
+        } else return NULL;
     }
 
     /**
@@ -102,8 +102,8 @@ abstract class YTableModel extends CI_Model {
      * @param string $order_by
      * @return object
      */
-    function listAll($order_by = null) {
-        if ($order_by == null) {
+    function listAll($order_by = NULL) {
+        if ($order_by == NULL) {
             $order_by = $this->id_field;
         }
         return $this->db->order_by($order_by, 'asc')
@@ -131,7 +131,7 @@ abstract class YTableModel extends CI_Model {
      * @param string $value el valor que se ha de buscar
      */
     function setWhere($field, $value) {
-       return $this->db->where($field, $value);
+        return $this->db->where($field, $value);
     }
 
     /**
@@ -140,7 +140,7 @@ abstract class YTableModel extends CI_Model {
      * @param string $orderby critero de ordenamiento
      */
     function setOrderBy($orderby) {
-       return $this->db->order_by($orderby);
+        return $this->db->order_by($orderby);
     }
 
     /**
@@ -149,7 +149,7 @@ abstract class YTableModel extends CI_Model {
      * @param string $select valor a agregar a la selección
      */
     function select($select = '*') {
-      return  $this->db->select($select);
+        return $this->db->select($select);
     }
 
     /**
@@ -158,7 +158,7 @@ abstract class YTableModel extends CI_Model {
      * @param int $value número de registros
      */
     function limit($value) {
-      return  $this->db->limit($value);
+        return $this->db->limit($value);
     }
 
     /**

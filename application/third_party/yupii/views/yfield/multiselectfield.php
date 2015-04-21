@@ -8,7 +8,8 @@
         $this->load->helper('form');
         echo form_dropdown($name . '_yupiitemp', $options, $value,
             '" class="form-control" multiple="multiple" '); ?>
-        <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>" data-valueant="<?php echo $value; ?>"
+        <input type="hidden" name="<?php echo $name; ?>" value="<?php echo $value; ?>"
+               data-valueant="<?php echo $value; ?>"
             <?php echo $extra_attributes; ?>/>
     </div>
     <script>

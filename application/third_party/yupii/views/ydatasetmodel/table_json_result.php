@@ -13,7 +13,7 @@ $ultimate = end($datos); ?>
     <?php foreach ($modelo->tablefields as $f) : ?>
         "<?php echo $modelo->textForTable($aRow, $f); ?>",
     <?php endforeach; ?>
-    "<?php echo addslashes($aRow[$modelo->id_field]) ?>"
+    "<?php echo addslashes($aRow[ $modelo->id_field ]) ?>"
     ]
     <?php if ($aRow !== $ultimate): ?> , <?php endif; ?>
 <?php endforeach; ?>
