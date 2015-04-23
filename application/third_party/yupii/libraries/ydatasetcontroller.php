@@ -23,11 +23,21 @@ if (!defined('BASEPATH')) {
  */
 abstract class YDatasetController extends YDataset {
 
+    private $hasDetailsProp = FALSE;
+
     /**
      * Constructor de la clase
      */
     function __construct() {
         parent::__construct();
+    }
+
+    function setHasDetails($band) {
+        $this->hasDetailsProp = (bool)$band;
+    }
+
+    function hasDetails() {
+        return $this->hasDetailsProp;
     }
 
     /**
@@ -49,6 +59,7 @@ abstract class YDatasetController extends YDataset {
         $this->modelo->completeFieldList();
         $data['tablefields'] = $this->modelo->tablefields;
         $data['fieldlist']   = $this->modelo->ofieldlist;
+        $data['hasdetails'] = $this->hasDetails();
         return $this->load->view('ydatasetcontroller/table_view', $data, TRUE);
     }
 
@@ -88,6 +99,9 @@ abstract class YDatasetController extends YDataset {
         $result = array();
         if (empty($this->modelo->errors)) {
             $result['result'] = 'ok';
+            if ($this->modelo->insertedId) {
+                $result['insertedid'] = $this->modelo->insertedId;
+            }
         } else {
             $result['result'] = 'error';
             $result['errors'] = $this->modelo->errors;

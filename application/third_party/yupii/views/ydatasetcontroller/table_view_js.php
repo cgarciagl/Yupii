@@ -7,7 +7,6 @@ var <?php echo  $t ?>_idactivo = '';
 function <?php echo  $t ?>refreshAjax() {
     var oTable = $("#<?php echo  $t ?>_table").dataTable();
     var sel = $('.yupii_selected_row').index();
-    ;
     <?php echo  $t ?>_preselect = sel;
     oTable.fnStandingRedraw();
 }
@@ -16,7 +15,6 @@ function <?php echo  $t ?>refreshAjax() {
 $("#<?php echo  $t ?>btn_cancel").click(function (e) {
     e.preventDefault();
     $('#<?php echo  $t ?>tabs li:eq(1) a').tab('show');
-    ;
     <?php echo  $t ?>refreshAjax();
 });
 
@@ -45,9 +43,17 @@ $("#<?php echo  $t ?>btn_ok").click(function (e) {
                 gi.addClass('has-error').shake();
             });
         } else {
+            <?php if ($hasdetails): ?>
+            if (obj.insertedid) {
+                <?php echo  $t ?>getform(obj.insertedid);
+            } else {
+                $('#<?php echo  $t ?>tabs li:eq(1) a').tab('show');
+                <?php echo  $t ?>refreshAjax();
+            }
+            <?php else: ?>
             $('#<?php echo  $t ?>tabs li:eq(1) a').tab('show');
-            ;
             <?php echo  $t ?>refreshAjax();
+            <?php endif; ?>
         }
     });
 });

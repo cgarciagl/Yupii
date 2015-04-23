@@ -109,4 +109,6 @@ $tc = $controller_name;
         </div>
     </div>
 
-<?php echo $this->load->view('ydatasetcontroller/table_view_js', array('t' => $t, 'tc' => $tc), TRUE); ?>
+<?php echo $this->load->view('ydatasetcontroller/table_view_js',
+    array('t' => $t, 'tc' => $tc, 'hasdetails' => $hasdetails),
+    TRUE); ?>
