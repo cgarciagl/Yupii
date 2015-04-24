@@ -30,6 +30,12 @@ abstract class YTableModel extends CI_Model {
         $this->load->database();
     }
 
+    public function __get($attr) {
+        if (isset(get_instance()->$attr)) {
+            return get_instance()->$attr;
+        } else return NULL;
+    }
+
     /**
      * Devuelve un registro de la tabla a partir de su id
      *

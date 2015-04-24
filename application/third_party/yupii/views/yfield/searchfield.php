@@ -3,7 +3,7 @@
         <label class="control-label"><?php echo $label; ?> :</label>
 
         <div class='input-group'>
-            <?php echo $this->load->view('yfield/inputfield'); ?>
+            <?php echo $this->load->view('yfield/inputfield', NULL, TRUE); ?>
             <script type='text/javascript'>
                 $('#<?php echo  $name ?>').YupiiSearch({
                     controller: '<?php echo  $controller ?>',

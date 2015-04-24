@@ -59,7 +59,7 @@ abstract class YDatasetController extends YDataset {
         $this->modelo->completeFieldList();
         $data['tablefields'] = $this->modelo->tablefields;
         $data['fieldlist']   = $this->modelo->ofieldlist;
-        $data['hasdetails'] = $this->hasDetails();
+        $data['hasdetails']  = $this->hasDetails();
         return $this->load->view('ydatasetcontroller/table_view', $data, TRUE);
     }
 
@@ -242,7 +242,8 @@ abstract class YDatasetController extends YDataset {
      * Muestra los resultados del reporte en diferentes formatos
      */
     function showReport() {
-        $this->load->library('ydatasetreportlib');
+       // $this->load->library('ydatasetreportlib');
+        $this->ydatasetreportlib = new ydatasetreportlib;
         $this->load->helper('url');
         $this->applyFilters();
         $data['tabla'] = $this->ydatasetreportlib->buildReport($this);
