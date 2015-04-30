@@ -111,6 +111,10 @@ function trim(inputString) {
     return $.trim(inputString);
 }
 
+function refreshPage() {
+    location.reload();
+}
+
 function getHourNumber() {
     return (new Date().getTime());
 }
