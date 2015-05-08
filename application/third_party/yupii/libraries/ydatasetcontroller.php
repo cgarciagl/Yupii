@@ -24,12 +24,29 @@ if (!defined('BASEPATH')) {
 abstract class YDatasetController extends YDataset {
 
     private $hasDetailsProp = FALSE;
+    private $sortingField = -1;
+    private $sortingDir = 'asc';
 
     /**
      * Constructor de la clase
      */
     function __construct() {
         parent::__construct();
+    }
+
+    function setSortingField($value, $dir = 'asc') {
+        if (is_string($value)) {
+            $pos = array_search($value, $this->modelo->tablefields);
+            if ($pos !== FALSE) {
+                $v = $pos;
+            } else {
+                $v = -1;
+            }
+        } elseif (is_integer($value)) {
+            $v = $value;
+        }
+        $this->sortingField = $v;
+        $this->sortingDir   = $dir;
     }
 
     function setHasDetails($band) {
@@ -57,9 +74,11 @@ abstract class YDatasetController extends YDataset {
         $data['controller_name'] = $this->getClassName();
         $data['title']           = $this->title;
         $this->modelo->completeFieldList();
-        $data['tablefields'] = $this->modelo->tablefields;
-        $data['fieldlist']   = $this->modelo->ofieldlist;
-        $data['hasdetails']  = $this->hasDetails();
+        $data['tablefields']  = $this->modelo->tablefields;
+        $data['fieldlist']    = $this->modelo->ofieldlist;
+        $data['hasdetails']   = $this->hasDetails();
+        $data['sortingField'] = $this->sortingField;
+        $data['sortingDir']   = $this->sortingDir;
         return $this->load->view('ydatasetcontroller/table_view', $data, TRUE);
     }
 
@@ -72,8 +91,10 @@ abstract class YDatasetController extends YDataset {
         $data['controller_name'] = $this->getClassName();
         $data['title']           = $this->title;
         $this->modelo->completeFieldList();
-        $data['tablefields'] = $this->modelo->tablefields;
-        $data['fieldlist']   = $this->modelo->ofieldlist;
+        $data['tablefields']  = $this->modelo->tablefields;
+        $data['fieldlist']    = $this->modelo->ofieldlist;
+        $data['sortingField'] = $this->sortingField;
+        $data['sortingDir']   = $this->sortingDir;
         return $this->load->view('ydatasetcontroller/search_view', $data, TRUE);
     }
 
@@ -242,7 +263,7 @@ abstract class YDatasetController extends YDataset {
      * Muestra los resultados del reporte en diferentes formatos
      */
     function showReport() {
-       // $this->load->library('ydatasetreportlib');
+        // $this->load->library('ydatasetreportlib');
         $this->ydatasetreportlib = new ydatasetreportlib;
         $this->load->helper('url');
         $this->applyFilters();

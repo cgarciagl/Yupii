@@ -3,7 +3,11 @@ t.dataTable({
 "sDom": '<"H"lfr>t<"F"ip>',
 "bProcessing": true,
 "bFilter": true,
-"aaSorting": [], //no se requiere ordenar al principio
+<?php if ($sortingField >= 0) : ?>
+    "aaSorting":[[ <?php echo $sortingField; ?>, "<?php echo ifSet($sortingDir, 'asc'); ?>" ]],
+<?php else: ?>
+    "aaSorting":[], //no se requiere ordenar al principio
+<?php endif; ?>
 "bJQueryUI": false,
 "bLengthChange": true,
 "bServerSide": true,
