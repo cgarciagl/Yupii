@@ -62,11 +62,13 @@ abstract class YDataset extends YController {
         if (is_file(APPPATH . 'models/' . $this->getClassName() . '.php')) {
             $this->load->model($this->getClassName(), 'modelo');
         } else {
+
+            // $this->modelo = new Yconcretedatasetmodel;
             //this is weird and ugly but is the only way to make it work on CI3...
             $this->load->model('Yconcretedatasetmodel', 'modelo');
             if (ifSet($this->modelo) == NULL) {
-                $this->modelo = new Yconcretedatasetmodel;
-            } 
+                $this->modelo = new YConcreteDatasetModel();
+            }
         }
         return ifSet($this->modelo, NULL);
     }

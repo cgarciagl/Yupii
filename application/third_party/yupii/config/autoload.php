@@ -11,11 +11,12 @@ function registra($class_name) {
     );
 
     foreach ($directorys as $directory) {
-        if (file_exists($directory . $class_name . '.php')) {
-            require_once($directory . $class_name . '.php');
+        if (file_exists($directory . ucfirst($class_name) . '.php')) {
+            require_once($directory . ucfirst($class_name) . '.php');
             return;
         }
     }
+
 }
 
 spl_autoload_register('registra');
