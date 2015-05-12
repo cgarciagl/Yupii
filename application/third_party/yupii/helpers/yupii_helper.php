@@ -58,7 +58,7 @@ function import_controller($path) {
     if (!isset($controllers[ $path ])) {
         $parts = preg_split("~/~", $path, -1, PREG_SPLIT_NO_EMPTY);
         $c     = ucfirst(array_pop($parts));
-        $file  = APPPATH . '/controllers/' . implode('/', $parts) . '/' . strtolower($c) . '.php';
+        $file  = APPPATH . '/controllers/' . implode('/', $parts) . '/' . ucfirst($c) . '.php';
         $error = "Could not load controller [{$file}]";
         if (file_exists($file)) {
             require_once $file;
