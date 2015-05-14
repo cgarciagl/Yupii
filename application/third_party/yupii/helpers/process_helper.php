@@ -30,7 +30,7 @@ function processStart() {
     @ini_set('implicit_flush', 1);
     @ob_end_clean();
 
-    $ci->db->save_queries = FALSE;
+    @$ci->db->save_queries = FALSE;
     ob_implicit_flush(TRUE);
     timeStart();
     fecho($ci->load->view('process/progress', NULL, TRUE));
