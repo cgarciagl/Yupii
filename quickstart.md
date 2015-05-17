@@ -122,12 +122,12 @@ class Eminemsongs extends Songs {
         }
     }
 
-    function _beforeInsert() {
+    function _beforeInsert(&$a) {
         parent::_beforeInsert();
         $this->_JustEminemSongs();
     }
 
-    function _beforeUpdate() {
+    function _beforeUpdate(&$a) {
         parent::_beforeInsert();
         $this->_JustEminemSongs();
     }
