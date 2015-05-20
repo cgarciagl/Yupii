@@ -182,8 +182,9 @@ class YSimpleLevelReport {
     <?php
     }
 
-    function showSimpleView() {
-        $this->load->view('yreportlib/ysimplelevelreport');
+    function showSimpleView($rutadevuelta = 'admin/index') {
+        $data['rutadevuelta'] = $rutadevuelta;
+        $this->load->view('yreportlib/ysimplelevelreport', $data);
     }
 
 }
