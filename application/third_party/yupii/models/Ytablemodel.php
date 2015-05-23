@@ -136,8 +136,26 @@ abstract class YTableModel extends CI_Model {
      * @param string $field al campo a partir del cual se hará el filtro
      * @param string $value el valor que se ha de buscar
      */
-    function setWhere($field, $value) {
-        return $this->db->where($field, $value);
+    function setWhere() {
+        if (func_num_args() == 2) {
+            $field = func_get_arg(0);
+            $value = func_get_arg(1);
+            $this->db->where($field, $value);
+        }
+        return $this;
+    }
+
+    /**
+     *  Pega una tabla adicional a la consulta
+     *
+     * @param $table
+     * @param $cond
+     * @param string $type
+     * @return mixed
+     */
+    function join($table, $cond, $type = 'INNER') {
+        $this->db->join($table, $cond, $type);
+        return $this;
     }
 
     /**
@@ -146,7 +164,8 @@ abstract class YTableModel extends CI_Model {
      * @param string $orderby critero de ordenamiento
      */
     function setOrderBy($orderby) {
-        return $this->db->order_by($orderby);
+        $this->db->order_by($orderby);
+        return $this;
     }
 
     /**
@@ -155,7 +174,8 @@ abstract class YTableModel extends CI_Model {
      * @param string $select valor a agregar a la selección
      */
     function select($select = '*') {
-        return $this->db->select($select);
+        $this->db->select($select);
+        return $this;
     }
 
     /**
@@ -164,7 +184,8 @@ abstract class YTableModel extends CI_Model {
      * @param int $value número de registros
      */
     function limit($value) {
-        return $this->db->limit($value);
+        $this->db->limit($value);
+        return $this;
     }
 
     /**
@@ -176,5 +197,6 @@ abstract class YTableModel extends CI_Model {
     function get() {
         return $this->db->get($this->table_name);
     }
+
 
 }
