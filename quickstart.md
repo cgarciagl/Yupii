@@ -117,18 +117,18 @@ class Eminemsongs extends Songs {
     }
 
     function _JustEminemSongs() {
-        if (new_value('art_name') != 'EMINEM') {
+        if (new_value('song_artist') != 'EMINEM') {
             raise('You must assign EMINEM to Artist for this song');
         }
     }
 
     function _beforeInsert(&$a) {
-        parent::_beforeInsert();
+        parent::_beforeInsert(&$a);
         $this->_JustEminemSongs();
     }
 
     function _beforeUpdate(&$a) {
-        parent::_beforeInsert();
+        parent::_beforeInsert(&$a);
         $this->_JustEminemSongs();
     }
 
