@@ -24,8 +24,9 @@ abstract class YReportLib {
     private $modelo = NULL;
 
     public function __get($attr) {
-        if (isset(get_instance()->$attr)) {
-            return get_instance()->$attr;
+        $CI = Yupii::get_CI();
+        if (isset($CI->$attr)) {
+            return $CI->$attr;
         } else return NULL;
     }
 

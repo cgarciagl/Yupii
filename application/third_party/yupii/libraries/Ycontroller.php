@@ -19,19 +19,30 @@ if (!defined('BASEPATH')) {
  *
  * Carga las bibliotecas necesarias estandar así como la configuración y lenguaje
  */
-abstract class YController extends CI_Controller {
+class YController {
 
     private $partial = 'views/default';
     private $classname = '';
+
 
     /**
      * Constructor de la clase
      */
     function __construct() {
-        parent::__construct();
         $this->classname = strtolower(get_class($this));
+        $CI              = Yupii::$CI;
         Yupii::loadDefaults();
         $this->getPartial();
+    }
+
+    public function __get($attr) {
+        $CI = Yupii::get_CI();
+        if (isset($this->$attr)) {
+            return $this->$attr;
+        } else
+            if (isset($CI->$attr)) {
+                return $CI->$attr;
+            } else return NULL;
     }
 
     /**

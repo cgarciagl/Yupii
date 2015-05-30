@@ -4,34 +4,51 @@ if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
 
-abstract class Yupii {
+class Yupii {
+
+    public static $CI = NULL;
 
     function __construct() {
-        parent::__construct();
+        Yupii::get_CI();
     }
 
     static public function loadDefaults() {
-        get_instance()->load->helper(array('url', 'array', 'yupii', 'utiles'));
-        get_instance()->load->config('yupii');
+        Yupii::get_CI();
+        Yupii::$CI->load->helper(array('url', 'array', 'yupii', 'utiles'));
+        Yupii::$CI->load->config('yupii');
         if (file_exists(APPPATH . 'config/my_yupii_config.php')) {
-            get_instance()->load->config('my_yupii_config');
+            Yupii::$CI->load->config('my_yupii_config');
         }
-        get_instance()->load->language('yupii');
+        Yupii::$CI->load->language('yupii');
     }
 
     static public function getHeaderScript() {
         Yupii::loadDefaults();
-        return get_instance()->load->view('yupii/headerscript', NULL);
+        return Yupii::$CI->load->view('yupii/headerscript', NULL);
     }
 
     static public function loadScriptFiles() {
         Yupii::getHeaderScript();
-        return get_instance()->load->view('yupii/scriptfiles', NULL);
+        Yupii::get_CI();
+        return Yupii::$CI->load->view('yupii/scriptfiles', NULL);
     }
 
     static public function getHeaderAll() {
         Yupii::getHeaderScript();
         Yupii::loadScriptFiles();
+    }
+
+    static public function get_CI() {
+        if (Yupii::$CI == NULL) {
+            $f = CI_Controller::get_instance();
+            if ($f == NULL) {
+                $f = new CI_Controller();
+            }
+            Yupii::$CI = $f->get_instance();
+           /* Yupii::$CI->load = clone load_class('Loader');
+            Yupii::$CI->load->initialize(Yupii::$CI);*/
+        }
+        return Yupii::$CI;
     }
 
 }

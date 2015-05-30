@@ -64,16 +64,16 @@ class YSearchField extends YFieldDecorator {
     }
 
     public function checkRelation(&$model) {
-        $db            = $model->db;
-        $mock          = import_controller($this->getController());
-        $tablename     = $mock->modelo->table_name;
-        $joincondition = "{$mock->modelo->id_field} = {$this->getFieldName()}";
+        $db            = $this->db;// $model->db;
+        $mock          = import_model_from_controller($this->getController());
+        $tablename     = $mock->table_name;
+        $joincondition = "{$mock->id_field} = {$this->getFieldName()}";
         $db->join($tablename, $joincondition, 'left');
-        $mock->modelo->completeFieldList();
-        $this->setFieldToShow($mock->modelo->tablefields[0]);
+        $mock->completeFieldList();
+        $this->setFieldToShow($mock->tablefields[0]);
         $db->select($this->getFieldToShow());
         unset($mock);
-        $model->db = $db;
+       // $model->db = $db;
     }
 
     public function getDataFromInput() {

@@ -45,33 +45,17 @@ function has_changed($fieldname) {
     return (new_value($fieldname) != old_value($fieldname));
 }
 
-/**
- * Permite importar un controlador para usarlo como objeto para analizar
- *
- * @staticvar array $controllers
- * @param string $path
- * @return string
- * @throws Exception
- */
-function import_controller($path) {
-    static $controllers = array();
-    if (!isset($controllers[ $path ])) {
-        $parts = preg_split("~/~", $path, -1, PREG_SPLIT_NO_EMPTY);
-        $c     = ucfirst(array_pop($parts));
-        $file  = APPPATH . '/controllers/' . implode('/', $parts) . '/' . ucfirst($c) . '.php';
-        if (!file_exists($file)) {
-            $file = APPPATH . '/controllers/' . implode('/', $parts) . '/' . strtolower($c) . '.php';
-        }
-        $error = "Could not load controller [{$file}]";
-        if (file_exists($file)) {
-            require_once $file;
-            if (!class_exists($c, FALSE)) {
-                throw new Exception($error);
-            }
-            $controllers[ $path ] = new $c;
-        } else {
-            throw new Exception($error);
-        }
+function  import_model_from_controller($path) {
+    $c    = $path;
+    $file = APPPATH . '/controllers/' . ucfirst($c) . '.php';
+    if (!file_exists($file)) {
+        $file = APPPATH . '/controllers/' . strtolower($c) . '.php';
     }
-    return $controllers[ $path ];
+
+    require_once $file;
+    $f = new $c;
+    $m = $f->modelo;
+    unset($f);
+
+    return $m;
 }
