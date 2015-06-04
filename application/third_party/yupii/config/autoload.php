@@ -7,7 +7,7 @@ function registra($class_name) {
     $directorys = array(
         APPPATH . 'third_party/yupii/libraries/',
         APPPATH . 'third_party/yupii/models/',
-        APPPATH . 'third_party/yupii/models/fields/',
+        APPPATH . 'third_party/yupii/models/fields/'
     );
 
     foreach ($directorys as $directory) {

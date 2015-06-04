@@ -45,8 +45,6 @@ class Yupii {
                 $f = new CI_Controller();
             }
             Yupii::$CI = $f->get_instance();
-           /* Yupii::$CI->load = clone load_class('Loader');
-            Yupii::$CI->load->initialize(Yupii::$CI);*/
         }
         return Yupii::$CI;
     }

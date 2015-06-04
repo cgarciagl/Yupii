@@ -335,7 +335,7 @@ abstract class YDatasetModel extends YTableModel {
                 $this->controller->_beforeInsert($a);
                 $pk                       = $this->insert($a);
                 $_POST[ $this->id_field ] = $pk;
-                $this->insertedId = $pk;
+                $this->insertedId         = $pk;
                 $this->controller->_afterInsert();
             } catch (Exception $e) {
                 $this->errors['general_error'] = $e->getMessage();
