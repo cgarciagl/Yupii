@@ -30,7 +30,10 @@ class YController {
      */
     function __construct() {
         $this->classname = strtolower(get_class($this));
-        $CI              = Yupii::$CI;
+        $CI              = Yupii::get_CI();
+        if (!isset($CI->activeYupiiController)) {
+            $CI->activeYupiiController = $this->classname;
+        }
         Yupii::loadDefaults();
         $this->getPartial();
     }
@@ -62,6 +65,16 @@ class YController {
      */
     function getClassName() {
         return $this->classname;
+    }
+
+
+    function isThisActiveController() {
+        $CI = Yupii::get_CI();
+        if ($CI->activeYupiiController == $this->getClassName()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
 }
