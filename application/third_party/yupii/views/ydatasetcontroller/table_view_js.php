@@ -61,7 +61,9 @@ $("#<?php echo  $t ?>btn_ok").click(function (e) {
 function <?php echo  $t ?>getform(id) {
     $("#<?php echo  $t ?>_FormContent").html('');
     getValue('<?php echo  $tc ?>/getFormData/' + id, yupii_csrf, function (s) {
+        $("#<?php echo  $t ?>_FormContent").hide();
         $("#<?php echo  $t ?>_FormContent").html(s);
+        $("#<?php echo  $t ?>_FormContent").fadeIn();
     });
 }
 

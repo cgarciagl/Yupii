@@ -18,6 +18,7 @@
         $("#<?php echo  $t ?>").hide('slide');
         getValue('<?php echo  $tc ?>/tableByAjax/', yupii_csrf,
             function (s) {
+                $("#<?php echo  $t ?>admin_div").hide();
                 $("#<?php echo  $t ?>admin_container").html(s);
                 $("#<?php echo  $t ?>admin_div").show('slide');
             });
@@ -49,7 +50,7 @@
             t.data('id', ResultData.id);
             t.next().next('input[type=hidden]').val(ResultData.id);
         }
-        stackwidgets.pop().show();
+        stackwidgets.pop().fadeIn();
         //ponemos el foco en el siguiente control de input...
         t.parents('li').nextAll('li').first().find('input').first().focus();
     });
@@ -58,7 +59,7 @@
         e.preventDefault();
         ResultData = {};
         $(this).parents('.yupii-widget').first().remove();
-        stackwidgets.pop().show('slide');
+        stackwidgets.pop().fadeIn();
     });
 
     <?php echo $this->load->view('ydatasetcontroller/datatable_init', array('t' => $t, 'tc' => $tc), TRUE); ?>

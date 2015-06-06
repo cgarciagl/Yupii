@@ -45,17 +45,15 @@ function has_changed($fieldname) {
     return (new_value($fieldname) != old_value($fieldname));
 }
 
-function  import_model_from_controller($path) {
-    $c    = $path;
+function  import_model_from_controller($controllername) {
+    $c    = $controllername;
     $file = APPPATH . '/controllers/' . ucfirst($c) . '.php';
     if (!file_exists($file)) {
         $file = APPPATH . '/controllers/' . strtolower($c) . '.php';
     }
-
     require_once $file;
     $f = new $c;
     $m = $f->modelo;
     unset($f);
-
     return $m;
 }

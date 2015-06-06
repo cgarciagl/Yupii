@@ -189,7 +189,9 @@ $.fn.YupiiSearch = function (params) {
                     $.extend(obj, yupii_csrf);
                 }
                 var resultado = getValue(this_control.data('controller') + '/searchByAjax', obj);
+                widget_container.hide();
                 $(resultado).appendTo(widget_container);
+                widget_container.fadeIn();
             }
             if ((searched_text === '') && (!forced)) {
                 this_control.next().next('input[type=hidden]').val('');
@@ -220,12 +222,10 @@ function showControllerTableIn(selector, controller) {
     $(selector).html(
         getValue(controller + '/tableByAjax', yupii_csrf)
     );
-
 }
 
 function showControllerReportIn(selector, controller) {
     $(selector).html(
         getValue(controller + '/reportByAjax', yupii_csrf)
     );
-
 }

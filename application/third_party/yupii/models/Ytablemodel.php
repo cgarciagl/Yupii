@@ -31,9 +31,13 @@ abstract class YTableModel extends CI_Model {
     }
 
     public function __get($attr) {
-        if (isset(get_instance()->$attr)) {
-            return get_instance()->$attr;
-        } else return NULL;
+        $CI = Yupii::get_CI();
+        if (isset($this->$attr)) {
+            return $this->$attr;
+        } else
+            if (isset($CI->$attr)) {
+                return $CI->$attr;
+            } else return NULL;
     }
 
     /**
