@@ -162,7 +162,7 @@ class YSimpleLevelReport {
         <div id="imprimible" class="row">
             <h1><?php echo $this->title; ?></h1>
             <?php if (@$this->descfilter): ?>
-                <h2><?php echo $this->descfilter; ?></h2>
+               <h4 style="text-align: center"><?php echo $this->descfilter; ?></h4>
             <?php endif; ?>
             <?php
             if (sizeof(@$this->groups) == 0) {

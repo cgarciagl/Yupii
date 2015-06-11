@@ -10,7 +10,7 @@ $grouprecords = 0;?>
         <div class="col-md-1"></div>
         <?php echo anchor($rutadevuelta, '<i class="fa fa-home"></i> Volver', 'class="btn btn-primary span2 offset9"'); ?>
         <button id="imprimirbtn" class="btn btn-primary"><?php echo $this->lang->line('yupii_print') ?></button>
-        <button id="exporttoexcel"  class="btn btn-primary">
+        <button id="exporttoexcel" class="btn btn-primary">
             Guardar como Documento de Excel
         </button>
     </div>
@@ -36,8 +36,8 @@ $grouprecords = 0;?>
             });
         });
 
-        $('#exporttoexcel').click(function(){
-           // window.open('data:application/vnd.ms-excel,'+$('#imprimible').html());
+        $('#exporttoexcel').click(function () {
+            // window.open('data:application/vnd.ms-excel,'+$('#imprimible').html());
             var dt = new Date();
             var day = dt.getDate();
             var month = dt.getMonth() + 1;
