@@ -25,7 +25,7 @@ abstract class YDataset extends YController {
     /**
      * @var YDatasetModel
      */
-    private $model;
+
     public $modelo = NULL;
 
     /**
@@ -34,7 +34,6 @@ abstract class YDataset extends YController {
     function __construct() {
         parent::__construct();
         $this->setModel($this->_getOrConstructModel());
-        $this->model->controller = $this;
     }
 
     public function __call($method, $args) {
@@ -52,7 +51,6 @@ abstract class YDataset extends YController {
 
     public function setModel($model) {
         $this->modelo = $model;
-        $this->model = $model;
     }
 
     /**
