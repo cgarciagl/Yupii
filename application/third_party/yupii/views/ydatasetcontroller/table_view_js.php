@@ -247,7 +247,7 @@ function fnData<?php echo  $t ?>(sSource, aoData, fnCallback) {
                         var op = $(this).find("td").last();
                         var id = op.text();
                         op.attr('idr', id);
-                        <?php if ($this->modelo->canDelete): ?>
+                        <?php if (Yupii::get_CI()->activeYupiiObject->modelo->canDelete): ?>
                         op.html('<i class="fa fa-trash fa-lg ybtndelete"></i>');
                         op.addClass('<?php echo  $t ?>deleteme');
                         <?php else: ?>

@@ -36,7 +36,7 @@ $tc = $controller_name;
                     </div>
                     <div class="btn-toolbar" style="margin-top:10px;margin-bottom:10px;">
                         <div>
-                            <?php if ($this->modelo->canInsert): ?>
+                            <?php if (Yupii::get_CI()->activeYupiiObject->modelo->canInsert): ?>
                                 <button id="btn_<?php echo $t ?>_New" class="toolbtn btn btn-primary">
                                     <i class="fa fa-plus-circle fa-lg"></i>
                                 </button>

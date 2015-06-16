@@ -33,6 +33,7 @@ class YController {
         $CI              = Yupii::get_CI();
         if (!isset($CI->activeYupiiController)) {
             $CI->activeYupiiController = $this->classname;
+            $CI->activeYupiiObject = $this;
         }
         Yupii::loadDefaults();
         $this->getPartial();
