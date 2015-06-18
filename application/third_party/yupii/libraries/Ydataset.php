@@ -46,11 +46,12 @@ abstract class YDataset extends YController {
     }
 
     public function getModel() {
-        return $this->model;
+        return $this->modelo;
     }
 
     public function setModel($model) {
-        $this->modelo = $model;
+        $this->modelo             = $model;
+        $this->modelo->controller = $this;
     }
 
     /**
