@@ -29,6 +29,14 @@ if (typeof String.prototype.replaceAll != 'function') {
     };
 }
 
+if (typeof(base_url) == "undefined") {
+    var getUrl = window.location;
+    var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    if (!(base_url.endsWith('/'))) {
+        base_url = base_url + '/';
+    }
+}
+
 function fixUrl(purl) {
     if ((purl.startsWith('http://')) || (typeof(base_url) == "undefined")) {
         return purl;
