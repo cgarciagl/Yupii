@@ -52,7 +52,10 @@ abstract class YReportLib {
 
     private function getTable($reportselectfields) {
         $this->modelo->select($reportselectfields);
-        $this->modelo->limit(50);
+        $limiteReporte = config_item('yupii_report_limit');
+        if (isset($limiteReporte)) {
+            $this->modelo->limit($limiteReporte);
+        }
         $this->applyFiltersAndOrder($this->modelo);
         $query = $this->modelo->get($this->modelo->table_name);
         return $this->generateTable($query, $this->modelo);
