@@ -404,7 +404,7 @@ abstract class YDatasetModel extends YTableModel {
             $value = @$opts[ $value ];
         }
 
-        $value = removeNewLines(convert_accented_characters(character_limiter(strip_tags(addslashes($value)), 30)));
+        $value = removeNewLines(character_limiter(strip_tags(addslashes($value)), 30));
 
         return $value;
     }
