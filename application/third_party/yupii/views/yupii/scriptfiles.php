@@ -1,4 +1,7 @@
 <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js" type="text/javascript"></script>
+<!--[if lt IE 9]>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' type='text/javascript'></script>
+<![endif]-->
 <script src="<?php echo base_url(); ?>/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script type="text/javascript" language="javascript"
         src="<?php echo base_url(); ?>/assets/js/dataTables/jquery.dataTables.min.js"></script>
