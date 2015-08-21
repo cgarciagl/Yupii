@@ -290,7 +290,6 @@ abstract class YDatasetController extends YDataset {
 
     public function is_unique_yupii($string, $field) {
         $table = $this->modelo->table_name;
-        //echo $field . ' con ' . $value;
         $string          = $this->input->post($field);
         $primarykeyvalue = new_value($this->modelo->id_field);
         $this->modelo->setWhere($this->modelo->id_field . ' <> ', $primarykeyvalue);
@@ -302,10 +301,9 @@ abstract class YDatasetController extends YDataset {
         return TRUE;
     }
 
-    public function readonly_yupii($field) {
+    public function readonly_yupii($string, $field) {
         $b = has_changed($field);
         if ($b) {
-            // $this->form_validation->set_message('rule', 'Error Message');
             return FALSE;
         }
         return TRUE;
