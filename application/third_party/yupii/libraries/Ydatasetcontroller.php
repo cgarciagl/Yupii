@@ -32,7 +32,6 @@ abstract class YDatasetController extends YDataset {
      */
     function __construct() {
         parent::__construct();
-        Yupii::get_CI()->readonly = function(){ return $this->readonly; };
     }
 
     function setSortingField($value, $dir = 'asc') {
@@ -289,22 +288,24 @@ abstract class YDatasetController extends YDataset {
         }
     }
 
-    public function is_unique($string, $field) {
+    public function is_unique_yupii($string, $field) {
+        $table = $this->modelo->table_name;
+        //echo $field . ' con ' . $value;
+        $string          = $this->input->post($field);
         $primarykeyvalue = new_value($this->modelo->id_field);
         $this->modelo->setWhere($this->modelo->id_field . ' <> ', $primarykeyvalue);
         $this->modelo->setWhere($field, $string);
         $c = $this->modelo->countAllResults();
         if ($c > 0) {
-            $this->form_validation->set_message('rule', 'Error Message');
             return FALSE;
         }
         return TRUE;
     }
 
-    public function readonly($string, $field) {
+    public function readonly_yupii($field) {
         $b = has_changed($field);
         if ($b) {
-            $this->form_validation->set_message('rule', 'Error Message');
+            // $this->form_validation->set_message('rule', 'Error Message');
             return FALSE;
         }
         return TRUE;

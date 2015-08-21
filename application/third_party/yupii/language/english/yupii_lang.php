@@ -45,3 +45,6 @@ $lang['yupii_wait'] = 'Wait';
 
 $lang['yupii_server_error']  = 'An error occurred on the server. Please try again in a minute';
 $lang['yupii_timeout_error'] = 'The server took too long to send the data';
+
+$lang['form_validation_is_unique_yupii'] = 'The %s field must contain a unique value.';
+$lang['form_validation_readonly_yupii']  = 'The %s field can not be modified.';

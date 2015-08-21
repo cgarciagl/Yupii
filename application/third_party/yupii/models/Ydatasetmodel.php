@@ -237,7 +237,8 @@ abstract class YDatasetModel extends YTableModel {
      */
     function processFormInput() {
         $this->completeFieldList();
-        $this->load->library('form_validation');
+        $this->load->library('yupii_form_validation');
+        $this->form_validation = $this->yupii_form_validation;
         $this->form_validation->set_error_delimiters('', '');
         $i = 0;
         foreach ($this->ofieldlist as $k => $f) {
@@ -252,7 +253,8 @@ abstract class YDatasetModel extends YTableModel {
     }
 
     private function completeRules($f) {
-        $s = str_replace('is_unique', 'callback_is_unique[' . $this->table_name . '.' . $f->getFieldName() . ']', $f->getRules());
+        $s = str_replace('is_unique', 'callback_is_unique_yupii[' . $f->getFieldName() . ']', $f->getRules());
+        $s = str_replace('readonly', 'callback_readonly_yupii[' . $f->getFieldName() . ']', $s);
         return $s;
     }
 
@@ -260,7 +262,7 @@ abstract class YDatasetModel extends YTableModel {
      * Checa las validaciones del modelo
      */
     private function checkValidations($mustApplyValidations) {
-        if (($this->form_validation->run() == FALSE) && ($mustApplyValidations)) {
+        if (($this->form_validation->run('', $this->controller) == FALSE) && ($mustApplyValidations)) {
             foreach ($this->ofieldlist as $k => $f) {
                 $error = $this->form_validation->error($f->getFieldName());
                 if ($error != '') {
