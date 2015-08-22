@@ -11,7 +11,7 @@
                    value="<?php echo $value ?>"
                    data-valueant="<?php echo $value ?>" <?php echo $extra_attributes; ?> />
                     <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="fa fa-calendar"></span>
                     </span>
         </div>
     </div>

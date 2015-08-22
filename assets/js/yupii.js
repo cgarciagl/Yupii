@@ -128,7 +128,7 @@ $.fn.YupiiSearch = function (params) {
         this_control.data('filter', params.filter);
         if (!this_control.hasClass('yupiiffied')) {
             var b = $('<span class="input-group-addon">\n\
-                    <i class="glyphicon glyphicon-search"></i>\n\
+                    <i class="fa fa-search"></i>\n\
                    </span>');
             b.insertAfter(this_control);
             var e = $('<input type="hidden" class="searchhiddenfield" \n\
