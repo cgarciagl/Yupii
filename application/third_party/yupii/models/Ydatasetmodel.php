@@ -406,7 +406,10 @@ abstract class YDatasetModel extends YTableModel {
             $value = @$opts[ $value ];
         }
 
-        $value = removeNewLines(character_limiter(strip_tags(addslashes($value)), 30));
+        $limite  = config_item('yupii_show_ellipsis_for_text_longer_than');
+        $limite = ifSet($limite, 30);
+
+        $value = removeNewLines(character_limiter(strip_tags(addslashes($value)), $limite));
 
         return $value;
     }
