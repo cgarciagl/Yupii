@@ -68,7 +68,7 @@
     });
 </script>
 
-<script src="<?php echo base_url(); ?>/assets/js/printThis.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>/assets/js/printThis.min.js" type="text/javascript"></script>
 
 <script>
     $(document).ready(function () {

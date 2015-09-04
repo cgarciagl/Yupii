@@ -6,11 +6,11 @@
 <script type="text/javascript" language="javascript"
         src="<?php echo base_url(); ?>/assets/js/dataTables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/jquery.blockUI.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>/assets/js/utiles.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>/assets/js/yupii.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>/assets/js/utiles.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>/assets/js/yupii.min.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.min.css" type="text/css" media="all"/>
-<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/dataTables.bootstrap.css" type="text/css"
+<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/dataTables.bootstrap.min.css" type="text/css"
       media="all"/>
 <link href="<?php echo base_url(); ?>/assets/css/font-awesome.min.css" rel="stylesheet">
 <?php if (get_instance()->config->item('yupii_theme')): ?>
