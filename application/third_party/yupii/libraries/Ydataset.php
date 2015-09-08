@@ -61,11 +61,10 @@ abstract class YDataset extends YController {
      */
     private function _getOrConstructModel() {
         if (is_file(APPPATH . 'models/' . $this->getClassName() . '.php')) {
-            $this->load->model($this->getClassName(), 'modelo');
+            Yupii::get_CI()->load->model($this->getClassName(), 'modelo');
         } else {
-            // $this->modelo = new Yconcretedatasetmodel;
             //this is weird and ugly but is the only way to make it work on CI3...
-            $this->load->model('Yconcretedatasetmodel', 'modelo');
+            Yupii::get_CI()->load->model('Yconcretedatasetmodel', 'modelo');
             if (ifSet($this->modelo) == NULL) {
                 $this->modelo = new YConcreteDatasetModel();
             }
