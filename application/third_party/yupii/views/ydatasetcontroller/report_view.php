@@ -14,11 +14,12 @@
     </div>
     <hr/>
     <div class="btn-toolbar" style="margin-left:15px;">
-        <div class="btn-group">
-            <button id="btn_xls_<?php echo $t ?>_View_Report" class="toolbtn btn">
+        <div class="btn-toolbar">
+            <button id="btn_xls_<?php echo $t ?>_View_Report" class="toolbtn btn btn-primary">
                 <i class="fa fa-fire fa-lg"></i>EXCEL
             </button>
-            <button id="btn_htm_<?php echo $t ?>_View_Report" class="toolbtn btn">
+            
+            <button id="btn_htm_<?php echo $t ?>_View_Report" class="toolbtn btn btn-primary">
                 <i class="fa fa-fire fa-lg"></i>HTML
             </button>
             <!-- <button id="btn_chart_<?php echo $t ?>_View_Report" class="toolbtn btn">

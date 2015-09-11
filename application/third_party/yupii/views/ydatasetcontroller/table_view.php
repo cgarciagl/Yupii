@@ -35,22 +35,22 @@ $tc = $controller_name;
                         </select>
                     </div>
                     <div class="btn-toolbar" style="margin-top:10px;margin-bottom:10px;">
-                        <div>
-                            <?php if (Yupii::get_CI()->activeYupiiObject->modelo->canInsert): ?>
-                                <button id="btn_<?php echo $t ?>_New" class="toolbtn btn btn-primary">
-                                    <i class="fa fa-plus-circle fa-lg"></i>
-                                </button>
-                            <?php endif; ?>
-                            <button id="btn_<?php echo $t ?>_Refresh" class="toolbtn btn btn-primary">
-                                <i class="fa fa-refresh fa-lg"></i>
+
+                        <?php if (Yupii::get_CI()->activeYupiiObject->modelo->canInsert): ?>
+                            <button id="btn_<?php echo $t ?>_New" class="toolbtn btn btn-primary">
+                                <i class="fa fa-plus-circle fa-lg"></i>
                             </button>
-                            <button id="btn_<?php echo $t ?>_Print" class="toolbtn btn btn-primary">
-                                <i class="fa fa-print fa-lg"></i>
-                            </button>
-                            <!-- <button id="btn_<?php echo $t ?>_Filter" class="toolbtn btn btn-primary">
+                        <?php endif; ?>
+                        <button id="btn_<?php echo $t ?>_Refresh" class="toolbtn btn btn-primary">
+                            <i class="fa fa-refresh fa-lg"></i>
+                        </button>
+                        <button id="btn_<?php echo $t ?>_Print" class="toolbtn btn btn-primary">
+                            <i class="fa fa-print fa-lg"></i>
+                        </button>
+                        <!-- <button id="btn_<?php echo $t ?>_Filter" class="toolbtn btn btn-primary">
                                 <i class="fa fa-filter fa-lg"></i>
                             </button> -->
-                        </div>
+                        
                         <h4> <span class="label label-danger yupii-searchingtitle"
                                    id="<?php echo $t ?>_searching_title"></span></h4>
                     </div>
