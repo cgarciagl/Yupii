@@ -49,11 +49,14 @@ $tc = $controller_name;
         <button id="<?php echo $t ?>btn_cancel_search" class="btn btn-default">
             <i class="fa fa-undo fa-lg"></i>&nbsp;<?php echo $this->lang->line('yupii_cancel') ?>
         </button>
-
-        <button id="<?php echo $t ?>btn_search_admin" class="btn btn-primary col-md-offset-8 col-sm-offset-5">
-            <i class="fa fa-pencil fa-lg"></i>&nbsp;
-            <?php echo $this->lang->line('yupii_edit') ?>
-        </button>
+        <?php if (Yupii::get_CI()->activeYupiiObject->canUpdate() or
+            Yupii::get_CI()->activeYupiiObject->canInsert()
+        ) : ?>
+            <button id="<?php echo $t ?>btn_search_admin" class="btn btn-primary col-md-offset-8 col-sm-offset-5">
+                <i class="fa fa-pencil fa-lg"></i>&nbsp;
+                <?php echo $this->lang->line('yupii_edit') ?>
+            </button>
+        <?php endif; ?>
     </div>
 </div>
 

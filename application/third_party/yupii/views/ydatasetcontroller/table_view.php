@@ -50,7 +50,7 @@ $tc = $controller_name;
                         <!-- <button id="btn_<?php echo $t ?>_Filter" class="toolbtn btn btn-primary">
                                 <i class="fa fa-filter fa-lg"></i>
                             </button> -->
-                        
+
                         <h4> <span class="label label-danger yupii-searchingtitle"
                                    id="<?php echo $t ?>_searching_title"></span></h4>
                     </div>
