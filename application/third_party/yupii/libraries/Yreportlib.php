@@ -103,7 +103,7 @@ abstract class YReportLib {
     private function generateTableRow($row, $modelo) {
         $temp_string = "<tr>";
         foreach ($this->reportfields as $f) {
-            $temp_string .= "<td> {$row[$modelo->realField($f)]} </td>";
+            $temp_string .= "<td> {$this->fieldToReport($row,$modelo,$f)} </td>";
         }
         $temp_string .= "</tr>";
         $this->totalrecords++;
@@ -196,6 +196,10 @@ abstract class YReportLib {
             header("Expires: 0");
             echo $vista;
         }
+    }
+
+    private function fieldToReport($row, $modelo, $f) {
+        return $modelo->textForTable($row, $f);
     }
 
 }

@@ -113,7 +113,6 @@ abstract class YDatasetModel extends YTableModel {
         $data['query']  = $query;
         $data['count']  = $count;
         $data['modelo'] = $this;
-        $this->load->helper('text');
         return $this->load->view('ydatasetmodel/table_json_result', $data, TRUE);
     }
 
@@ -406,8 +405,10 @@ abstract class YDatasetModel extends YTableModel {
             $value = @$opts[ $value ];
         }
 
-        $limite  = config_item('yupii_show_ellipsis_for_text_longer_than');
+        $limite = config_item('yupii_show_ellipsis_for_text_longer_than');
         $limite = ifSet($limite, 30);
+
+        $this->load->helper('text');
 
         $value = removeNewLines(character_limiter(strip_tags(addslashes($value)), $limite));
 
