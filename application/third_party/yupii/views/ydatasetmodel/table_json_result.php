@@ -7,7 +7,7 @@
 "aaData": [
 <?php
 $datos    = $query->result_array();
-$ultimate = end($datos); ?>
+$ultimate = count($datos); $i = 0; ?>
 <?php foreach ($datos as $aRow) : ?>
     [
     <?php foreach ($modelo->tablefields as $f) : ?>
@@ -15,6 +15,6 @@ $ultimate = end($datos); ?>
     <?php endforeach; ?>
     "<?php echo addslashes($aRow[ $modelo->id_field ]) ?>"
     ]
-    <?php if ($aRow !== $ultimate): ?> , <?php endif; ?>
+    <?php $i++;if ($i < $ultimate): ?> , <?php endif; ?>
 <?php endforeach; ?>
 ] }
