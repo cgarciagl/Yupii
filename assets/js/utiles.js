@@ -38,14 +38,10 @@ if (typeof(base_url) == "undefined") {
 }
 
 function fixUrl(purl) {
-    if ((purl.startsWith('http://')) || (typeof (base_url) == "undefined")) {
+    if ((purl.startsWith('http://')) || (typeof(base_url) == "undefined")) {
         return purl;
     } else {
-        if (base_url.endsWith('index.php/')) {
-            return base_url + purl;
-        } else {
-            return base_url + 'index.php/' + purl;
-        }
+        return base_url + 'index.php/' + purl;
     }
 }
 
