@@ -3,9 +3,9 @@
 function dbgConsole($x) {
     ?>
     <script type="text/javascript">
-        console.warn('<?php echo json_encode($x)?>');
+        console.warn('<?php echo json_encode($x) ?>');
     </script>
-<?php
+    <?php
 }
 
 function dbgDie($x) {
@@ -44,4 +44,19 @@ function endsWith($cadena, $parcial) {
 
 function removeNewLines($text) {
     return str_replace(array("\n", "\r"), ' ', $text);
+}
+
+function arrayToDropdown($array, $valueField, $textField = null) {
+    if (!($textField)) {
+        $textField = $valueField;
+    }
+    $lista = array();
+    foreach ($array as $p) {
+        $lista[$p[$valueField]] = $p[$textField];
+    }
+    return $lista;
+}
+
+function valueFromSessionOrDefault($variable, $defaultValue = '') {
+    return get_instance()->session->userdata($variable) ? get_instance()->session->userdata($variable) : $defaultValue;
 }

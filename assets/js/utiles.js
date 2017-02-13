@@ -29,7 +29,7 @@ if (typeof String.prototype.replaceAll != 'function') {
     };
 }
 
-if (typeof(base_url) == "undefined") {
+if (typeof (base_url) == "undefined") {
     var getUrl = window.location;
     var base_url = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
     if (!(base_url.endsWith('/'))) {
@@ -38,7 +38,7 @@ if (typeof(base_url) == "undefined") {
 }
 
 function fixUrl(purl) {
-    if ((purl.startsWith('http://')) || (typeof(base_url) == "undefined")) {
+    if ((purl.startsWith('http://')) || (typeof (base_url) == "undefined")) {
         return purl;
     } else {
         return base_url + 'index.php/' + purl;
@@ -167,8 +167,8 @@ $.fn.shake = function (options) {
         }
         for (var x = 1; x <= settings.shakes; x++) {
             $this.animate({left: settings.distance * -1}, (settings.duration / settings.shakes) / 4)
-                .animate({left: settings.distance}, (settings.duration / settings.shakes) / 2)
-                .animate({left: 0}, (settings.duration / settings.shakes) / 4);
+                    .animate({left: settings.distance}, (settings.duration / settings.shakes) / 2)
+                    .animate({left: 0}, (settings.duration / settings.shakes) / 4);
         }
     });
 };
@@ -178,3 +178,38 @@ $(document).ajaxStart(function () {
 }).ajaxStop(function () {
     $.unblockUI()
 });
+
+function ponTotalesEnTabla(t, enRenglonFinal, enColumnaFinal) {
+    enRenglonFinal = (typeof enRenglonFinal !== 'undefined') ? enRenglonFinal : false;
+    enColumnaFinal = (typeof enColumnaFinal !== 'undefined') ? enColumnaFinal : true;
+    if (t.find('tr:eq(0) td:last').text() != 'Total') {
+        var renglones = t.find('tbody').find('tr').length;
+        var cols = t.find('tbody').find('tr:last-child').find('td').length;
+        if ((enRenglonFinal) && (renglones > 1)) {
+            s = '';
+            t.find('tbody').append('<tr></tr>');
+            lr = t.find('tbody').find('tr:last-child');
+            for (i = 1; i <= cols; i++) {
+                lr.append('<td style="font-weight:bold">Total</td>');
+            }
+            for (i = 1; i <= cols - 1; i++) {
+                tt = 0;
+                for (j = 0; j <= renglones - 1; j++) {
+                    tt = tt + parseInt(t.find('tbody').find('tr').eq(j).find('td').eq(i).text());
+                }
+                lr.find('td').eq(i).text(tt);
+            }
+        }
+        if ((enColumnaFinal) && (cols > 2)) {
+            t.find('tr').append('<td style="font-weight:bold">Total</td>');
+            for (j = 0; j <= renglones - 1; j++) {
+                tt = 0;
+                rr = t.find('tbody').find('tr').eq(j);
+                for (i = 1; i <= cols - 1; i++) {
+                    tt = tt + parseInt(rr.find('td').eq(i).text());
+                }
+                rr.find('td').eq(cols).text(tt);
+            }
+        }
+    }
+}
