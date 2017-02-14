@@ -30,7 +30,7 @@ class Artists extends YDatasetController {
 }
 ```
 
-attention: then you can access your controller for this table like [here](http://songs.meximas.com/index.php/artists)
+attention: then you can access your controller for this table like [here](http://analisis911.aexiuv.com/index.php/artists)
 
 ## Implementing Categories
 
@@ -54,7 +54,7 @@ class Categories extends YDatasetController {
 
 With just this lines of code we have the manager for the table, and as you can see you can't leave blank the name of the category or use the name from another category again.
 
-attention: the result will be something like [this](http://songs.meximas.com/index.php/categories)
+attention: the result will be something like [this](http://analisis911.aexiuv.com/index.php/categories)
 
 ## Implementing Songs
 
@@ -84,11 +84,11 @@ class Songs extends YDatasetController {
 }
 ```
 
-attention: You can view this example functioning [here](http://songs.meximas.com/index.php/songs)
+attention: You can view this example functioning [here](http://analisis911.aexiuv.com/index.php/songs)
 
 Yupii can figure it out the relations between the tables when you use the *addSearch()* function, the first parameter is the field in the current table and the second one is the class of the asociated controller that manages the related table; just that simple!!!.
 
-Wanna get amazed!!???, click in the printer button of this catalog and check it out the amount of reports that **Yupii** got for you by magic!! or Try it [here](http://songs.meximas.com/index.php/songs/report)
+Wanna get amazed!!???, click in the printer button of this catalog and check it out the amount of reports that **Yupii** got for you by magic!! or Try it [here](http://analisis911.aexiuv.com/index.php/songs/report)
 
 ## Extending Songs Class
 
@@ -97,7 +97,7 @@ We can even extend the last class *adding new business rules* using some of the 
 ```php
 <?php
 
-include(APPPATH . '/controllers/songs.php');
+include(APPPATH . '/controllers/Songs.php');
 
 class Eminemsongs extends Songs {
 
@@ -123,12 +123,12 @@ class Eminemsongs extends Songs {
     }
 
     function _beforeInsert(&$a) {
-        parent::_beforeInsert(&$a);
+        parent::_beforeInsert($a);
         $this->_JustEminemSongs();
     }
 
     function _beforeUpdate(&$a) {
-        parent::_beforeUpdate(&$a);
+        parent::_beforeUpdate($a);
         $this->_JustEminemSongs();
     }
 
@@ -140,7 +140,7 @@ We added a couple of rules here
 - Another rule here is that you can't delete songs, when you try it, you get a nice error message.
 - When you try to add a song or modify one of the existents, the artist for this song should be EMINEM, or you will get another error message.
 
-attention: Go, Try it live [here](http://songs.meximas.com/index.php/eminemsongs)
+attention: Go, Try it live [here](http://analisis911.aexiuv.com/index.php/eminemsongs)
 
 ## Try it
 
