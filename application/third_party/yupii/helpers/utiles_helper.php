@@ -60,3 +60,7 @@ function arrayToDropdown($array, $valueField, $textField = null) {
 function valueFromSessionOrDefault($variable, $defaultValue = '') {
     return get_instance()->session->userdata($variable) ? get_instance()->session->userdata($variable) : $defaultValue;
 }
+
+function returnAsJSON($arreglo){
+    get_instance()->load->view('yupii/json_view', array('data' => $arreglo));
+}
