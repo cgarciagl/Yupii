@@ -50,12 +50,14 @@ $grouprecords = 0;?>
             //getting data from our div that contains the HTML table
             var data_type = 'data:application/vnd.ms-excel';
             var table_div = $('#imprimible');
-            var table_html = $('#imprimible').html().replace(/ /g, '%20');
-            a.href = data_type + ', ' + table_html;
+            var table_html = $('#imprimible').html(); //.replace(/ /g, '%20');
+            var fileName = 'exportado_' + postfix;
+            exportToExcel(fileName, table_html);
+            //a.href = data_type + ', ' + table_html;
             //setting the file name
-            a.download = 'exportado_' + postfix + '.xls';
+            //a.download = 'exportado_' + postfix + '.xls';
             //triggering the function
-            a.click();
+            //a.click();
             //just in case, prevent default behaviour
             e.preventDefault();
         });
