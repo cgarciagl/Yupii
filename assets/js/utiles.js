@@ -240,3 +240,34 @@ function exportToExcel(fileName, htmls){
 	link.remove();
 
 }
+
+function ponTablaPaginada(tabla){
+	$(tabla).dataTable({
+		"aaSorting": [],
+		"sPaginationType": "full_numbers",
+		"bJQueryUI": false,
+		"bLengthChange": true,
+		"bDeferRender": true,
+		"oLanguage": {
+			"sProcessing": "Procesando...",
+			"sLengthMenu": "Mostrar _MENU_ registros",
+			"sZeroRecords": "No se encontraron registros",
+			"sInfo": "Mostrando desde _START_ hasta _END_ de _TOTAL_ registros",
+			"sInfoEmpty": "Mostrando desde 0 hasta 0 de 0 registros",
+			"sInfoFiltered": "",
+			"sInfoPostFix": "",
+			"sSearch": "Buscar:",
+			"sUrl": "",
+			"oPaginate": {
+				"sFirst": "Primero",
+				"sPrevious": "Anterior",
+				"sNext": "Siguiente",
+				"sLast": "Último"
+			}
+		},
+		"fnInfoCallback": function (oSettings, iStart, iEnd, iMax, iTotal, sPre) {
+			$(tabla).parent().find('.paginate_button, .paginate_active').addClass('btn btn-xs btn-info').removeClass('disabled').filter('.paginate_button_disabled, .paginate_active').addClass('disabled');
+		},
+		"sDom": 'T<"clear">frtip'
+	});
+}

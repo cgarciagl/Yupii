@@ -6,7 +6,7 @@
 <script type="text/javascript" language="javascript"
         src="<?php echo base_url(); ?>/assets/js/dataTables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/jquery.blockUI.min.js" type="text/javascript"></script>
-<script src="<?php echo base_url(); ?>/assets/js/utiles.min.js" type="text/javascript"></script>
+<script src="<?php echo base_url(); ?>/assets/js/utiles.min.js?12" type="text/javascript"></script>
 <script src="<?php echo base_url(); ?>/assets/js/yupii.min.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap.min.css" type="text/css" media="all"/>
