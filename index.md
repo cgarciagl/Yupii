@@ -35,7 +35,7 @@ Spend more time at the beach and less time developing applications; with **Yupii
 
 Learn how to install Yupii and develop your first application in just 20 min with this video tutorial:
 
-[](http://www.youtube.com/watch?v=TFHCEaUTGjA)
+[](https://www.youtube.com/watch?v=TFHCEaUTGjA)
 
 Checkout more video tutorials in the [videos](videos.md) section
 
