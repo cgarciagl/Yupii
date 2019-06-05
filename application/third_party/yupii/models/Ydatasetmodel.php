@@ -14,7 +14,8 @@ if (!defined('BASEPATH')) {
  * @link        https://github.com/cgarciagl/Yupii
  * @since        Version 1.0
  */
-abstract class YDatasetModel extends YTableModel {
+abstract class YDatasetModel extends YTableModel
+{
 
     var $ofieldlist = array();
     var $tablefields = array();
@@ -25,8 +26,9 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Constructor de la clase
      */
-    function __construct() {
-        parent:: __construct();
+    function __construct()
+    {
+        parent::__construct();
     }
 
     /**
@@ -35,21 +37,24 @@ abstract class YDatasetModel extends YTableModel {
      * @param string $f
      * @return string
      */
-    function realField($f) {
-        return $this->ofieldlist[ $f ]->getFieldToShow();
+    function realField($f)
+    {
+        return $this->ofieldlist[$f]->getFieldToShow();
     }
 
-    function addFieldFromArray($f, $array) {
-        $this->ofieldlist[ $f ] = new YSimpleTextField($f);
-        $this->ofieldlist[ $f ]->loadFromArray($array);
-        $this->ofieldlist[ $f ]->setDefaults();
-        return $this->ofieldlist[ $f ];
+    function addFieldFromArray($f, $array)
+    {
+        $this->ofieldlist[$f] = new YSimpleTextField($f);
+        $this->ofieldlist[$f]->loadFromArray($array);
+        $this->ofieldlist[$f]->setDefaults();
+        return $this->ofieldlist[$f];
     }
 
     /**
      * Asigna las condiciones de búsqueda para todos los campos de la relación
      */
-    private function setWhereForSearchInMultipleFields($textForSearch) {
+    private function setWhereForSearchInMultipleFields($textForSearch)
+    {
         $s = '';
         foreach ($this->tablefields as $k) {
             if ($s != '') {
@@ -66,7 +71,8 @@ abstract class YDatasetModel extends YTableModel {
      *
      * @return string
      */
-    function getTableAjax() {
+    function getTableAjax()
+    {
         if ($this->table_name) {
             $count = $this->getCountForSearch();
             $this->setLimitForJsonResult();
@@ -80,12 +86,15 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Asigna el orden en que se han de presentar los datos
      */
-    private function setOrderByForJsonResult() {
+    private function setOrderByForJsonResult()
+    {
         if (($this->input->post('iSortingCols', TRUE) == 1)) {
             $col = $this->input->post('iSortCol_0', TRUE);
             if ($col <= (count($this->tablefields) - 1)) {
                 $this->db->order_by(
-                    $this->realField($this->tablefields[ $col ]), $this->input->post('sSortDir_0', TRUE));
+                    $this->realField($this->tablefields[$col]),
+                    $this->input->post('sSortDir_0', TRUE)
+                );
             } else {
                 $this->db->order_by($this->id_field, $this->input->post('sSortDir_0', TRUE));
             }
@@ -96,7 +105,8 @@ abstract class YDatasetModel extends YTableModel {
      * Asigna el número de registros a devolver, así como desde cual registro
      * se ha de iniciar
      */
-    private function setLimitForJsonResult() {
+    private function setLimitForJsonResult()
+    {
         $limit  = $this->input->post('iDisplayLength', TRUE);
         $offset = $this->input->post('iDisplayStart', TRUE);
         $this->db->limit($limit, $offset);
@@ -109,7 +119,8 @@ abstract class YDatasetModel extends YTableModel {
      * @param int $count
      * @return string
      */
-    private function generateJsonResult($query, $count) {
+    private function generateJsonResult($query, $count)
+    {
         $data['query']  = $query;
         $data['count']  = $count;
         $data['modelo'] = $this;
@@ -119,7 +130,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Revisa las relaciones declaradas del modelo, para importar controladores relacionados
      */
-    public function checkRelations() {
+    public function checkRelations()
+    {
         foreach ($this->ofieldlist as $k => $f) {
             if (method_exists($f, 'checkRelation')) {
                 $f->checkRelation($this);
@@ -132,7 +144,8 @@ abstract class YDatasetModel extends YTableModel {
      *
      * @param int $id
      */
-    private function getValuesFor($id) {
+    private function getValuesFor($id)
+    {
         $a = array_keys($this->ofieldlist);
         $this->db->select($a);
         if ($id != '') {
@@ -144,15 +157,16 @@ abstract class YDatasetModel extends YTableModel {
         if ($query->num_rows() > 0) {
             $b = $query->row_array();
             foreach ($this->ofieldlist as $k => $f) {
-                $f->setValue($b[ $this->realField($f->getFieldName()) ]);
+                $f->setValue($b[$this->realField($f->getFieldName())]);
                 if (method_exists($f, 'setIdValue')) {
-                    $f->setIdValue($b[ $f->getFieldName() ]);
+                    $f->setIdValue($b[$f->getFieldName()]);
                 }
             }
         }
     }
 
-    private function checkForDefaultValues() {
+    private function checkForDefaultValues()
+    {
         $this->checkRelations();
         foreach ($this->ofieldlist as $k => $f) {
             if ($f->getDefault() != NULL) {
@@ -166,7 +180,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Completa los valores faltantes en el arreglo de campos
      */
-    function completeFieldList() {
+    function completeFieldList()
+    {
         $this->fillEmptyTablefields();
         $this->fillFieldlist();
         $this->addIdFieldToFieldlist();
@@ -176,7 +191,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Si esta vacío el arreglo de campos de la tabla, usa la lista de campos para llenarlo
      */
-    private function fillEmptyTablefields() {
+    private function fillEmptyTablefields()
+    {
         if (!count($this->tablefields)) {
             foreach ($this->ofieldlist as $k => $f) {
                 $this->tablefields[] = $k;
@@ -187,10 +203,11 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * ingresa los campos del arreglo de campos de la tabla a la lista de campos
      */
-    private function fillFieldlist() {
+    private function fillFieldlist()
+    {
         foreach ($this->tablefields as $f) {
-            if (!(isset($this->ofieldlist[ $f ]))) {
-                $this->ofieldlist[ $f ] = new YSimpleTextField($f);
+            if (!(isset($this->ofieldlist[$f]))) {
+                $this->ofieldlist[$f] = new YSimpleTextField($f);
             }
         }
     }
@@ -198,16 +215,18 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Asegura que el campo de la llave primaria, esté en la lista de campos
      */
-    private function addIdFieldToFieldlist() {
-        if (!(isset($this->ofieldlist[ $this->id_field ]))) {
-            $this->ofieldlist[ $this->id_field ] = new YIdField(new YSimpleTextField($this->id_field));
+    private function addIdFieldToFieldlist()
+    {
+        if (!(isset($this->ofieldlist[$this->id_field]))) {
+            $this->ofieldlist[$this->id_field] = new YIdField(new YSimpleTextField($this->id_field));
         }
     }
 
     /**
      * Asigna valores por defecto a las diferentes propiedades de los campos
      */
-    private function setDefaults() {
+    private function setDefaults()
+    {
         foreach ($this->ofieldlist as $k => $f) {
             $f->setDefaults();
         }
@@ -219,7 +238,8 @@ abstract class YDatasetModel extends YTableModel {
      * @param string $id
      * @return string
      */
-    function getFormData($id = '') {
+    function getFormData($id = '')
+    {
         $this->completeFieldList();
         if ($id != 'new') {
             $this->getValuesFor($id);
@@ -234,7 +254,8 @@ abstract class YDatasetModel extends YTableModel {
      * Evalua los datos ingresados por el usuario, y aplica las reglas de validación
      *
      */
-    function processFormInput() {
+    function processFormInput()
+    {
         $this->completeFieldList();
         $this->load->library('yupii_form_validation');
         $this->form_validation = $this->yupii_form_validation;
@@ -243,7 +264,10 @@ abstract class YDatasetModel extends YTableModel {
         foreach ($this->ofieldlist as $k => $f) {
             if ($f->getRules()) {
                 $this->form_validation->set_rules(
-                    $f->getFieldName(), $f->getLabel(), $this->completeRules($f));
+                    $f->getFieldName(),
+                    $f->getLabel(),
+                    $this->completeRules($f)
+                );
                 $i++;
             }
         }
@@ -251,7 +275,8 @@ abstract class YDatasetModel extends YTableModel {
         $this->checkValidations($mustApplyValidations);
     }
 
-    private function completeRules($f) {
+    private function completeRules($f)
+    {
         $s = str_replace('is_unique', 'callback_is_unique_yupii[' . $f->getFieldName() . ']', $f->getRules());
         $s = str_replace('readonly', 'callback_readonly_yupii[' . $f->getFieldName() . ']', $s);
         return $s;
@@ -260,12 +285,13 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Checa las validaciones del modelo
      */
-    private function checkValidations($mustApplyValidations) {
+    private function checkValidations($mustApplyValidations)
+    {
         if (($this->form_validation->run('', $this->controller) == FALSE) && ($mustApplyValidations)) {
             foreach ($this->ofieldlist as $k => $f) {
                 $error = $this->form_validation->error($f->getFieldName());
                 if ($error != '') {
-                    $this->errors[ $f->getFieldName() ] = $error;
+                    $this->errors[$f->getFieldName()] = $error;
                 }
             }
         } else {
@@ -278,17 +304,18 @@ abstract class YDatasetModel extends YTableModel {
      *
      * @return array
      */
-    function createInputDataArray() {
+    function createInputDataArray()
+    {
         $a = array();
         if ($this->input->post($this->id_field, TRUE)) {
             foreach ($this->ofieldlist as $k => $f) {
                 if ($f->hasChanged()) {
-                    $a[ $f->getFieldName() ] = $f->getDataFromInput();
+                    $a[$f->getFieldName()] = $f->getDataFromInput();
                 }
             }
         } else {
             foreach ($this->ofieldlist as $k => $f) {
-                $a[ $f->getFieldName() ] = $f->getDataFromInput();
+                $a[$f->getFieldName()] = $f->getDataFromInput();
             }
         }
         return $a;
@@ -297,7 +324,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Decide que operación ha de aplicarse en la BD con los datos ingresados
      */
-    function processFormAction() {
+    function processFormAction()
+    {
         if ($this->input->post($this->id_field, TRUE)) {
             $this->performUpdate();
         } else {
@@ -308,7 +336,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Realiza la actualización en la BD y ejecuta los triggers
      */
-    private function performUpdate() {
+    private function performUpdate()
+    {
         if ($this->canUpdate) {
             try {
                 $a = $this->createInputDataArray();
@@ -326,16 +355,17 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Realiza la inserción en la BD y ejecuta los triggers
      */
-    private function performInsert() {
+    private function performInsert()
+    {
         if ($this->canInsert) {
             try {
                 $a = $this->createInputDataArray();
-                if (isset($a[ $this->id_field ])) {
-                    unset($a[ $this->id_field ]);
+                if (isset($a[$this->id_field])) {
+                    unset($a[$this->id_field]);
                 }
                 $this->controller->_beforeInsert($a);
                 $pk                       = $this->insert($a);
-                $_POST[ $this->id_field ] = $pk;
+                $_POST[$this->id_field] = $pk;
                 $this->insertedId         = $pk;
                 $this->controller->_afterInsert();
             } catch (Exception $e) {
@@ -347,7 +377,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Devuelve el número de registros que incluye la búsqueda solicitada
      */
-    function getCountForSearch() {
+    function getCountForSearch()
+    {
         $this->completeFieldList();
         $this->db->start_cache();
         $this->db->select($this->id_field);
@@ -361,7 +392,8 @@ abstract class YDatasetModel extends YTableModel {
     /**
      * Aplica los criterios para filtrar a partir de un texto
      */
-    private function performSearchForJson() {
+    private function performSearchForJson()
+    {
         $se = htmlspecialchars_decode($this->input->post('sSearch', TRUE));
         if ($se) {
             if ($this->input->post('sOnlyField', TRUE)) {
@@ -383,26 +415,28 @@ abstract class YDatasetModel extends YTableModel {
      * @param string $fieldname nombre del campo
      * @return YField
      */
-    public function fieldByName($fieldname) {
-        return $this->ofieldlist[ $fieldname ];
+    public function fieldByName($fieldname)
+    {
+        return $this->ofieldlist[$fieldname];
     }
 
-    function textForTable($values, $fieldname) {
+    function textForTable($values, $fieldname)
+    {
         $f     = $this->fieldByName($fieldname);
-        $value = $values[ $this->realField($fieldname) ];
+        $value = $values[$this->realField($fieldname)];
 
         if ($f->getType() == 'multiselect') {
             $values = explode(',', $value);
             $opts   = $f->getOptions();
             foreach ($values as $k => $v) {
-                $values[ $k ] = @$opts[ $v ];
+                $values[$k] = @$opts[$v];
             }
             $value = implode(',', $values);
         }
 
         if ($f->getType() == 'dropdown') {
             $opts  = $f->getOptions();
-            $value = @$opts[ $value ];
+            $value = @$opts[$value];
         }
 
         $limite = config_item('yupii_show_ellipsis_for_text_longer_than');
@@ -414,5 +448,4 @@ abstract class YDatasetModel extends YTableModel {
 
         return $value;
     }
-
 }

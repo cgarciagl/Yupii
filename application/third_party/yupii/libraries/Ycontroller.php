@@ -19,7 +19,8 @@ if (!defined('BASEPATH')) {
  *
  * Carga las bibliotecas necesarias estandar así como la configuración y lenguaje
  */
-class YController {
+class YController
+{
 
     private $partial = 'views/default';
     private $classname = '';
@@ -28,7 +29,8 @@ class YController {
     /**
      * Constructor de la clase
      */
-    function __construct() {
+    function __construct()
+    {
         $this->classname = strtolower(get_class($this));
         $CI              = Yupii::get_CI();
         if (!isset($CI->activeYupiiController)) {
@@ -39,20 +41,22 @@ class YController {
         $this->getPartial();
     }
 
-    public function __get($attr) {
+    public function __get($attr)
+    {
         $CI = Yupii::get_CI();
         if (isset($this->$attr)) {
             return $this->$attr;
         } else
             if (isset($CI->$attr)) {
-                return $CI->$attr;
-            } else return NULL;
+            return $CI->$attr;
+        } else return NULL;
     }
 
     /**
      * Método que revisa si existe una vista parcial para la clase del controlador
      */
-    private function getPartial() {
+    private function getPartial()
+    {
         $uri = $this->classname . '/' . $this->router->method;
         if (is_file(APPPATH . 'views/' . $uri . '.php')) {
             $this->partial = $this->classname . '/' . $this->router->method;
@@ -64,12 +68,14 @@ class YController {
      *
      * @return string
      */
-    function getClassName() {
+    function getClassName()
+    {
         return $this->classname;
     }
 
 
-    function isThisActiveController() {
+    function isThisActiveController()
+    {
         $CI = Yupii::get_CI();
         if ($CI->activeYupiiController == $this->getClassName()) {
             return TRUE;
@@ -77,5 +83,4 @@ class YController {
             return FALSE;
         }
     }
-
 }

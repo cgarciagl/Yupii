@@ -2,7 +2,7 @@
 <link href="<?php echo base_url(); ?>/assets/css/forprint.css" rel="stylesheet" media="all">
 <?php
 $totalrecords = 0;
-$grouprecords = 0;?>
+$grouprecords = 0; ?>
 
 <div class="container">
 
@@ -14,7 +14,7 @@ $grouprecords = 0;?>
             Guardar como Documento de Excel
         </button>
     </div>
-    <br/>
+    <br />
 
     <?php $this->ysimplelevelreport->generate(); ?>
 
@@ -23,8 +23,8 @@ $grouprecords = 0;?>
 <script src="<?php echo base_url(); ?>/assets/js/printThis.min.js" type="text/javascript"></script>
 
 <script>
-    $(document).ready(function () {
-        $('#imprimirbtn').click(function () {
+    $(document).ready(function() {
+        $('#imprimirbtn').click(function() {
             $('#imprimible').printThis({
                 debug: false,
                 importCSS: true,
@@ -32,11 +32,11 @@ $grouprecords = 0;?>
                 printContainer: false,
                 removeInline: true,
                 loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.css",
-                pageTitle: "<?php echo $this->ysimplelevelreport->getTitle()?> <?php echo  uniqid() ?>"
+                pageTitle: "<?php echo $this->ysimplelevelreport->getTitle() ?> <?php echo  uniqid() ?>"
             });
         });
 
-        $('#exporttoexcel').click(function () {
+        $('#exporttoexcel').click(function() {
             // window.open('data:application/vnd.ms-excel,'+$('#imprimible').html());
             var dt = new Date();
             var day = dt.getDate();
@@ -50,14 +50,12 @@ $grouprecords = 0;?>
             //getting data from our div that contains the HTML table
             var data_type = 'data:application/vnd.ms-excel';
             var table_div = $('#imprimible');
-            var table_html = $('#imprimible').html(); //.replace(/ /g, '%20');
-            var fileName = 'exportado_' + postfix;
-            exportToExcel(fileName, table_html);
-            //a.href = data_type + ', ' + table_html;
+            var table_html = $('#imprimible').html().replace(/ /g, '%20');
+            a.href = data_type + ', ' + table_html;
             //setting the file name
-            //a.download = 'exportado_' + postfix + '.xls';
+            a.download = 'exportado_' + postfix + '.xls';
             //triggering the function
-            //a.click();
+            a.click();
             //just in case, prevent default behaviour
             e.preventDefault();
         });
