@@ -1,7 +1,6 @@
 if (!console) {
 	console = {};
-	console.log = function () {
-	};
+	console.log = function () {};
 }
 
 if (typeof String.prototype.trim != 'function') {
@@ -166,15 +165,23 @@ $.fn.shake = function (options) {
 			$this.css('position', 'relative');
 		}
 		for (var x = 1; x <= settings.shakes; x++) {
-			$this.animate({left: settings.distance * -1}, (settings.duration / settings.shakes) / 4)
-			.animate({left: settings.distance}, (settings.duration / settings.shakes) / 2)
-			.animate({left: 0}, (settings.duration / settings.shakes) / 4);
+			$this.animate({
+					left: settings.distance * -1
+				}, (settings.duration / settings.shakes) / 4)
+				.animate({
+					left: settings.distance
+				}, (settings.duration / settings.shakes) / 2)
+				.animate({
+					left: 0
+				}, (settings.duration / settings.shakes) / 4);
 		}
 	});
 };
 
 $(document).ajaxStart(function () {
-	$.blockUI({message: '<h1><i class="fa fa-spinner fa-spin"></i></h1>'});
+	$.blockUI({
+		message: '<h1><i class="fa fa-spinner fa-spin"></i></h1>'
+	});
 }).ajaxStop(function () {
 	$.unblockUI()
 });
@@ -214,22 +221,22 @@ function ponTotalesEnTabla(t, enRenglonFinal, enColumnaFinal) {
 	}
 }
 
-function exportToExcel(fileName, htmls){
+function exportToExcel(fileName, htmls) {
 	var uri = 'data:application/vnd.ms-excel;charset=UTF-8;base64,';
 	var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <meta charset="utf-8" />  <!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>';
-	var base64 = function(s) {
+	var base64 = function (s) {
 		return window.btoa(unescape(encodeURIComponent(s)))
 	};
 
-	var format = function(s, c) {
-		return s.replace(/{(\w+)}/g, function(m, p) {
+	var format = function (s, c) {
+		return s.replace(/{(\w+)}/g, function (m, p) {
 			return c[p];
 		})
 	};
 
 	var ctx = {
-		worksheet : 'Worksheet',
-		table : htmls
+		worksheet: 'Worksheet',
+		table: htmls
 	}
 
 	var link = document.createElement("a");
@@ -241,7 +248,7 @@ function exportToExcel(fileName, htmls){
 
 }
 
-function ponTablaPaginada(tabla){
+function ponTablaPaginada(tabla) {
 	$(tabla).dataTable({
 		"aaSorting": [],
 		"sPaginationType": "full_numbers",
