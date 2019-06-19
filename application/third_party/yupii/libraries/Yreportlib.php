@@ -14,7 +14,8 @@ if (!defined('BASEPATH')) {
  * @link                https://github.com/cgarciagl/Yupii
  * @since               Version 1.0
  */
-abstract class YReportLib {
+abstract class YReportLib
+{
 
     private $reportfields = array();
     private $descfilter = '';
@@ -23,14 +24,16 @@ abstract class YReportLib {
     private $grouprecords = 0;
     private $modelo = NULL;
 
-    public function __get($attr) {
+    public function __get($attr)
+    {
         $CI = Yupii::get_CI();
         if (isset($CI->$attr)) {
             return $CI->$attr;
         } else return NULL;
     }
 
-    private function initReport($controller) {
+    private function initReport($controller)
+    {
         $this->title  = $controller->getTitle();
         $this->modelo = $controller->modelo;
         $this->modelo->completeFieldList();
@@ -38,7 +41,8 @@ abstract class YReportLib {
         $this->reportfields = $this->modelo->tablefields;
     }
 
-    public function buildReport($controller) {
+    public function buildReport($controller)
+    {
         $this->initReport($controller);
         $modelo               = $controller->modelo;
         $reportselectfields[] = $modelo->id_field;
@@ -50,7 +54,8 @@ abstract class YReportLib {
         return $this->getTable($reportselectfields);
     }
 
-    private function getTable($reportselectfields) {
+    private function getTable($reportselectfields)
+    {
         $this->modelo->select($reportselectfields);
         $limiteReporte = config_item('yupii_report_limit');
         if ((int)$limiteReporte > 0) {
@@ -61,7 +66,8 @@ abstract class YReportLib {
         return $this->generateTable($query, $this->modelo);
     }
 
-    private function applyFiltersAndOrder($modelo) {
+    private function applyFiltersAndOrder($modelo)
+    {
         $ordertoapply = array();
         for ($i = 1; $i <= 3; $i++) {
             if ($this->input->post("nivel$i", TRUE) != '') {
@@ -74,7 +80,8 @@ abstract class YReportLib {
                 $a              = array(
                     'field' => $this->input->post("nivel$i", TRUE),
                     'count' => 0, 'current' => '', 'realField' => $realField,
-                    'label' => $modelo->ofieldlist[ $this->input->post('nivel' . $i, TRUE) ]->getLabel());
+                    'label' => $modelo->ofieldlist[$this->input->post('nivel' . $i, TRUE)]->getLabel()
+                );
                 $this->groups[] = $a;
             }
         }
@@ -84,7 +91,8 @@ abstract class YReportLib {
         }
     }
 
-    private function generateTableHeader($modelo) {
+    private function generateTableHeader($modelo)
+    {
         $this->grouprecords = 0;
         $a['cuantoscampos'] = sizeof($this->reportfields);
         $a['title']         = $this->title;
@@ -93,17 +101,19 @@ abstract class YReportLib {
         return $this->load->view('yreportlib/table_header', $a, TRUE);
     }
 
-    private function generateTableFooter() {
+    private function generateTableFooter()
+    {
         $a['cuantoscampos'] = sizeof($this->reportfields);
         $a['grouprecords']  = $this->grouprecords;
         $a['title']         = $this->title;
         return $this->load->view('yreportlib/table_footer', $a, TRUE);
     }
 
-    private function generateTableRow($row, $modelo) {
+    private function generateTableRow($row, $modelo)
+    {
         $temp_string = "<tr>";
         foreach ($this->reportfields as $f) {
-            $temp_string .= "<td> {$this->fieldToReport($row,$modelo,$f)} </td>";
+            $temp_string .= "<td> {$this->fieldToReport($row, $modelo, $f)} </td>";
         }
         $temp_string .= "</tr>";
         $this->totalrecords++;
@@ -111,7 +121,8 @@ abstract class YReportLib {
         return $temp_string;
     }
 
-    private function generateRowOrLevel($row) {
+    private function generateRowOrLevel($row)
+    {
         $showldwritelevelheader = FALSE;
         $showldwritelevelfooter = TRUE;
         $encab                  = '';
@@ -119,22 +130,24 @@ abstract class YReportLib {
         return $this->generateEncabAndDetail($row, $showldwritelevelheader, $showldwritelevelfooter, $encab);
     }
 
-    private function calculateEncab($row, &$showldwritelevelheader, &$showldwritelevelfooter, &$encab) {
+    private function calculateEncab($row, &$showldwritelevelheader, &$showldwritelevelfooter, &$encab)
+    {
         $i = 2;
         foreach ($this->groups as &$g) {
             $i++;
-            if (($g['current'] != @$row[ $g['field'] ]) || ($showldwritelevelheader)) {
+            if (($g['current'] != @$row[$g['field']]) || ($showldwritelevelheader)) {
                 if ($g['current'] == '') {
                     $showldwritelevelfooter = FALSE;
                 }
-                $g['current']           = $row[ $g['field'] ];
+                $g['current']           = $row[$g['field']];
                 $showldwritelevelheader = TRUE;
                 $encab .= "<h{$i}>{$g['label']}: {$row[$g['realField']]}  </h{$i}>";
             }
         }
     }
 
-    private function generateEncabAndDetail($row, $showldwritelevelheader, $showldwritelevelfooter, $encab) {
+    private function generateEncabAndDetail($row, $showldwritelevelheader, $showldwritelevelfooter, $encab)
+    {
         $temp_string = '';
         if ($showldwritelevelheader) {
             if ($showldwritelevelfooter) {
@@ -147,7 +160,8 @@ abstract class YReportLib {
         return $temp_string;
     }
 
-    private function generateTable($query, $modelo) {
+    private function generateTable($query, $modelo)
+    {
         $temp_string = "<h1> {$this->lang->line('yupii_report_of')} {$this->title} </h1>";
         $temp_string .= "<h2> {$this->descfilter} </h2>";
         if (sizeof($this->groups) == 0) {
@@ -166,7 +180,8 @@ abstract class YReportLib {
      *
      * @param array $data datos de entrada
      */
-    function renderReportOutput($data) {
+    function renderReportOutput($data)
+    {
         $this->buildHtmlReport($data);
         $this->buildXlsReport($data);
     }
@@ -176,7 +191,8 @@ abstract class YReportLib {
      *
      * @param array $data array
      */
-    private function buildHtmlReport($data) {
+    private function buildHtmlReport($data)
+    {
         if ($this->input->post('typeofreport', TRUE) == 'htm') {
             $this->load->view('yreportlib/report_format_html_ajax', $data);
         }
@@ -187,7 +203,8 @@ abstract class YReportLib {
      *
      * @param array $data array
      */
-    private function buildXlsReport($data) {
+    private function buildXlsReport($data)
+    {
         if ($this->input->post('typeofreport', TRUE) == 'xls') {
             $vista = $this->load->view('yreportlib/report_format_html', $data, TRUE);
             header("Content-type: application/vnd.ms-excel; name='excel'");
@@ -198,8 +215,8 @@ abstract class YReportLib {
         }
     }
 
-    private function fieldToReport($row, $modelo, $f) {
+    private function fieldToReport($row, $modelo, $f)
+    {
         return $modelo->textForTable($row, $f);
     }
-
 }

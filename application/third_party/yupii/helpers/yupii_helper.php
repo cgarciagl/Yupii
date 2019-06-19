@@ -9,7 +9,8 @@ if (!defined('BASEPATH'))
  * @param string $exception_message Mensaje de la excepción a lanzar
  * @throws Exception
  */
-function raise($exception_message) {
+function raise($exception_message)
+{
     throw new Exception($exception_message);
 }
 
@@ -19,7 +20,8 @@ function raise($exception_message) {
  * @param string $fieldname
  * @return string
  */
-function new_value($fieldname) {
+function new_value($fieldname)
+{
     $CI = &get_instance();
     return $CI->input->post($fieldname, TRUE);
 }
@@ -30,7 +32,8 @@ function new_value($fieldname) {
  * @param string $fieldname
  * @return string
  */
-function old_value($fieldname) {
+function old_value($fieldname)
+{
     $CI = &get_instance();
     return $CI->input->post('yupii_value_ant_' . $fieldname, TRUE);
 }
@@ -41,11 +44,13 @@ function old_value($fieldname) {
  * @param string $fieldname
  * @return string
  */
-function has_changed($fieldname) {
+function has_changed($fieldname)
+{
     return (new_value($fieldname) != old_value($fieldname));
 }
 
-function  import_model_from_controller($controllername) {
+function  import_model_from_controller($controllername)
+{
     $c    = $controllername;
     $file = APPPATH . '/controllers/' . ucfirst($c) . '.php';
     if (!file_exists($file)) {

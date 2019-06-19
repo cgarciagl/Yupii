@@ -20,20 +20,20 @@ $tc = $controller_name;
             <span><?php echo $this->lang->line('yupii_in') ?>: </span>
             <select name="<?php echo $t ?>_sel" id="<?php echo $t ?>_sel" class="">
                 <option value=""><?php echo $this->lang->line('yupii_all') ?></option>
-                <?php foreach ($tablefields as $f): ?>
-                    <option value="<?php echo $f ?>"><?php echo $fieldlist[ $f ]->getLabel(); ?></option>
+                <?php foreach ($tablefields as $f) : ?>
+                    <option value="<?php echo $f ?>"><?php echo $fieldlist[$f]->getLabel(); ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
 
         <table class="yupii_table table table-bordered table-condensed" id="<?php echo $t ?>_table">
             <thead>
-            <tr>
-                <?php foreach ($tablefields as $f): ?>
-                    <th><?php echo $fieldlist[ $f ]->getLabel(); ?></th>
-                <?php endforeach; ?>
-                <th width="30px"></th>
-            </tr>
+                <tr>
+                    <?php foreach ($tablefields as $f) : ?>
+                        <th><?php echo $fieldlist[$f]->getLabel(); ?></th>
+                    <?php endforeach; ?>
+                    <th width="30px"></th>
+                </tr>
             </thead>
             <tbody>
             </tbody>
@@ -49,7 +49,8 @@ $tc = $controller_name;
         <button id="<?php echo $t ?>btn_cancel_search" class="btn btn-default">
             <i class="fa fa-undo fa-lg"></i>&nbsp;<?php echo $this->lang->line('yupii_cancel') ?>
         </button>
-        <?php if (Yupii::get_CI()->activeYupiiObject->canUpdate() or
+        <?php if (
+            Yupii::get_CI()->activeYupiiObject->canUpdate() or
             Yupii::get_CI()->activeYupiiObject->canInsert()
         ) : ?>
             <button id="<?php echo $t ?>btn_search_admin" class="btn btn-primary col-md-offset-8 col-sm-offset-5">

@@ -1,6 +1,7 @@
 <?php
 
-function timeStart() {
+function timeStart()
+{
     global $starttime;
     $mtime     = microtime();
     $mtime     = explode(" ", $mtime);
@@ -8,13 +9,15 @@ function timeStart() {
     $starttime = $mtime;
 }
 
-function fecho($string) {
+function fecho($string)
+{
     echo $string;
     @ob_flush();
     flush();
 }
 
-function timeEnd() {
+function timeEnd()
+{
     global $starttime;
     $mtime = microtime();
     $mtime = explode(" ", $mtime);
@@ -22,7 +25,8 @@ function timeEnd() {
     return ($mtime - $starttime);
 }
 
-function processStart() {
+function processStart()
+{
     $ci = &get_instance();
     set_time_limit(0);
     ini_set('memory_limit', '-1');
@@ -36,39 +40,44 @@ function processStart() {
     fecho($ci->load->view('process/progress', NULL, TRUE));
 }
 
-function setProgress($porcentaje) {
+function setProgress($porcentaje)
+{
     $porcentaje = ceil($porcentaje);
     fecho("<script type='text/javascript'> $('#pbar').text('$porcentaje %').css('width','$porcentaje%');</script>");
 }
 
-function setProgressText($texto) {
+function setProgressText($texto)
+{
     fecho("<script type='text/javascript'> $('#textopbar').html('$texto');</script>");
-
 }
 
-function setProgressTitle($texto) {
+function setProgressTitle($texto)
+{
     fecho("<script type='text/javascript'> $('#textotitulo').text('$texto');</script>");
 }
 
-function endProcess() {
+function endProcess()
+{
     setProgressText('');
     fecho("<script type='text/javascript'> $('#girando').removeClass('fa-spin');</script>");
     $tiempo = round(timeEnd(), 5);
     fecho("<hr> <small>Tiempo del proceso: $tiempo segs.</small>");
     fecho('</div></body>');
-
 }
 
-function percentOf($i, $total) {
+function percentOf($i, $total)
+{
     return ($i / $total) * 100;
 }
 
-function redirectTo($ruta, $segundos = 0) {
+function redirectTo($ruta, $segundos = 0)
+{
     fecho("<script type='text/javascript'> setTimeout(function () {
         window.location.href = base_url + 'index.php/$ruta';
     }, $segundos*1000);</script>");
 }
 
-function setProgressOf($i, $total) {
+function setProgressOf($i, $total)
+{
     setProgress(percentOf($i, $total));
 }

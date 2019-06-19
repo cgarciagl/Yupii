@@ -18,7 +18,8 @@ if (!defined('BASEPATH')) {
 /**
  * Clase Base para los datasets de Yupii
  */
-abstract class YDataset extends YController {
+abstract class YDataset extends YController
+{
 
     protected $title = '';
 
@@ -31,12 +32,14 @@ abstract class YDataset extends YController {
     /**
      * Constructor de la clase
      */
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->setModel($this->_getOrConstructModel());
     }
 
-    public function __call($method, $args) {
+    public function __call($method, $args)
+    {
         if (isset($this->$method)) {
             $func = $this->$method;
             return call_user_func_array($func, $args);
@@ -45,11 +48,13 @@ abstract class YDataset extends YController {
         }
     }
 
-    public function getModel() {
+    public function getModel()
+    {
         return $this->modelo;
     }
 
-    public function setModel($model) {
+    public function setModel($model)
+    {
         $this->modelo             = $model;
         $this->modelo->controller = $this;
     }
@@ -59,7 +64,8 @@ abstract class YDataset extends YController {
      *
      * @return YConcreteDatasetModel
      */
-    private function _getOrConstructModel() {
+    private function _getOrConstructModel()
+    {
         if (is_file(APPPATH . 'models/' . $this->getClassName() . '.php')) {
             Yupii::get_CI()->load->model($this->getClassName(), 'modelo');
         } else {
@@ -77,7 +83,8 @@ abstract class YDataset extends YController {
      *
      * @param string $title
      */
-    function setTitle($title) {
+    function setTitle($title)
+    {
         $this->title = $title;
     }
 
@@ -86,7 +93,8 @@ abstract class YDataset extends YController {
      *
      * @return string
      */
-    function getTitle() {
+    function getTitle()
+    {
         return $this->title;
     }
 
@@ -95,7 +103,8 @@ abstract class YDataset extends YController {
      *
      * @param string $t Nombre de la tabla
      */
-    function setTableName($t) {
+    function setTableName($t)
+    {
         $this->modelo->table_name = $t;
     }
 
@@ -104,7 +113,8 @@ abstract class YDataset extends YController {
      *
      * @param string $fieldName
      */
-    function setIdField($fieldName) {
+    function setIdField($fieldName)
+    {
         $this->modelo->id_field = $fieldName;
     }
 
@@ -113,7 +123,8 @@ abstract class YDataset extends YController {
      *
      * @param array $fieldNames Arreglo con los nombres de campos
      */
-    function setTableFields($fieldNames = array()) {
+    function setTableFields($fieldNames = array())
+    {
         $this->modelo->tablefields = $fieldNames;
     }
 
@@ -123,7 +134,8 @@ abstract class YDataset extends YController {
      * @param string $fieldName Nombre del campo a agregar
      * @param array $a Arreglo con las definiciones del campo "label" , "rules", "value"
      */
-    function addField($fieldName, $a = array()) {
+    function addField($fieldName, $a = array())
+    {
         return $this->modelo->addFieldFromArray($fieldName, $a);
     }
 
@@ -134,20 +146,22 @@ abstract class YDataset extends YController {
      * @param string $controllerclassname
      * @param string $filter
      */
-    function addSearch($fieldName, $controllerclassname, $filter = '') {
+    function addSearch($fieldName, $controllerclassname, $filter = '')
+    {
         if (!array_key_exists($fieldName, $this->modelo->ofieldlist)) {
-            $this->modelo->ofieldlist[ $fieldName ] = new YSimpleTextField($fieldName);
+            $this->modelo->ofieldlist[$fieldName] = new YSimpleTextField($fieldName);
         }
-        $field                                  = $this->modelo->ofieldlist[ $fieldName ];
-        $this->modelo->ofieldlist[ $fieldName ] = new YSearchField($field);
-        $this->modelo->ofieldlist[ $fieldName ]->setController($controllerclassname);
-        $this->modelo->ofieldlist[ $fieldName ]->setFilter($filter);
-        return $this->modelo->ofieldlist[ $fieldName ];
+        $field                                  = $this->modelo->ofieldlist[$fieldName];
+        $this->modelo->ofieldlist[$fieldName] = new YSearchField($field);
+        $this->modelo->ofieldlist[$fieldName]->setController($controllerclassname);
+        $this->modelo->ofieldlist[$fieldName]->setFilter($filter);
+        return $this->modelo->ofieldlist[$fieldName];
     }
 
-    function removeField($fieldName) {
+    function removeField($fieldName)
+    {
         if (array_key_exists($fieldName, $this->modelo->ofieldlist)) {
-            unset($this->modelo->ofieldlist[ $fieldName ]);
+            unset($this->modelo->ofieldlist[$fieldName]);
         }
     }
 
@@ -157,8 +171,9 @@ abstract class YDataset extends YController {
      * @param string $fieldName Campo a actualizar
      * @param string $label Etiqueta que mostrar
      */
-    function addLabel($fieldName, $label) {
-        $this->modelo->ofieldlist[ $fieldName ]->setLabel($label);
+    function addLabel($fieldName, $label)
+    {
+        $this->modelo->ofieldlist[$fieldName]->setLabel($label);
     }
 
     /**
@@ -167,12 +182,14 @@ abstract class YDataset extends YController {
      * @param string $fieldName Campo a actualizar
      * @param string $rules Reglas a aplicar
      */
-    function addRules($fieldName, $rules) {
-        $this->modelo->ofieldlist[ $fieldName ]->setRules($rules);
+    function addRules($fieldName, $rules)
+    {
+        $this->modelo->ofieldlist[$fieldName]->setRules($rules);
     }
 
-    function addDefault($fieldName, $default) {
-        $this->modelo->ofieldlist[ $fieldName ]->setDefault($default);
+    function addDefault($fieldName, $default)
+    {
+        $this->modelo->ofieldlist[$fieldName]->setDefault($default);
     }
 
     /**
@@ -180,7 +197,8 @@ abstract class YDataset extends YController {
      *
      * @param bool $value
      */
-    function setCanInsert($value) {
+    function setCanInsert($value)
+    {
         $this->modelo->canInsert = (bool)$value;
     }
 
@@ -189,7 +207,8 @@ abstract class YDataset extends YController {
      *
      * @param bool $value
      */
-    function setCanUpdate($value) {
+    function setCanUpdate($value)
+    {
         $this->modelo->canUpdate = (bool)$value;
     }
 
@@ -198,7 +217,8 @@ abstract class YDataset extends YController {
      *
      * @param bool $value
      */
-    function setCanDelete($value) {
+    function setCanDelete($value)
+    {
         $this->modelo->canDelete = (bool)$value;
     }
 
@@ -206,7 +226,8 @@ abstract class YDataset extends YController {
      * Getter para la propiedad canInsert del modelo
      *
      */
-    function canInsert() {
+    function canInsert()
+    {
         return (bool)$this->modelo->canInsert;
     }
 
@@ -214,7 +235,8 @@ abstract class YDataset extends YController {
      * Getter para la propiedad canUpdate del modelo
      *
      */
-    function canUpdate() {
+    function canUpdate()
+    {
         return (bool)$this->modelo->canUpdate;
     }
 
@@ -222,21 +244,22 @@ abstract class YDataset extends YController {
      * Getter para la propiedad canDelete del modelo
      *
      */
-    function canDelete() {
+    function canDelete()
+    {
         return (bool)$this->modelo->canDelete;
     }
 
     /**
      * Función "abstracta" para aplicar filtros al catálogo
      */
-    public function _filters() {
-
-    }
+    public function _filters()
+    { }
 
     /**
      * Función que aplica los filtros usando la cache de querys de Codeigniter
      */
-    protected function applyFilters() {
+    protected function applyFilters()
+    {
         $this->modelo->startCache();
         $this->_filters();
         $this->modelo->stopCache();
@@ -245,43 +268,36 @@ abstract class YDataset extends YController {
     /**
      * Disparador Callback (Trigger) para Antes de Insertar
      */
-    function _beforeInsert(&$a) {
-
-    }
+    function _beforeInsert(&$a)
+    { }
 
     /**
      * Disparador Callback (Trigger) para Después de Insertar
      */
-    function _afterInsert() {
-
-    }
+    function _afterInsert()
+    { }
 
     /**
      * Disparador Callback (Trigger) para Antes de Actualizar
      */
-    function _beforeUpdate(&$a) {
-
-    }
+    function _beforeUpdate(&$a)
+    { }
 
     /**
      * Disparador Callback (Trigger) para Después de Actualizar
      */
-    function _afterUpdate() {
-
-    }
+    function _afterUpdate()
+    { }
 
     /**
      * Disparador Callback (Trigger) para Antes de Borrar
      */
-    function _beforeDelete() {
-
-    }
+    function _beforeDelete()
+    { }
 
     /**
      * Disparador Callback (Trigger) para Después de Borrar
      */
-    function _afterDelete() {
-
-    }
-
+    function _afterDelete()
+    { }
 }

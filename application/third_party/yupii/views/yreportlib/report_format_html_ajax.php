@@ -51,11 +51,11 @@
 </div>
 
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         var b = $('.btnbackreport');
         if (stackwidgets.count() > 0) {
             b.show();
-            b.click(function (e) {
+            b.click(function(e) {
                 e.preventDefault();
                 $(this).parents('.yupii-widget').first().remove();
                 stackwidgets.pop().show('slide');
@@ -71,20 +71,20 @@
 <script src="<?php echo base_url(); ?>/assets/js/printThis.min.js" type="text/javascript"></script>
 
 <script>
-    $(document).ready(function () {
-        $('.btnprint').click(function () {
+    $(document).ready(function() {
+        $('.btnprint').click(function() {
             $('.yupiireportresult').printThis({
                 debug: false,
                 importCSS: true,
                 importStyle: false,
                 printContainer: false,
                 removeInline: true,
-                loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.css",
-                pageTitle: "<?php echo $title?> <?php echo  uniqid() ?>"
+                loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.min.css",
+                pageTitle: "<?php echo $title ?> <?php echo  uniqid() ?>"
             });
         });
 
-        $('.exporttoexcel').click(function () {
+        $('.exporttoexcel').click(function() {
             // window.open('data:application/vnd.ms-excel,'+$('#imprimible').html());
             var dt = new Date();
             var day = dt.getDate();

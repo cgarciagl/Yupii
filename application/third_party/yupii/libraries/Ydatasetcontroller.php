@@ -21,7 +21,8 @@ if (!defined('BASEPATH')) {
  *  Yupii es un paquete agregado a CodeIgniter que lo transforma en un Business Framework !!
  *            <p/> <br/>
  */
-abstract class YDatasetController extends YDataset {
+abstract class YDatasetController extends YDataset
+{
 
     private $hasDetailsProp = FALSE;
     private $sortingField = -1;
@@ -30,11 +31,13 @@ abstract class YDatasetController extends YDataset {
     /**
      * Constructor de la clase
      */
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
     }
 
-    function setSortingField($value, $dir = 'asc') {
+    function setSortingField($value, $dir = 'asc')
+    {
         if (is_string($value)) {
             $pos = array_search($value, $this->modelo->tablefields);
             if ($pos !== FALSE) {
@@ -49,18 +52,21 @@ abstract class YDatasetController extends YDataset {
         $this->sortingDir   = $dir;
     }
 
-    function setHasDetails($band) {
+    function setHasDetails($band)
+    {
         $this->hasDetailsProp = (bool)$band;
     }
 
-    function hasDetails() {
+    function hasDetails()
+    {
         return $this->hasDetailsProp;
     }
 
     /**
      * Devuelve la vista inicial con los datos de la relación definida
      */
-    function index() {
+    function index()
+    {
         $data['content'] = $this->renderTable();
         $this->load->view('yupii/template', $data);
     }
@@ -70,7 +76,8 @@ abstract class YDatasetController extends YDataset {
      *
      * @return string
      */
-    function renderTable() {
+    function renderTable()
+    {
         $data['controller_name'] = $this->getClassName();
         $data['title']           = $this->title;
         $this->modelo->completeFieldList();
@@ -87,7 +94,8 @@ abstract class YDatasetController extends YDataset {
      *
      * @return string
      */
-    function renderSearchResults() {
+    function renderSearchResults()
+    {
         $data['controller_name'] = $this->getClassName();
         $data['title']           = $this->title;
         $this->modelo->completeFieldList();
@@ -103,7 +111,8 @@ abstract class YDatasetController extends YDataset {
      *
      * @return string
      */
-    function renderReport() {
+    function renderReport()
+    {
         $this->load->helper('form');
         $data['controller_name'] = $this->getClassName();
         $data['title']           = $this->title;
@@ -116,7 +125,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * devuelve un objeto JSON, ya sea con los errores generados o con el resultado 'ok'
      */
-    private function showErrorsOrOk() {
+    private function showErrorsOrOk()
+    {
         $result = array();
         if (empty($this->modelo->errors)) {
             $result['result'] = 'ok';
@@ -133,7 +143,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Permite borrar un registro via AJAX
      */
-    function delete() {
+    function delete()
+    {
         if ($this->modelo->canDelete) {
             if ($this->input->is_ajax_request()) {
                 try {
@@ -151,16 +162,16 @@ abstract class YDatasetController extends YDataset {
     /**
      * Ejecuta el proceso de borrado con sus triggers
      */
-    private function processDelete() {
+    private function processDelete()
+    {
         $this->_beforeDelete();
         $id = $this->input->post('id', TRUE);
         $this->modelo->delete($id);
         $this->_afterDelete();
     }
 
-    function _customFormDataFooter() {
-
-    }
+    function _customFormDataFooter()
+    { }
 
     /**
      * Obtiene via AJAX el formulario para ingresar datos al catálogo
@@ -169,7 +180,8 @@ abstract class YDatasetController extends YDataset {
      *
      * @param string $id
      */
-    function getFormData($id = 'new') {
+    function getFormData($id = 'new')
+    {
         if ($this->input->is_ajax_request()) {
             $s = $this->modelo->getFormData($id);
             $this->load->view('yupii/justecho', array('content' => $s));
@@ -183,7 +195,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve los datos del catálogo en formato JSON, via AJAX
      */
-    function getAjaxGridData() {
+    function getAjaxGridData()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $this->applyFilters();
@@ -197,7 +210,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Recibe los datos del formulario via AJAX, para procesarles
      */
-    function formProcess() {
+    function formProcess()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $this->modelo->processFormInput();
@@ -210,7 +224,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve los resultados de una búsqueda, via AJAX
      */
-    function searchByAjax() {
+    function searchByAjax()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderSearchResults();
@@ -222,7 +237,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve una vista construida para mostrar la tabla de resultados de búsquedas
      */
-    function search() {
+    function search()
+    {
         $data['content'] = $this->renderSearchResults();
         $this->load->view('yupii/template', $data);
     }
@@ -230,7 +246,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve el formulario del reporte del catálogo, via AJAX
      */
-    function reportByAjax() {
+    function reportByAjax()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderReport();
@@ -242,7 +259,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve la vista de tabla para administrar el catálogo, solo via AJAX
      */
-    function tableByAjax() {
+    function tableByAjax()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             echo $this->renderTable();
@@ -254,7 +272,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve una vista construida para generar el reporte del catálogo
      */
-    function report() {
+    function report()
+    {
         $data['content'] = $this->renderReport();
         $this->load->view('yupii/template', $data);
     }
@@ -262,7 +281,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Muestra los resultados del reporte en diferentes formatos
      */
-    function showReport() {
+    function showReport()
+    {
         // $this->load->library('ydatasetreportlib');
         $this->ydatasetreportlib = new ydatasetreportlib;
         $this->load->helper('url');
@@ -274,7 +294,8 @@ abstract class YDatasetController extends YDataset {
     /**
      * Devuelve un JSON con los datos de un registro , solo via AJAX
      */
-    function getRecordByAjax() {
+    function getRecordByAjax()
+    {
         $this->output->enable_profiler(FALSE);
         if ($this->input->is_ajax_request()) {
             $id = $this->input->post('id', TRUE);
@@ -288,7 +309,8 @@ abstract class YDatasetController extends YDataset {
         }
     }
 
-    public function is_unique_yupii($string, $field) {
+    public function is_unique_yupii($string, $field)
+    {
         $table = $this->modelo->table_name;
         $string          = $this->input->post($field);
         $primarykeyvalue = new_value($this->modelo->id_field);
@@ -301,12 +323,12 @@ abstract class YDatasetController extends YDataset {
         return TRUE;
     }
 
-    public function readonly_yupii($string, $field) {
+    public function readonly_yupii($string, $field)
+    {
         $b = has_changed($field);
         if ($b) {
             return FALSE;
         }
         return TRUE;
     }
-
 }

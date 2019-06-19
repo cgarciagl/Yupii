@@ -1,5 +1,5 @@
 <?php echo $this->load->view('process/partial_header', NULL, TRUE); ?>
-<link href="<?php echo base_url(); ?>/assets/css/forprint.css" rel="stylesheet" media="all">
+<link href="<?php echo base_url(); ?>/assets/css/forprint.min.css" rel="stylesheet" media="all">
 <?php
 $totalrecords = 0;
 $grouprecords = 0; ?>
@@ -31,7 +31,7 @@ $grouprecords = 0; ?>
                 importStyle: false,
                 printContainer: false,
                 removeInline: true,
-                loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.css",
+                loadCSS: "<?php echo  base_url(); ?>/assets/css/forprint.min.css",
                 pageTitle: "<?php echo $this->ysimplelevelreport->getTitle() ?> <?php echo  uniqid() ?>"
             });
         });

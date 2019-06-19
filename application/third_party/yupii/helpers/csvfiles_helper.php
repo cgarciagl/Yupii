@@ -1,7 +1,7 @@
 <?php
 
-function arrayToCSVFile(array $results, $fileName = 'temp.csv', $download = TRUE) {
-
+function arrayToCSVFile(array $results, $fileName = 'temp.csv', $download = TRUE)
+{
     if ($download) {
         header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
         header('Content-Description: File Transfer');
@@ -11,24 +11,22 @@ function arrayToCSVFile(array $results, $fileName = 'temp.csv', $download = TRUE
         header("Pragma: public");
 
         $fh = @fopen('php://output', 'w');
+    } else {
+        $fh = @fopen('./temp.csv', 'w');
     }
-    else {
-       $fh = @fopen('./temp.csv', 'w'); 
-   }
 
-   $headerDisplayed = false;
+    $headerDisplayed = false;
 
-   foreach ($results as $data) {
-    if (!$headerDisplayed) {
-        fputcsv($fh, array_keys($data));
-        $headerDisplayed = true;
+    foreach ($results as $data) {
+        if (!$headerDisplayed) {
+            fputcsv($fh, array_keys($data));
+            $headerDisplayed = true;
+        }
+        fputcsv($fh, $data);
     }
-    fputcsv($fh, $data);
-}
-fclose($fh);
+    fclose($fh);
 
-if (!$download) {
-    rename('./temp.csv', $fileName);
-}
-
+    if (!$download) {
+        rename('./temp.csv', $fileName);
+    }
 }

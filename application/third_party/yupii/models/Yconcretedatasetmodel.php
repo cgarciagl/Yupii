@@ -7,6 +7,5 @@ if (!defined('BASEPATH')) {
 /**
  * Clase concreta para instanciar los modelos
  */
-class YConcreteDatasetModel extends YDatasetModel {
-
-}
+class YConcreteDatasetModel extends YDatasetModel
+{ }
