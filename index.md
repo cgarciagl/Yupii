@@ -14,7 +14,7 @@ hint: With Yupii you will have **automatic CRUD**, **automatic relations** betwe
 - easy to [use](quickstart.md) 
 - **multilanguage**
 - **responsive design** that plays nice with mobile devices.
-- and you can adjust the design to your projects, creating your own **themes** or using the free ones of http://bootswatch.com/  
+- and you can adjust the design to your projects, creating your own **themes** or using the free ones of https//bootswatch.com/  
 
 
 Spend more time at the beach and less time developing applications; with **Yupii** you just need to declare *"what you need"*, and the framework takes care of the *"how to do it"*
@@ -40,8 +40,6 @@ Learn how to install Yupii and develop your first application in just 20 min wit
 Checkout more video tutorials in the [videos](videos.md) section
 
 <hr/>
-
-[gimmick:FacebookLike ( layout: 'standard', showfaces: false) ](https://github.com/cgarciagl/Yupii)
 
 [gimmick:TwitterFollow](@cgarciagl)
 

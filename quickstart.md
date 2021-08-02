@@ -54,7 +54,7 @@ class Categories extends YDatasetController {
 
 With just this lines of code we have the manager for the table, and as you can see you can't leave blank the name of the category or use the name from another category again.
 
-attention: the result will be something like [this](http://analisis911.aexiuv.com/index.php/categories)
+attention: the result will be something like [this](https://analisis911.aexiuv.com/index.php/categories)
 
 ## Implementing Songs
 

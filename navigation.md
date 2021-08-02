@@ -12,4 +12,4 @@
 [About](about.md)
 
 [gimmick:theme](yeti)
-[gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](http://www.github.com/cgarciagl/Yupii)
+[gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](https://www.github.com/cgarciagl/Yupii)
