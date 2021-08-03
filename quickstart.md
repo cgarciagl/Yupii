@@ -1,6 +1,6 @@
 ## Database Model
 
-In this example we will code the required classes for an application that manages a songs inventory, 
+In this example we will code the required classes for an application that manages a songs inventory,
 we have a **songs** table and a related **category** table, where each song belongs to a single category,
 and a song is played for a single **artist**.
 
@@ -34,7 +34,7 @@ attention: then you can access your controller for this table like [here](http:/
 
 ## Implementing Categories
 
-Now we'll declare the next catalog class, the controller for the Categories of songs: 
+Now we'll declare the next catalog class, the controller for the Categories of songs:
 
 ```php
 <?php
@@ -58,7 +58,7 @@ attention: the result will be something like [this](https://analisis911.aexiuv.c
 
 ## Implementing Songs
 
-Finally we will declare a new controller for the songs table, this way: 
+Finally we will declare a new controller for the songs table, this way:
 
 ```php
 <?php
@@ -86,13 +86,13 @@ class Songs extends YDatasetController {
 
 attention: You can view this example functioning [here](http://analisis911.aexiuv.com/index.php/songs)
 
-Yupii can figure it out the relations between the tables when you use the *addSearch()* function, the first parameter is the field in the current table and the second one is the class of the asociated controller that manages the related table; just that simple!!!.
+Yupii can figure it out the relations between the tables when you use the _addSearch()_ function, the first parameter is the field in the current table and the second one is the class of the asociated controller that manages the related table; just that simple!!!.
 
 Wanna get amazed!!???, click in the printer button of this catalog and check it out the amount of reports that **Yupii** got for you by magic!! or Try it [here](http://analisis911.aexiuv.com/index.php/songs/report)
 
 ## Extending Songs Class
 
-We can even extend the last class *adding new business rules* using some of the magic methods that includes **Yupii**
+We can even extend the last class _adding new business rules_ using some of the magic methods that includes **Yupii**
 
 ```php
 <?php
@@ -122,12 +122,12 @@ class Eminemsongs extends Songs {
         }
     }
 
-    function _beforeInsert(&$a) {
+    function _beforeInsert($a) {
         parent::_beforeInsert($a);
         $this->_JustEminemSongs();
     }
 
-    function _beforeUpdate(&$a) {
+    function _beforeUpdate($a) {
         parent::_beforeUpdate($a);
         $this->_JustEminemSongs();
     }
@@ -135,8 +135,9 @@ class Eminemsongs extends Songs {
 }
 ```
 
-We added a couple of rules here 
-- Just songs from the artist EMINEM are showed, 
+We added a couple of rules here
+
+- Just songs from the artist EMINEM are showed,
 - Another rule here is that you can't delete songs, when you try it, you get a nice error message.
 - When you try to add a song or modify one of the existents, the artist for this song should be EMINEM, or you will get another error message.
 
