@@ -16975,6 +16975,9 @@
 
           $.md.stage("init").subscribe(function (done) {
             console.log($.md.mainHref);
+            if (!$.md.mainHref) {
+              $.md.mainHref = "index.md";
+            }
             var ajaxReq = {
               url: $.md.mainHref,
               dataType: "text",
