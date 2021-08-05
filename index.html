@@ -16974,10 +16974,14 @@
           var md = "";
 
           $.md.stage("init").subscribe(function (done) {
-            if (!$.md.mainHref == "") {
+            if ($.md.mainHref.trim() == "") {
               $.md.mainHref = "index.md";
             }
-            console.log("mainHref vale:", $.md.mainHref);
+            console.log(
+              "mainHref trimeado vale:",
+              $.md.mainHref.trim(),
+              " y eso es..."
+            );
             var ajaxReq = {
               url: $.md.mainHref,
               dataType: "text",
