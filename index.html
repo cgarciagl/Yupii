@@ -16974,10 +16974,11 @@
           var md = "";
 
           $.md.stage("init").subscribe(function (done) {
-            console.log($.md.mainHref);
-            if (!$.md.mainHref) {
+
+            if (!$.md.mainHref == '') {
               $.md.mainHref = "index.md";
             }
+               console.log($.md.mainHref);
             var ajaxReq = {
               url: $.md.mainHref,
               dataType: "text",
