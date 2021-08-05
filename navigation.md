@@ -11,5 +11,5 @@
 [Who is using it?](using.md)
 [About](about.md)
 
-[gimmick:theme](yeti)
-[gimmick:ForkMeOnGitHub ({ color: 'orange',  position: 'right' })](https://www.github.com/cgarciagl/Yupii)
+[gimmick:theme](amelia)
+[gimmick:ForkMeOnGitHub ({ color: 'orange', position: 'right' })](https://www.github.com/cgarciagl/Yupii)
