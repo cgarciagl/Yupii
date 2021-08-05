@@ -11302,8 +11302,8 @@
                     !a ||
                     (a[1] === ln[1] &&
                       a[2] === ln[2] &&
-                      (a[3] || (a[1] === "http:" ? 80 : 443)) ==
-                        (ln[3] || (ln[1] === "http:" ? 80 : 443)))
+                      (a[3] || (a[1] === "https:" ? 80 : 443)) ==
+                        (ln[3] || (ln[1] === "https:" ? 80 : 443)))
                   ))),
                 c.data &&
                   c.processData &&
@@ -17009,9 +17009,7 @@
 
           $.md.stage("transform").subscribe(function (done) {
             var uglyHtml = transformMarkdown(md);
-            if (!md.includes("<html>")) {
-              $("#md-content").html(uglyHtml);
-            }
+            $("#md-content").html(uglyHtml);
             md = "";
             var dfd = $.Deferred();
             loadExternalIncludes(dfd);
@@ -17589,10 +17587,10 @@
           var ownProtocol = window.location.protocol;
 
           if (options.forceSSL) return "https://" + link;
-          if (options.forceHTTP) return "http://" + link;
+          if (options.forceHTTP) return "https://" + link;
 
           if (ownProtocol === "file:") {
-            return "http://" + link;
+            return "https://" + link;
           }
           // default: use the same as origin resource
           return "//" + link;
@@ -18679,7 +18677,7 @@
           navbar += '<div class="pull-right md-copyright-footer"> ';
           navbar += '<span id="md-footer-additional"></span>';
           navbar +=
-            'Website generated with <a href="http://www.mdwiki.info">MDwiki</a> ';
+            'Website generated with <a href="https://www.mdwiki.info">MDwiki</a> ';
           navbar += "&copy; Timo D&ouml;rr and contributors. ";
           navbar += "</div>";
           navbar += "</div>";
@@ -18939,7 +18937,7 @@
                 (function () {
                   // all disqus_ variables are used by the script, they
                   // change the config behavious.
-                  // see: http://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables
+                  // see: https://help.disqus.com/customer/portal/articles/472098-javascript-configuration-variables
 
                   // set to 1 if developing, or the site is password protected or not
                   // publicaly accessible
@@ -18961,7 +18959,7 @@
                   dsq.type = "text/javascript";
                   dsq.async = true;
                   dsq.src =
-                    "http://" + disqus_shortname + ".disqus.com/embed.js";
+                    "https://" + disqus_shortname + ".disqus.com/embed.js";
                   (
                     document.getElementsByTagName("head")[0] ||
                     document.getElementsByTagName("body")[0]
@@ -19311,7 +19309,7 @@
       (function ($) {
         //'use strict';
         var scripturl =
-          "http://maps.google.com/maps/api/js?sensor=false&callback=googlemapsReady";
+          "https://maps.google.com/maps/api/js?sensor=false&callback=googlemapsReady";
 
         function googlemaps($links, opt, text) {
           var $maps_links = $links;
@@ -19674,7 +19672,7 @@
             $chooser
               .eq(1)
               .append(
-                '<li><a href="http://www.bootswatch.com">Powered by Bootswatch</a></li>'
+                '<li><a href="https://www.bootswatch.com">Powered by Bootswatch</a></li>'
               );
             $this.replaceWith($chooser);
           });
@@ -19772,7 +19770,7 @@
                 var frame = $(
                   '<iframe class="md-external" frameborder="0" allowfullscreen></iframe>'
                 );
-                frame.attr("src", "http://youtube.com/embed/" + short_handle);
+                frame.attr("src", "https://youtube.com/embed/" + short_handle);
                 // remove the a tag
                 $this.replaceWith(frame);
               }
@@ -19794,7 +19792,7 @@
 
           return $link.each(function (i, e) {
             var $this = $(e);
-            var url = "http://yuml.me/diagram/";
+            var url = "https://yuml.me/diagram/";
             var data = $this.attr("href");
             var title = $this.attr("title");
 
