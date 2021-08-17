@@ -1,4 +1,3 @@
-
 <form style="display: inline-block;float: right; background-color: beige; border-radius:15px; padding:10px;" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <span>Contribute to this project</span>
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -9,5 +8,5 @@
 
 # Download
 
-[![Download](./img/download.png)](https://github.com/cgarciagl/Yupii/archive/master.zip)
+(https://github.com/cgarciagl/Yupii/archive/master.zip)
 Download the last version zip file
