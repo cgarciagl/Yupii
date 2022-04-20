@@ -21,5 +21,5 @@ And in the file **./application/config/autoload.php** change the autoload line f
 $autoload['packages'] = array(APPPATH.'third_party/yupii');
 ```
 
-That's it!, you can start to create your new great application!
+That's it!, you can start to create your new great application!..
 
