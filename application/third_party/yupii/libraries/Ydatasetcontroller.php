@@ -137,7 +137,7 @@ abstract class YDatasetController extends YDataset
             $result['result'] = 'error';
             $result['errors'] = $this->modelo->errors;
         }
-        $this->load->view('yupii/json_view', array('data' => $result));
+        returnAsJSON($result);
     }
 
     /**
@@ -171,7 +171,8 @@ abstract class YDatasetController extends YDataset
     }
 
     function _customFormDataFooter()
-    { }
+    {
+    }
 
     /**
      * Obtiene via AJAX el formulario para ingresar datos al catálogo
@@ -201,7 +202,7 @@ abstract class YDatasetController extends YDataset
         if ($this->input->is_ajax_request()) {
             $this->applyFilters();
             $res = $this->modelo->getTableAjax();
-            $this->load->view('yupii/json_view', array('data' => $res));
+            returnAsJSON($res);
         } else {
             show_error('error');
         }
@@ -302,7 +303,7 @@ abstract class YDatasetController extends YDataset
             if ($id) {
                 $this->modelo->completeFieldList();
                 $res = $this->modelo->getById($id)->row_array();
-                $this->load->view('yupii/json_view', array('data' => $res));
+                returnAsJSON($res);
             }
         } else {
             show_error('error');

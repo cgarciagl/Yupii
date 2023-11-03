@@ -4,19 +4,17 @@
 
 <div class="divfield col-sm-4">
     <div class='input-group' id='group_<?php echo $name ?>'>
-        <label class="control-label"><?php echo $label; ?> :</label>
+        <label class="control-label"><?php echo $label; ?> </label>
 
         <div class='input-group date' id='<?php echo $name ?>datetimepicker'>
-            <input name="<?php echo $name; ?>" type='text' class="form-control"
-                   value="<?php echo $value ?>"
-                   data-valueant="<?php echo $value ?>" <?php echo $extra_attributes; ?> />
-                    <span class="input-group-addon">
-                        <span class="fa fa-calendar"></span>
-                    </span>
+            <input name="<?php echo $name; ?>" type='text' class="form-control" value="<?php echo $value ?>" data-valueant="<?php echo $value ?>" <?php echo $extra_attributes; ?> />
+            <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+            </span>
         </div>
     </div>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#<?php echo $name ?>datetimepicker').datetimepicker({
                 format: 'YYYY-MM-DD HH:mm:SS',
                 locale: 'es'

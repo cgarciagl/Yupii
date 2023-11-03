@@ -2,6 +2,7 @@
 $t  = uniqid($controller_name);
 $tc = $controller_name;
 ?>
+<link rel="stylesheet" href="./assets/css/yupii.min.css">
 
 <div id="<?php echo $t ?>" class="panel panel-info boxshadowround yupii-widget yupii-search-widget">
 
@@ -21,7 +22,9 @@ $tc = $controller_name;
             <select name="<?php echo $t ?>_sel" id="<?php echo $t ?>_sel" class="">
                 <option value=""><?php echo $this->lang->line('yupii_all') ?></option>
                 <?php foreach ($tablefields as $f) : ?>
-                    <option value="<?php echo $f ?>"><?php echo $fieldlist[$f]->getLabel(); ?></option>
+                    <?php if ($fieldlist[$f]->getQuery() == '') : ?>
+                        <option value="<?php echo $f ?>"><?php echo $fieldlist[$f]->getLabel(); ?></option>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </select>
         </div>

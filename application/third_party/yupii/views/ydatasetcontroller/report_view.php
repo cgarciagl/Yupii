@@ -15,7 +15,7 @@
     <hr />
     <div class="btn-toolbar" style="margin-left:15px;">
         <div class="btn-toolbar">
-            <button id="btn_xls_<?php echo $t ?>_View_Report" class="toolbtn btn btn-primary">
+            <button id="btn_xls_<?php echo $t ?>_View_Report" class="toolbtn btn btn-primary mr-2">
                 <i class="fa fa-fire fa-lg"></i>EXCEL
             </button>
 
@@ -28,33 +28,35 @@
         </div>
     </div>
     <div class="boxshadowround row" style="padding:5px;margin:5px;">
-        <?php echo
+        <div class="col-md-6">
+            <?php echo
             form_open("{$tc}/showReport", array('id' => "{$t}form_rep", 'method' => 'post'))
-        ?>
-        <input type="hidden" name="typeofreport" />
+            ?>
+            <input type="hidden" name="typeofreport" />
 
-        <div class="grupos col-md-12">
-            <?php for ($i = 1; $i <= 3; $i++) : ?>
-                <div class="nivel well rplevel col-md-5 <?php
-                                                        if ($i > 1) {
-                                                            echo "hide";
-                                                        }
-                                                        ?>">
-                    <h5><?php echo $this->lang->line('yupii_group') ?></h5>
-                    <?php
-                    echo $this->load->view('ydatasetcontroller/group_level_control_view', array('fieldlist' => $fieldlist, 'i' => $i), TRUE);
-                    ?>
-                    <div class="filtergroup hide">
-                        <h5><?php echo $this->lang->line('yupii_filter') ?></h5>
+            <div class="grupos col-md-12">
+                <?php for ($i = 1; $i <= 3; $i++) : ?>
+                    <div class="nivel well rplevel col-md-5 <?php
+                                                            if ($i > 1) {
+                                                                echo "hide";
+                                                            }
+                                                            ?>">
+                        <h5><?php echo $this->lang->line('yupii_group') ?></h5>
+                        <?php
+                        echo $this->load->view('ydatasetcontroller/group_level_control_view', array('fieldlist' => $fieldlist, 'i' => $i), TRUE);
+                        ?>
+                        <div class="filtergroup hide">
+                            <h5><?php echo $this->lang->line('yupii_filter') ?></h5>
 
-                        <div class=''>
-                            <div class='rpfilter input-group input-group-lg'>
-                                <input type="text" class="reportgroupfilter form-control" name="filter<?php echo $i ?>" />
+                            <div class=''>
+                                <div class='rpfilter input-group input-group-lg'>
+                                    <input type="text" class="reportgroupfilter form-control" name="filter<?php echo $i ?>" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            <?php endfor; ?>
+                <?php endfor; ?>
+            </div>
         </div>
         </form>
     </div>

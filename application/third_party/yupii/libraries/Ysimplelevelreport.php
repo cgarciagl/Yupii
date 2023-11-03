@@ -91,122 +91,127 @@ class YSimpleLevelReport
     function generateTableHeader()
     {
         $this->grouprecords = 0;
-        ?>
-    <table>
-        <thead>
-            <tr>
-                <?php
-                $c            = (int)(100 / sizeof($this->listfields));
-                $grouprecords = 0;
-                foreach ($this->listfields as $f => $l) :
+?>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <?php
+                    $c            = (int)(100 / sizeof($this->listfields));
+                    $grouprecords = 0;
+                    foreach ($this->listfields as $f => $l) :
                     ?>
-                    <th width='<?php echo $c ?>%'> <?php echo $l; ?> </th>
-                <?php endforeach; ?>
-            </tr>
-        </thead>
-        <tbody>
-        <?php
-    }
+                        <th width='<?php echo $c ?>%'> <?php echo $l; ?> </th>
+                    <?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+        }
 
-    function generateTableFooter()
-    {
-        ?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="<?php echo sizeof($this->listfields) ?>">
-                    <?php if ($this->showTotals) : ?>
-                        <h5 style='float:right'> Total = <?php echo "{$this->grouprecords} {$this->title}"; ?> </h5>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        </tfoot>
-    </table>
-<?php
-}
+        function generateTableFooter()
+        {
+            ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="<?php echo sizeof($this->listfields) ?>">
+                        <?php if ($this->showTotals) : ?>
+                            <h5 style='float:right'> Total = <?php echo "{$this->grouprecords} {$this->title}"; ?> </h5>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    <?php
+        }
 
-function generateTableRow($row)
-{
-    $temp_string = "<tr>";
-    foreach ($this->listfields as $f => $l) {
-        $temp_string .= "<td> {$row[$f]} </td>";
-    }
-    $temp_string .= "</tr>";
-    $this->totalrecords++;
-    $this->grouprecords++;
-    echo $temp_string;
-}
+        function generateTableRow($row)
+        {
+            $temp_string = "<tr>";
+            foreach ($this->listfields as $f => $l) {
+                $temp_string .= "<td> {$row[$f]} </td>";
+            }
+            $temp_string .= "</tr>";
+            $this->totalrecords++;
+            $this->grouprecords++;
+            echo $temp_string;
+        }
 
-function generateRowOrLevel($row)
-{
-    $this->showldwritelevelheader = FALSE;
-    $this->showldwritelevelfooter = TRUE;
-    $this->encab                  = '';
-    $this->calculateEncab($row);
-    $this->generateEncabAndDetail($row);
-}
+        function generateRowOrLevel($row)
+        {
+            $this->showldwritelevelheader = FALSE;
+            $this->showldwritelevelfooter = TRUE;
+            $this->encab                  = '';
+            $this->calculateEncab($row);
+            $this->generateEncabAndDetail($row);
+        }
 
-function calculateEncab($row)
-{
-    $i = 2;
-    if ($this->groups) {
-        foreach ($this->groups as $f => &$g) {
-            $i++;
-            if ((@$g['current'] != $row[$f]) || ($this->showldwritelevelheader)) {
-                if (@$g['current'] == '') {
-                    $this->showldwritelevelfooter = FALSE;
+        function calculateEncab($row)
+        {
+            $i = 2;
+            if ($this->groups) {
+                foreach ($this->groups as $f => &$g) {
+                    $i++;
+                    if ((@$g['current'] != $row[$f]) || ($this->showldwritelevelheader)) {
+                        if (@$g['current'] == '') {
+                            $this->showldwritelevelfooter = FALSE;
+                        }
+                        $g['current']                 = $row[$f];
+                        $this->showldwritelevelheader = TRUE;
+                        $this->load->helper('utiles');
+                        $this->encab .= "<div class='col-md-12'><h{$i}> " . ifSet($g['label'], $f) . ": {$row[$f]} </h{$i}></div>";
+                    }
                 }
-                $g['current']                 = $row[$f];
-                $this->showldwritelevelheader = TRUE;
-                $this->load->helper('utiles');
-                $this->encab .= "<h{$i}> " . ifSet($g['label'], $f) . ": {$row[$f]} </h{$i}>";
             }
         }
-    }
-}
 
-function generateEncabAndDetail($row)
-{
-    if ($this->showldwritelevelheader) {
-        if ($this->showldwritelevelfooter) {
-            $this->generateTableFooter();
+        function generateEncabAndDetail($row)
+        {
+            if ($this->showldwritelevelheader) {
+                if ($this->showldwritelevelfooter) {
+                    $this->generateTableFooter();
+                }
+                echo $this->encab;
+                $this->generateTableHeader();
+            }
+            $this->generateTableRow($row);
         }
-        echo $this->encab;
-        $this->generateTableHeader();
-    }
-    $this->generateTableRow($row);
-}
 
-function generate()
-{
+        function generate()
+        {
     ?>
-    <div id="imprimible" class="row">
-        <h1><?php echo $this->title; ?></h1>
-        <?php if (@$this->descfilter) : ?>
-            <h4 style="text-align: center"><?php echo $this->descfilter; ?></h4>
-        <?php endif; ?>
-        <?php
-        if (sizeof(@$this->groups) == 0) {
-            $this->generateTableHeader();
-        }
-        ?>
-        <?php foreach ($this->data as $row) {
-            $this->generateRowOrLevel($row);
-        } ?>
-        <?php $this->generateTableFooter(); ?>
+        <div id="imprimible" class="row">
+            <div class="col-md-12"><h1><?php echo $this->title; ?></h1></div>
+            <?php if (@$this->descfilter) : ?>
+                <h4 style="text-align: center"><?php echo $this->descfilter; ?></h4>
+            <?php endif; ?>
+            <?php
+            if (sizeof(@$this->groups) == 0) {
+                $this->generateTableHeader();
+            }
+            ?>
+            <?php foreach ($this->data as $row) {
+                $this->generateRowOrLevel($row);
+            } ?>
+            <?php $this->generateTableFooter(); ?>
 
-        <hr />
-        <?php if ($this->showTotals) : ?>
-            <h3 style='text-align:right'> Total
-                : <?php echo $this->totalrecords; ?> <?php echo $this->title; ?></h3>
-        <?php endif; ?>
-    </div>
+            <hr />
+            <?php if ($this->showTotals) : ?>
+                <h3 style='text-align:right'> Total
+                    : <?php echo $this->totalrecords; ?> <?php echo $this->title; ?></h3>
+            <?php endif; ?>
+        </div>
 <?php
-}
+        }
 
-function showSimpleView($rutadevuelta = 'admin/index')
-{
-    $data['rutadevuelta'] = $rutadevuelta;
-    $this->load->view('yreportlib/ysimplelevelreport', $data);
-}
-}
+        function showSimpleView($rutadevuelta = 'admin/index')
+        {
+            $data['rutadevuelta'] = $rutadevuelta;
+            $this->load->view('yreportlib/ysimplelevelreport', $data);
+        }
+        function showSimpleView2($rutadevuelta = 'admin/index')
+        {
+            $data['rutadevuelta'] = $rutadevuelta;
+            return $this->load->view('yreportlib/ysimplelevelreport2', $data, true);
+        }
+    }

@@ -1,10 +1,12 @@
 <?php
 
-function dbgConsole($x)
+function dbgConsola($x)
 {
-    ?>
+?>
     <script type="text/javascript">
+        console.group();
         console.warn('<?php echo json_encode($x) ?>');
+        console.groupEnd();
     </script>
 <?php
 }
@@ -39,7 +41,6 @@ function ifSet(&$val, $default = NULL)
     return isset($val) && !empty($val) ? $val : $default;
 }
 
-//var_dump(startsWith("hello world", "hello")); // true
 function startsWith($cadena, $parcial)
 {
     return $parcial === "" || strrpos($cadena, $parcial, -strlen($cadena)) !== FALSE;
@@ -55,6 +56,16 @@ function removeNewLines($text)
     return str_replace(array("\n", "\r"), ' ', $text);
 }
 
+function valueFromSessionOrDefault($variable, $defaultValue = '')
+{
+    return get_instance()->session->userdata($variable) ? get_instance()->session->userdata($variable) : $defaultValue;
+}
+
+function returnAsJSON($arreglo)
+{
+    get_instance()->load->view('yupii/json_view', array('data' => $arreglo));
+}
+
 function arrayToDropdown($array, $valueField, $textField = null)
 {
     if (!($textField)) {
@@ -67,12 +78,16 @@ function arrayToDropdown($array, $valueField, $textField = null)
     return $lista;
 }
 
-function valueFromSessionOrDefault($variable, $defaultValue = '')
+function arrayToSelect($nombre, $opciones, $campollave, $campovalor, $seleccionado, $extra = array())
 {
-    return get_instance()->session->userdata($variable) ? get_instance()->session->userdata($variable) : $defaultValue;
+    $options = arrayToDropdown($opciones, $campollave, $campovalor);
+    if (!isset($extra['class'])) {
+        $extra['class'] = 'form-control';
+    }
+    return form_dropdown($nombre, $options, $seleccionado, $extra);
 }
 
-function returnAsJSON($arreglo)
+function sessionObject()
 {
-    get_instance()->load->view('yupii/json_view', array('data' => $arreglo));
+    return json_encode(get_instance()->session->all_userdata());
 }

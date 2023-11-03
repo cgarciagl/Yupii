@@ -57,14 +57,18 @@ abstract class YDatasetModel extends YTableModel
     {
         $s = '';
         foreach ($this->tablefields as $k) {
-            if ($s != '') {
-                $s .= " or ( {$this->realField($k)} like '%$textForSearch%') ";
-            } else {
-                $s .= " ({$this->realField($k)} like '%$textForSearch%') ";
+            $f = $this->ofieldlist[$k];
+            if ($f->getQuery() == '') {
+                if ($s != '') {
+                    $s .= " or ( {$this->realField($k)} like '%$textForSearch%') ";
+                } else {
+                    $s .= " ({$this->realField($k)} like '%$textForSearch%') ";
+                }
             }
         }
         $this->db->where('(' . $s . ')', NULL, FALSE);
     }
+
 
     /**
      * Devuelve un objeto JSON con los resultados de la búsqueda
@@ -133,8 +137,25 @@ abstract class YDatasetModel extends YTableModel
     public function checkRelations()
     {
         foreach ($this->ofieldlist as $k => $f) {
+
+            if ($f->getQuery() != '') {
+                $sql = $f->getQuery();
+                $campo = $f->getFieldToShow();
+                $this->db->select("( $sql ) as $campo ", FALSE);
+            }
+
             if (method_exists($f, 'checkRelation')) {
                 $f->checkRelation($this);
+            }
+        }
+    }
+
+    private function evaluaSelect($campos)
+    {
+        foreach ($campos as $campo) {
+            $f = $this->fieldByName($campo);
+            if ($f->getQuery() == '') {
+                $this->db->select($campo);
             }
         }
     }
@@ -147,7 +168,9 @@ abstract class YDatasetModel extends YTableModel
     private function getValuesFor($id)
     {
         $a = array_keys($this->ofieldlist);
-        $this->db->select($a);
+
+        $this->evaluaSelect($a);
+
         if ($id != '') {
             $this->db->where($this->id_field, $id);
         }
@@ -310,12 +333,16 @@ abstract class YDatasetModel extends YTableModel
         if ($this->input->post($this->id_field, TRUE)) {
             foreach ($this->ofieldlist as $k => $f) {
                 if ($f->hasChanged()) {
-                    $a[$f->getFieldName()] = $f->getDataFromInput();
+                    if ($f->getQuery() == '') {
+                        $a[$f->getFieldName()] = $f->getDataFromInput();
+                    }
                 }
             }
         } else {
             foreach ($this->ofieldlist as $k => $f) {
-                $a[$f->getFieldName()] = $f->getDataFromInput();
+                if ($f->getQuery() == '') {
+                    $a[$f->getFieldName()] = $f->getDataFromInput();
+                }
             }
         }
         return $a;
@@ -382,7 +409,8 @@ abstract class YDatasetModel extends YTableModel
         $this->completeFieldList();
         $this->db->start_cache();
         $this->db->select($this->id_field);
-        $this->db->select($this->tablefields);
+        // $this->db->select($this->tablefields);
+        $this->evaluaSelect($this->tablefields);
         $this->checkRelations();
         $this->performSearchForJson();
         $this->db->stop_cache();

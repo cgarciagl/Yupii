@@ -1,6 +1,6 @@
-<div class="divfield col-sm-4">
-    <div class='input-group' id='group_<?php echo $name ?>'>
-        <label class="control-label"><?php echo $label; ?> :</label>
+<div class="divfield col-sm-4 mr-1 mt-1">
+    <div class='form-control' id='group_<?php echo $name ?>'>
+        <label class="control-label"><?php echo $label; ?> </label>
 
         <div class='input-group'>
             <?php echo $this->load->view('yfield/inputfield', NULL, TRUE); ?>
@@ -13,4 +13,4 @@
             </script>
         </div>
     </div>
-</div>    
+</div>

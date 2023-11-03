@@ -1,21 +1,3 @@
-<style type="text/css">
-    .yupiireportresult h1 {
-        padding: 5px;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-
-    .yupiireportresult h2 {
-        padding: 5px;
-        text-align: center;
-        margin-bottom: 5px;
-    }
-
-    .yupiireportresult {
-        padding: 25px;
-    }
-</style>
-
 <div class="panel panel-primary boxshadowround yupii-widget">
     <div class="panel-footer">
         <button style="margin-top:15px;" class="btn btn-primary btnbackreport">
@@ -57,7 +39,7 @@
             b.show();
             b.click(function(e) {
                 e.preventDefault();
-                $(this).parents('.yupii-widget').first().remove();
+                $(this).closest('.yupii-widget').first().remove();
                 stackwidgets.pop().show('slide');
             });
         } else {
@@ -84,7 +66,7 @@
             });
         });
 
-        $('.exporttoexcel').click(function() {
+        $('.exporttoexcel').click(function(e) {
             // window.open('data:application/vnd.ms-excel,'+$('#imprimible').html());
             var dt = new Date();
             var day = dt.getDate();
@@ -109,3 +91,28 @@
         });
     });
 </script>
+<style>
+    .yupiireportresult h1 {
+        padding: 5px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .yupiireportresult h2 {
+        padding: 5px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .yupiireportresult {
+        padding: 25px;
+    }
+
+    script {
+        display: none !important;
+    }
+
+    style {
+        display: none !important;
+    }
+</style>
