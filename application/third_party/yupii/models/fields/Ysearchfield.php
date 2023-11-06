@@ -1,6 +1,7 @@
 <?php
 
-class YSearchField extends YFieldDecorator {
+class YSearchField extends YFieldDecorator
+{
 
     protected $fieldtoshow;
     protected $controller;
@@ -8,39 +9,48 @@ class YSearchField extends YFieldDecorator {
     protected $idvalue;
     protected $default;
 
-    public function getIdValue() {
+    public function getIdValue()
+    {
         return $this->idvalue;
     }
 
-    public function setIdValue($idvalue) {
+    public function setIdValue($idvalue)
+    {
         $this->idvalue = $idvalue;
     }
 
-    public function getController() {
+    public function getController()
+    {
         return $this->controller;
     }
 
-    public function setController($controller) {
+    public function setController($controller)
+    {
         $this->controller = $controller;
     }
 
-    public function getFilter() {
+    public function getFilter()
+    {
         return $this->filter;
     }
 
-    public function setFilter($filter) {
+    public function setFilter($filter)
+    {
         $this->filter = $filter;
     }
 
-    public function getFieldToShow() {
+    public function getFieldToShow()
+    {
         return $this->fieldtoshow;
     }
 
-    public function setFieldToShow($fieldtoshow) {
+    public function setFieldToShow($fieldtoshow)
+    {
         $this->fieldtoshow = $fieldtoshow;
     }
 
-    public function constructControl() {
+    public function constructControl()
+    {
         $this->loadVars();
         $a['fieldtoshow'] = $this->getFieldToShow();
         $a['controller']  = $this->getController();
@@ -50,7 +60,8 @@ class YSearchField extends YFieldDecorator {
         return $this->load->view('yfield/searchfield', $a, TRUE);
     }
 
-    function checkDefault(&$a) {
+    function checkDefault(&$a)
+    {
         if (isset($this->default)) {
             if (!isset($a['idvalue'])) {
                 if (is_array($this->default)) {
@@ -63,8 +74,9 @@ class YSearchField extends YFieldDecorator {
         }
     }
 
-    public function checkRelation(&$model) {
-        $db            = $this->db;// $model->db;
+    public function checkRelation(&$model)
+    {
+        $db            = $this->db; // $model->db;
         $mock          = import_model_from_controller($this->getController());
         $tablename     = $mock->table_name;
         $joincondition = "{$mock->id_field} = {$this->getFieldName()}";
@@ -73,11 +85,11 @@ class YSearchField extends YFieldDecorator {
         $this->setFieldToShow($mock->tablefields[0]);
         $db->select($this->getFieldToShow());
         unset($mock);
-       // $model->db = $db;
+        // $model->db = $db;
     }
 
-    public function getDataFromInput() {
+    public function getDataFromInput()
+    {
         return $this->input->post('yupii_id_' . $this->getFieldName(), TRUE);
     }
-
 }

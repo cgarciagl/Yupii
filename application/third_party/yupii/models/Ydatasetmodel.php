@@ -431,9 +431,11 @@ abstract class YDatasetModel extends YTableModel
                 $this->setWhereForSearchInMultipleFields($se);
             }
         }
-        $filter = base64_decode($this->input->post('sFilter', TRUE));
-        if ($filter) {
-            $this->db->where($filter, FALSE, FALSE);
+        if ($this->input->post('sFilter', TRUE)) {
+            $filter = base64_decode($this->input->post('sFilter', TRUE));
+            if ($filter) {
+                $this->db->where($filter, FALSE, FALSE);
+            }
         }
     }
 

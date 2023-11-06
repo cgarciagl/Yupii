@@ -70,7 +70,7 @@ abstract class YDataset extends YController
             Yupii::get_CI()->load->model($this->getClassName(), 'modelo');
         } else {
             //this is weird and ugly but is the only way to make it work on CI3...
-            Yupii::get_CI()->load->model('Yconcretedatasetmodel', 'modelo');
+            Yupii::get_CI()->load->model('YConcreteDatasetModel', 'modelo');
             if (ifSet($this->modelo) == NULL) {
                 $this->modelo = new YConcreteDatasetModel();
             }
@@ -253,7 +253,8 @@ abstract class YDataset extends YController
      * Función "abstracta" para aplicar filtros al catálogo
      */
     public function _filters()
-    { }
+    {
+    }
 
     /**
      * Función que aplica los filtros usando la cache de querys de Codeigniter
@@ -269,35 +270,41 @@ abstract class YDataset extends YController
      * Disparador Callback (Trigger) para Antes de Insertar
      */
     function _beforeInsert(&$a)
-    { }
+    {
+    }
 
     /**
      * Disparador Callback (Trigger) para Después de Insertar
      */
     function _afterInsert()
-    { }
+    {
+    }
 
     /**
      * Disparador Callback (Trigger) para Antes de Actualizar
      */
     function _beforeUpdate(&$a)
-    { }
+    {
+    }
 
     /**
      * Disparador Callback (Trigger) para Después de Actualizar
      */
     function _afterUpdate()
-    { }
+    {
+    }
 
     /**
      * Disparador Callback (Trigger) para Antes de Borrar
      */
     function _beforeDelete()
-    { }
+    {
+    }
 
     /**
      * Disparador Callback (Trigger) para Después de Borrar
      */
     function _afterDelete()
-    { }
+    {
+    }
 }
